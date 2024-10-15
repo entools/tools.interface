@@ -47,3 +47,4 @@ jobs:
 
           docker compose build
           docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY-frontend:latest
+
