@@ -1,7 +1,7 @@
 // import React from 'react';
 import type { PropsWithChildren } from 'react';
 
-import Header from '../header/index.tsx';
+import Header from '../header/index.ts';
 import Footer from '../footer/index.ts';
 
 import style from './content.module.css';
