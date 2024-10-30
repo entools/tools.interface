@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import App from './app.tsx';
 import { store } from './store/index.ts';
 
+import './vendor/normalize.css';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
