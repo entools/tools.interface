@@ -48,24 +48,24 @@ jobs:
           docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY-tools-frontend:latest
 
   update-yc:
+    needs:
+      - deploy
     runs-on: ubuntu-latest
-    needs: [deploy]
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Deploy COI VM
-      id: deploy-coi
-      uses: yc-actions/yc-coi-deploy@v1.0.1
-      env:
-        IMAGE_NAME: ${{ env.IMAGE_NAME }}
-        YC_VM_SSH: ${{ secrets.YC_VM_SSH }}
-        YC_VM_USERNAME: ${{ secrets.YC_VM_USERNAME }}
-      with:
-        yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-        folder-id: ${{ secrets.YC_FOLDER_ID }}
-        vm-name: ${{ secrets.YC_VM_NAME }}
-        vm-subnet-id: ${{ secrets.YC_SUBNET_ID }}
-        vm-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
-        user-data-path: './yandex-cloud/user-data.yaml'
-        docker-compose-path: './yandex-cloud/docker-compose.yc.yaml'
+      - uses: actions/checkout@v2
+      - name: Deploy COI VM
+        id: deploy-coi
+        uses: yc-actions/yc-coi-deploy@b22db2965c8af6bf0980e8b026c5e80ad6e15adf
+        env:
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          YC_VM_SSH: ${{ secrets.YC_VM_SSH }}
+          # YC_VM_USERNAME: ${{ secrets.YC_VM_USERNAME }}
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+          folder-id: ${{ secrets.YC_FOLDER_ID }}
+          vm-name: ${{ secrets.YC_VM_NAME }}
+          vm-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
+          vm-zone-id: ru-central1-a
+          vm-subnet-id: ${{ secrets.YC_SUBNET_ID }}
+          user-data-path: './yandex-cloud/user-data.yaml'
+          docker-compose-path: './yandex-cloud/docker-compose.yc.yaml'
