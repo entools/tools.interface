@@ -58,6 +58,7 @@ jobs:
       id: deploy-coi
       uses: yc-actions/yc-coi-deploy@v1.0.1
       env:
+        IMAGE_NAME: ${{ env.IMAGE_NAME }}
         YC_VM_SSH: ${{ secrets.YC_VM_SSH }}
         YC_VM_USERNAME: ${{ secrets.YC_VM_USERNAME }}
       with:
@@ -67,5 +68,5 @@ jobs:
         vm-subnet-id: ${{ secrets.YC_SUBNET_ID }}
         vm-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
 
-        docker-compose-path: './yandex-cloud/tools.dev/docker-compose.yaml'
-        user-data-path: './yandex-cloud/tools.dev/user-data.yaml'
+        docker-compose-path: './yandex-cloud/docker-compose.yc.yaml'
+        user-data-path: './yandex-cloud/user-data.yaml'
