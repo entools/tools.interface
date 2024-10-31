@@ -59,8 +59,19 @@ export default function Sidebar() {
         </div>
         <div className={style.list}>
           <div className={style.item__header}>list</div>
-          <div className={style.item}>item 1</div>
-          <div className={style.item}>item 2</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i1' : 'item 1'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i2' : 'item 2'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i3' : 'item 3'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i4' : 'item 4'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i5' : 'item 5'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i6' : 'item 6'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i7' : 'item 7'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i8' : 'item 8'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i9' : 'item 9'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i1' : 'item 1'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i2' : 'item 2'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i3' : 'item 3'}</div>
+          <div className={style.item}>{sidebarWidth < 100 ? 'i4' : 'item 4'}</div>
         </div>
         <div className={classNames(style.footer)}>
           <div className={style.profile}>
