@@ -66,5 +66,5 @@ jobs:
           vm-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
           vm-zone-id: ru-central1-a
           vm-subnet-id: ${{ secrets.YC_SUBNET_ID }}
-          user-data-path: './yandex-cloud/user-data.yaml'
-          docker-compose-path: './yandex-cloud/docker-compose.yaml'
+          user-data-path: './yandex-cloud/user-data.yml'
+          docker-compose-path: './yandex-cloud/docker-compose.yml'
