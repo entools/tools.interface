@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   frontend:
-    # container_name: compose-tools-frontend-container
+    container_name: compose-tools-frontend-container
     # build:
     #   dockerfile: Dockerfile
     image: {{ env.IMAGE_NAME }}

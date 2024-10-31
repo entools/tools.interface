@@ -59,7 +59,7 @@ jobs:
         env:
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
           YC_VM_SSH: ${{ secrets.YC_VM_SSH }}
-          # YC_VM_USERNAME: ${{ secrets.YC_VM_USERNAME }}
+          YC_VM_USERNAME: ${{ secrets.YC_VM_USERNAME }}
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
           folder-id: ${{ secrets.YC_FOLDER_ID }}
@@ -68,4 +68,4 @@ jobs:
           vm-zone-id: ru-central1-a
           vm-subnet-id: ${{ secrets.YC_SUBNET_ID }}
           user-data-path: './yandex-cloud/user-data.yaml'
-          docker-compose-path: './yandex-cloud/docker-compose.yc.yaml'
+          docker-compose-path: './yandex-cloud/docker-compose.yaml'
