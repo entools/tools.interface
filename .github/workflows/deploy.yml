@@ -44,7 +44,6 @@ jobs:
 
         run: |
           echo CR_REGISTRY=${{ secrets.CR_REGISTRY }} >> .env.production
-
           docker compose build
           docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY-tools-frontend:latest
 
@@ -66,6 +65,7 @@ jobs:
         folder-id: ${{ secrets.YC_FOLDER_ID }}
         VM-name: ${{ secrets.YC_VM_NAME }}
         vm-subnet-id: ${{ secrets.YC_SUBNET_ID }}
+        vm-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
 
         docker-compose-path: './tools.dev/docker-compose.yaml'
         user-data-path: './tools.dev/user-data.yaml'
