@@ -2,11 +2,11 @@ version: "3.9"
 
 services:
   frontend:
-    container_name: compose-tools-frontend-container
-    build:
-      dockerfile: Dockerfile
+    # container_name: compose-tools-frontend-container
+    # build:
+    #   dockerfile: Dockerfile
     image: {{ env.IMAGE_NAME }}
-    platform: linux/amd64
+    # platform: linux/amd64
     networks:
       - internet
     ports:
