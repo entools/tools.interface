@@ -1,36 +1,38 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
+import { Route, Routes } from 'react-router-dom';
+
+import { useAppLocation } from './hooks/use-app-location.tsx';
+import ErrorBoundaryWrapper from './components/error-boundary-wrapper/index.ts';
+import ThemeProvider from './providers/theme-provider.tsx';
+
+import MainPage from './pages/main-page/main-page.tsx';
+import AboutPage from './pages/about-page/about-page.tsx';
+import ProfilePage from './pages/profile-page/profile-page.tsx';
+import OauthPage from './pages/oauth-page/oauth-page.tsx';
+import SigninPage from './pages/signin-page/signin-page.tsx';
+import NotFoundPage from './pages/not-found-page/not-found-page.tsx';
+// ? projects -> sidebar
+import ProjectsPage from './pages/projects-page/projects-page.tsx';
+
 import './app.css';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const location = useAppLocation();
+  const background = location.state?.pathname;
 
   return (
-    <>
-      <div>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button type="button" onClick={() => setCount((cnt) => cnt + 1)}>
-          count is
-          {' '}
-          {count}
-        </button>
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <ThemeProvider>
+      <ErrorBoundaryWrapper>
+        <Routes location={background || location}>
+          <Route path="/" element={(<MainPage />)} />
+          <Route path="/about" element={(<AboutPage />)} />
+          <Route path="/oauth" element={(<OauthPage />)} />
+          <Route path="/signin" element={(<SigninPage />)} />
+          <Route path="/profile" element={(<ProfilePage />)} />
+          <Route path="/projects" element={(<ProjectsPage />)} />
+          <Route path="*" element={(<NotFoundPage />)} />
+        </Routes>
+      </ErrorBoundaryWrapper>
+    </ThemeProvider>
   );
 }
 
