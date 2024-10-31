@@ -5,7 +5,7 @@ services:
     container_name: compose-tools-frontend-container
     build:
       dockerfile: Dockerfile
-    image: cr.yandex/crpfap56bqr8nkph7d9g/entools-tools-frontend
+    image: {{ env.IMAGE_NAME }}
     platform: linux/amd64
     networks:
       - internet
