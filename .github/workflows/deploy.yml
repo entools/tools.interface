@@ -61,6 +61,11 @@ jobs:
       #   run: |
       #     docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
       #     docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
+  update-yc:
+    needs:
+      - deploy
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout
       - uses: actions/checkout@v3
 
