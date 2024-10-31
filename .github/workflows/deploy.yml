@@ -52,9 +52,12 @@ jobs:
       - deploy
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Deploy COI VM
         id: deploy-coi
-        uses: yc-actions/yc-coi-deploy@v1
+        uses: yc-actions/yc-coi-deploy@v1.0.1
         # uses: yc-actions/yc-coi-deploy@b22db2965c8af6bf0980e8b026c5e80ad6e15adf
         env:
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
