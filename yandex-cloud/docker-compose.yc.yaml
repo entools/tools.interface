@@ -7,15 +7,15 @@ services:
     #   dockerfile: Dockerfile
     image: {{ env.IMAGE_NAME }}
     # platform: linux/amd64
-    networks:
-      - internet
-    ports:
-      - 8081:80
+    # networks:
+    #   - internet
+    # ports:
+    #   - 8081:80
     restart: unless-stopped
 
-networks:
-  internal-network:
-    driver: bridge
-    internal: true
-  internet:
-    driver: bridge
+# networks:
+#   internal-network:
+#     driver: bridge
+#     internal: true
+#   internet:
+#     driver: bridge
