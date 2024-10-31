@@ -40,7 +40,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 8px;
-  font-size: 20px;
+  /* font-size: 20px; */
   background: linear-gradient(-45deg, rgb(2, 156, 245), rgb(21, 237, 237));
   border-radius: 8px;
   min-width: 28px;
