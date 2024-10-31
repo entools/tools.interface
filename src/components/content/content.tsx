@@ -2,7 +2,6 @@
 import type { PropsWithChildren } from 'react';
 
 import Header from '../header/index.ts';
-import Footer from '../footer/index.ts';
 
 import style from './content.module.css';
 
@@ -11,7 +10,6 @@ export default function Content({ children }: PropsWithChildren) {
     <main className={style.content}>
       <Header />
       {children}
-      <Footer />
     </main>
   );
 }
