@@ -9,7 +9,7 @@ on:
     branches: [ develop ]
 
 env:
-  IMAGE_NAME: cr.yandex/${{ secrets.CR_REGISTRY }}/${{ secrets.CR_REPOSITORY }}-tools-frontend:latest
+  IMAGE_NAME: cr.yandex/${{ secrets.CR_REGISTRY }}/${{ secrets.CR_REPOSITORY }}-tools-frontend:${{ github.sha }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,45 +34,7 @@ jobs:
         run: |
           echo CR_REGISTRY=${{ secrets.CR_REGISTRY }} >> .env.production
           docker compose build
-          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY-tools-frontend:latest
-
-      # - name: Login to Yandex Cloud Container Registry
-      #   id: login-cr
-      #   uses: yc-actions/yc-cr-login@v1
-      #   with:
-      #     yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-
-      # - name: Build, tag, and push image to Yandex Cloud Container Registry
-      #   env:
-      #     CR_REGISTRY: crp00000000000000000
-      #     CR_REPOSITORY: my-cr-repo
-      #     IMAGE_TAG: ${{ github.sha }}
-      #   run: |
-      #     docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
-      #     docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
-  # update-yc:
-  #   needs:
-  #     - deploy
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #     - uses: actions/checkout@v3
-
-  #     - name: Deploy COI VM
-  #       id: deploy-coi
-  #       uses: yc-actions/yc-coi-deploy@v2
-  #       env:
-  #         IMAGE_NAME: ${{ env.IMAGE_NAME }}
-  #         YC_VM_SSH: ${{ secrets.YC_VM_SSH }}
-  #       with:
-  #         yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-  #         folder-id: ${{ secrets.YC_FOLDER_ID }}
-  #         vm-name: ${{ secrets.YC_VM_NAME }}
-  #         vm-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
-  #         vm-zone-id: ru-central1-a
-  #         vm-subnet-id: ${{ secrets.YC_SUBNET_ID }}
-  #         user-data-path: './yandex-cloud/user-data.yaml'
-  #         docker-compose-path: './yandex-cloud/docker-compose.yaml'
+          docker push $IMAGE_NAME
 
   update-yc:
     needs:
@@ -94,7 +56,6 @@ jobs:
           folder-id: ${{ secrets.YC_FOLDER_ID }}
           vm-name: ${{ secrets.YC_VM_NAME }}
           vm-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
-          vm-zone-id: ru-central1-a
           vm-subnet-id: ${{ secrets.YC_SUBNET_ID }}
           user-data-path: './yandex-cloud/user-data.yaml'
           docker-compose-path: './yandex-cloud/docker-compose.yaml'
