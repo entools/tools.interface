@@ -17,7 +17,7 @@ export default function Sidebar() {
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(Number(initSidebarWidth) || 310);
 
-  const startResizing = useCallback((mouseDownEvent: React.MouseEvent) => {
+  const startResizing = useCallback((_mouseDownEvent: React.MouseEvent) => {
     setIsResizing(true);
   }, []);
 
