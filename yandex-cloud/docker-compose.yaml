@@ -1,5 +1,5 @@
 version: "3.9"
 
 services:
-  frontend:
+  postgres:16.4-alpin:
     image: postgres:16.4-alpine # ${{ env.IMAGE_NAME }}
