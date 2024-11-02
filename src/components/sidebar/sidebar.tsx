@@ -61,14 +61,16 @@ export default function Sidebar() {
           </div>
         </div>
         <div className={classNames(style.header)}>
-          <div className={style.logo}>
-            search
+          <div className={style.search}>
+            {sidebarWidth < 100 ? 's' : 'search'}
           </div>
         </div>
         <div className={style.list__container}>
           <div className={style.list}>
             <div className={style.item__header}>
-              documents
+              <div className={style.title}>
+                {sidebarWidth < 100 ? 'd' : 'documents'}
+              </div>
               <button
                 type="button"
                 className={style.show}
@@ -89,7 +91,7 @@ export default function Sidebar() {
           </div>
           <div className={style.list}>
             <div className={style.item__header}>
-              teams
+              {sidebarWidth < 100 ? 't' : 'teams'}
               <button
                 type="button"
                 className={style.show}
@@ -99,7 +101,7 @@ export default function Sidebar() {
               </button>
             </div>
             {showProjects && (
-              <div className={style.projects}>
+              <div className={style.documents}>
                 {new Array(15).fill(1).map((_, i) => (
                   <div className={style.item} key={i}>
                     {sidebarWidth < 100 ? `u${i}` : `user ${i}`}
