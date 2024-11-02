@@ -49,9 +49,9 @@ jobs:
         id: deploy-coi
         uses: yc-actions/yc-coi-deploy@v2.0.0
         env:
-          # CR_REGISTRY: ${{ secrets.CR_REGISTRY }}
-          # CR_REPOSITORY: ${{ secrets.CR_REPOSITORY }}
-          # IMAGE_TAG: ${{ github.sha }}
+          CR_REGISTRY: ${{ secrets.CR_REGISTRY }}
+          CR_REPOSITORY: ${{ secrets.CR_REPOSITORY }}
+          IMAGE_TAG: ${{ github.sha }}
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
