@@ -58,7 +58,7 @@ export default function Sidebar() {
           </div>
         </div>
         <div className={style.list}>
-          <div className={style.item__header}>list</div>
+          <div className={style.item__header}>list 1</div>
           <div className={style.item}>{sidebarWidth < 100 ? 'i1' : 'item 1'}</div>
           <div className={style.item}>{sidebarWidth < 100 ? 'i2' : 'item 2'}</div>
           <div className={style.item}>{sidebarWidth < 100 ? 'i3' : 'item 3'}</div>
