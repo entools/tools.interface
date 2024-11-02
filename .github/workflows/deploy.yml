@@ -45,19 +45,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Deploy COI VM
+      - name: YC COI Container Deploy
         id: deploy-coi
-        uses: yc-actions/yc-coi-deploy@v2
+        uses: yc-actions/yc-coi-deploy@v2.0.0
         env:
-          CR_REGISTRY: ${{ secrets.CR_REGISTRY }}
-          CR_REPOSITORY: ${{ secrets.CR_REPOSITORY }}
-          IMAGE_TAG: ${{ github.sha }}
+          # CR_REGISTRY: ${{ secrets.CR_REGISTRY }}
+          # CR_REPOSITORY: ${{ secrets.CR_REPOSITORY }}
+          # IMAGE_TAG: ${{ github.sha }}
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
           folder-id: ${{ secrets.YC_FOLDER_ID }}
+          vm-name: ${{ secrets.YC_VM_NAME }}
           vm-service-account-id: ${{ secrets.YC_SERVICE_ACCOUNT_ID }}
           vm-subnet-id: ${{ secrets.YC_SUBNET_ID }}
-          vm-name: ${{ secrets.YC_VM_NAME }}
           user-data-path: './yandex-cloud/user-data.yaml'
           docker-compose-path: './yandex-cloud/docker-compose.yaml'
