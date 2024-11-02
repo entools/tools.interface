@@ -35,7 +35,7 @@ jobs:
         run: |
           echo CR_REGISTRY=${{ secrets.CR_REGISTRY }} >> .env.production
           docker compose build
-          docker push $IMAGE_NAME
+          docker push IMAGE_NAME
 
   update-yc:
     runs-on: ubuntu-latest
