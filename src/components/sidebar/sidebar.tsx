@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unsafe-optional-chaining */
@@ -11,10 +12,12 @@ import style from './sidebar.module.css';
 export default function Sidebar() {
   const initSidebarWidth = localStorage.getItem('sidebar');
   const sidebarRef = useRef<HTMLInputElement>(null);
+  const [showProjects, setShowProjects] = useState(true);
+  const [showDocuments, setShowDocuments] = useState(true);
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(Number(initSidebarWidth) || 310);
 
-  const startResizing = useCallback((_mouseDownEvent: React.MouseEvent) => {
+  const startResizing = useCallback((mouseDownEvent: React.MouseEvent) => {
     setIsResizing(true);
   }, []);
 
@@ -57,21 +60,55 @@ export default function Sidebar() {
             {sidebarWidth}
           </div>
         </div>
-        <div className={style.list}>
-          <div className={style.item__header}>list 1</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i1' : 'item 1'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i2' : 'item 2'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i3' : 'item 3'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i4' : 'item 4'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i5' : 'item 5'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i6' : 'item 6'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i7' : 'item 7'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i8' : 'item 8'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i9' : 'item 9'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i1' : 'item 1'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i2' : 'item 2'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i3' : 'item 3'}</div>
-          <div className={style.item}>{sidebarWidth < 100 ? 'i4' : 'item 4'}</div>
+        <div className={classNames(style.header)}>
+          <div className={style.logo}>
+            search
+          </div>
+        </div>
+        <div className={style.list__container}>
+          <div className={style.list}>
+            <div className={style.item__header}>
+              documents
+              <button
+                type="button"
+                className={style.show}
+                onClick={() => setShowDocuments(!showDocuments)}
+              >
+                {showDocuments ? '-' : '+'}
+              </button>
+            </div>
+            {showDocuments && (
+              <div className={style.documents}>
+                {new Array(15).fill(1).map((_, i) => (
+                  <div className={style.item} key={i}>
+                    {sidebarWidth < 100 ? `d${i}` : `doc ${i}`}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className={style.list}>
+            <div className={style.item__header}>
+              teams
+              <button
+                type="button"
+                className={style.show}
+                onClick={() => setShowProjects(!showProjects)}
+              >
+                {showProjects ? '-' : '+'}
+              </button>
+            </div>
+            {showProjects && (
+              <div className={style.projects}>
+                {new Array(15).fill(1).map((_, i) => (
+                  <div className={style.item} key={i}>
+                    {sidebarWidth < 100 ? `u${i}` : `user ${i}`}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
         </div>
         <div className={classNames(style.footer)}>
           <div className={style.profile}>
@@ -79,7 +116,6 @@ export default function Sidebar() {
           </div>
         </div>
       </div>
-
       <div
         className={style.sidebar__resizer}
         onMouseDown={startResizing}

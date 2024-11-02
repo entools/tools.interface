@@ -36,29 +36,38 @@
   margin-top: 8px;
 }
 
-.list {
+.list__container {
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
   height: 100%;
-  background-color: coral;
-  border-radius: 8px;
-  margin-left: 8px;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  padding: 8px;
-  box-sizing: border-box;
-
   overflow-y: overlay;
-  overflow-x: inherit;
+  overflow-x: hidden;
+}
+
+.list__container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list__container::-webkit-scrollbar-track {
+  background-color: #2f2f37;
+  border-radius: 4px;
+}
+
+.list__container::-webkit-scrollbar-thumb {
+  background-color: #8585ad;
+  border-radius: 4px;
 }
 
 .item__header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
   border-radius: 8px;
+  padding: 2px;
   background: linear-gradient(-45deg, rgb(135, 57, 229), rgb(84, 150, 255));
 }
-
 
 .item {
   display: flex;
@@ -77,6 +86,7 @@
   margin-left: 8px;
   margin-bottom: 8px;
   padding: 0;
+  width: auto;
 }
 
 .profile {
@@ -103,4 +113,96 @@
 
 .small {
   font-size: 20px;
+}
+
+.documents {
+  display: flex;
+  flex-direction: column;
+  /* max-height: 50%; */
+  height: auto;
+  background-color: coral;
+  border-radius: 8px;
+  /* margin-left: 8px;
+  margin-bottom: 8px; */
+  margin-top: 8px;
+  /* padding: 8px; */
+  box-sizing: border-box;
+  overflow-y: overlay;
+  overflow-x: inherit;
+}
+
+.documents::-webkit-scrollbar {
+  width: 8px;
+}
+
+.documents::-webkit-scrollbar-track {
+  background-color: #2f2f37;
+  border-radius: 4px;
+}
+
+.documents::-webkit-scrollbar-thumb {
+  background-color: #8585ad;
+  border-radius: 4px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  max-height: 40%;
+  /* min-height: 30%; */
+  /* max-height: 50%; */
+
+  background-color: coral;
+  border-radius: 8px;
+  margin-left: 8px;
+  margin-bottom: 0;
+  margin-top: 8px;
+  padding: 8px;
+  /* padding: 8px; */
+  box-sizing: border-box;
+
+  /* overflow-y: overlay;
+  overflow-x: inherit; */
+}
+
+
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  /* max-height: 50%; */
+  height: auto;
+  background-color: coral;
+  border-radius: 8px;
+  margin-top: 8px;
+  /* margin-left: 8px;
+  margin-bottom: 8px;
+  margin-top: 8px; */
+  /* padding: 8px; */
+  box-sizing: border-box;
+
+  overflow-y: overlay;
+  overflow-x: inherit;
+}
+
+.projects::-webkit-scrollbar {
+  width: 8px;
+}
+
+.projects::-webkit-scrollbar-track {
+  background-color: #2f2f37;
+  border-radius: 4px;
+}
+
+.projects::-webkit-scrollbar-thumb {
+  background-color: #8585ad;
+  border-radius: 4px;
+}
+
+.show {
+  display: flex;
+  padding: 2px;
+  max-width: 30px;
+  max-height: 30px;
 }
