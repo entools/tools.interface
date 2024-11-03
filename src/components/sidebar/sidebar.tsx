@@ -33,10 +33,11 @@ export default function Sidebar() {
   const resize = useCallback(
     (mouseMoveEvent: MouseEvent) => {
       if (isResizing) {
-        setSidebarWidth(
-          mouseMoveEvent.clientX
-          - sidebarRef.current!.getBoundingClientRect()?.left,
-        );
+        const width = mouseMoveEvent.clientX
+        - sidebarRef.current!.getBoundingClientRect()?.left >= 60
+          ? mouseMoveEvent.clientX - sidebarRef.current!.getBoundingClientRect()?.left
+          : 60;
+        setSidebarWidth(width);
       }
     },
     [isResizing],
