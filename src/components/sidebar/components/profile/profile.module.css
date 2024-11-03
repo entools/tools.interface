@@ -10,13 +10,17 @@
 }
 
 .pic {
-  background-color: aqua;
+  background: linear-gradient(-45deg, rgb(135, 57, 229), rgb(84, 150, 255));
   height: 28px;
   width: 28px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: yellow;
+}
+.pic:visited {
+  color: yellow;
 }
 .name {
   display: flex;
@@ -27,11 +31,16 @@
 }
 
 .notification {
-  background-color: aqua;
+  background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170));
   height: 28px;
   width: 28px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.column {
+  flex-direction: column;
+  min-height: 68px;
 }
