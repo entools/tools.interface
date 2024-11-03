@@ -25,3 +25,13 @@
   margin: 0;
   padding: 0;
 }
+
+.notification {
+  background-color: aqua;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

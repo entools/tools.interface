@@ -64,4 +64,4 @@ jobs:
           vm-disk-size: 30Gb
           vm-core-fraction: 5
           user-data-path: './yc/user-data.yaml'
-          docker-compose-path: './yc/docker-compose.yaml'
+          docker-compose-path: './yc/develop/docker-compose.yaml'
