@@ -122,7 +122,7 @@ export default function Sidebar() {
         </div>
         <div className={classNames(style.footer)}>
           <div className={style.profile}>
-            {sidebarWidth < 100 ? 'f' : 'footer'}
+            {sidebarWidth < 100 ? 'f' : '-footer-'}
           </div>
         </div>
       </div>
