@@ -7,6 +7,10 @@ import {
 } from 'react';
 import classNames from 'classnames';
 
+import Logo from './components/logo/logo.tsx';
+import Search from './components/search/search.tsx';
+import Profile from './components/profile/profile.tsx';
+
 import style from './sidebar.module.css';
 
 export default function Sidebar() {
@@ -55,16 +59,8 @@ export default function Sidebar() {
       style={{ width: sidebarWidth }}
     >
       <div className={style.container}>
-        <div className={classNames(style.header)}>
-          <div className={style.logo}>
-            {sidebarWidth}
-          </div>
-        </div>
-        <div className={classNames(style.header)}>
-          <div className={style.search}>
-            {sidebarWidth < 100 ? 's' : 'search'}
-          </div>
-        </div>
+        <Logo sidebarWidth={sidebarWidth} />
+        <Search sidebarWidth={sidebarWidth} />
         <div className={style.list__container}>
           <div className={style.list}>
             <div className={style.item__header}>
@@ -121,9 +117,7 @@ export default function Sidebar() {
 
         </div>
         <div className={classNames(style.footer)}>
-          <div className={style.profile}>
-            {sidebarWidth < 100 ? 'f' : '-footer-'}
-          </div>
+          <Profile sidebarWidth={sidebarWidth} />
         </div>
       </div>
       <div

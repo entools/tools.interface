@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo {
+  background-color: #303537;
+  border-radius: 12px;
+  margin: 0;
+  margin-left: 8px;
+  margin-top: 8px;
+  font-size: 20px;
+  line-height: 40px;
+}
