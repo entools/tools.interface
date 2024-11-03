@@ -68,9 +68,11 @@ export default function Sidebar() {
         <div className={style.list__container}>
           <div className={style.list}>
             <div className={style.item__header}>
-              <div className={style.title}>
-                {sidebarWidth < 100 ? 'd' : 'documents'}
-              </div>
+              {sidebarWidth > 150 && (
+                <div className={style.title}>
+                  documents
+                </div>
+              )}
               <button
                 type="button"
                 className={style.show}
@@ -81,17 +83,22 @@ export default function Sidebar() {
             </div>
             {showDocuments && (
               <div className={style.documents}>
-                {new Array(15).fill(1).map((_, i) => (
+                {new Array(1).fill(1).map((_, i) => (
                   <div className={style.item} key={i}>
-                    {sidebarWidth < 100 ? `d${i}` : `doc ${i}`}
+                    {sidebarWidth < 100 ? `${i}` : `doc ${i}`}
                   </div>
                 ))}
               </div>
             )}
           </div>
           <div className={style.list}>
+
             <div className={style.item__header}>
-              {sidebarWidth < 100 ? 't' : 'teams'}
+              {sidebarWidth > 150 && (
+              <div className={style.title}>
+                teams
+              </div>
+              )}
               <button
                 type="button"
                 className={style.show}
@@ -100,11 +107,12 @@ export default function Sidebar() {
                 {showProjects ? '-' : '+'}
               </button>
             </div>
+
             {showProjects && (
               <div className={style.documents}>
                 {new Array(15).fill(1).map((_, i) => (
                   <div className={style.item} key={i}>
-                    {sidebarWidth < 100 ? `u${i}` : `user ${i}`}
+                    {sidebarWidth < 100 ? `${i}` : `user ${i}`}
                   </div>
                 ))}
               </div>
