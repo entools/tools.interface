@@ -23,11 +23,13 @@ function App() {
     <ThemeProvider>
       <ErrorBoundaryWrapper>
         <Routes location={background || location}>
-          <Route path="/" element={(<MainPage />)} />
-          <Route path="/about" element={(<AboutPage />)} />
+          <Route path="/" element={(<MainPage />)}>
+            <Route path="/profile" element={(<ProfilePage />)} />
+            <Route path="/about" element={(<AboutPage />)} />
+          </Route>
+
           <Route path="/oauth" element={(<OauthPage />)} />
           <Route path="/signin" element={(<SigninPage />)} />
-          <Route path="/profile" element={(<ProfilePage />)} />
           <Route path="/projects" element={(<ProjectsPage />)} />
           <Route path="*" element={(<NotFoundPage />)} />
         </Routes>
