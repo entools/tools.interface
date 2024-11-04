@@ -15,9 +15,11 @@ import style from './sidebar.module.css';
 
 export default function Sidebar() {
   const initSidebarWidth = localStorage.getItem('sidebar');
+  const initDocuments = localStorage.getItem('documents') === 'true';
+  const initTeams = localStorage.getItem('teams') === 'true';
   const sidebarRef = useRef<HTMLInputElement>(null);
-  const [showProjects, setShowProjects] = useState(true);
-  const [showDocuments, setShowDocuments] = useState(true);
+  const [showTeams, setShowTeams] = useState(initTeams);
+  const [showDocuments, setShowDocuments] = useState<boolean>(initDocuments);
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(Number(initSidebarWidth) || 310);
 
@@ -29,6 +31,17 @@ export default function Sidebar() {
     setIsResizing(false);
     localStorage.setItem('sidebar', sidebarWidth.toString());
   }, [sidebarWidth]);
+
+  const onShowDocuments = () => {
+    const curr = !showDocuments;
+    setShowDocuments(curr);
+    localStorage.setItem('documents', curr.toString());
+  };
+  const onShowTeams = () => {
+    const curr = !showTeams;
+    setShowTeams(curr);
+    localStorage.setItem('teams', curr.toString());
+  };
 
   const resize = useCallback(
     (mouseMoveEvent: MouseEvent) => {
@@ -73,7 +86,7 @@ export default function Sidebar() {
               <button
                 type="button"
                 className={style.show}
-                onClick={() => setShowDocuments(!showDocuments)}
+                onClick={onShowDocuments}
               >
                 {showDocuments ? '-' : '+'}
               </button>
@@ -99,13 +112,13 @@ export default function Sidebar() {
               <button
                 type="button"
                 className={style.show}
-                onClick={() => setShowProjects(!showProjects)}
+                onClick={onShowTeams}
               >
-                {showProjects ? '-' : '+'}
+                {showTeams ? '-' : '+'}
               </button>
             </div>
 
-            {showProjects && (
+            {showTeams && (
               <div className={style.documents}>
                 {new Array(15).fill(1).map((_, i) => (
                   <div className={style.item} key={i}>
