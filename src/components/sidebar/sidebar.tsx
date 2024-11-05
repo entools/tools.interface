@@ -10,6 +10,8 @@ import classNames from 'classnames';
 import Logo from './components/logo/logo.tsx';
 import Search from './components/search/search.tsx';
 import Profile from './components/profile/profile.tsx';
+import List from './components/list/list.tsx';
+import Help from './components/help/help.tsx';
 
 import style from './sidebar.module.css';
 
@@ -72,65 +74,27 @@ export default function Sidebar() {
       ref={sidebarRef}
       style={{ width: sidebarWidth }}
     >
-      <div className={style.container}>
+      <div className={classNames(style.container, style['no-select'])}>
         <Logo sidebarWidth={sidebarWidth} />
         <Search sidebarWidth={sidebarWidth} />
         <div className={style.list__container}>
-          <div className={style.list}>
-            <div className={style.item__header}>
-              {sidebarWidth > 150 && (
-                <div className={style.title}>
-                  documents
-                </div>
-              )}
-              <button
-                type="button"
-                className={style.show}
-                onClick={onShowDocuments}
-              >
-                {showDocuments ? '-' : '+'}
-              </button>
-            </div>
-            {showDocuments && (
-              <div className={style.documents}>
-                {new Array(1).fill(1).map((_, i) => (
-                  <div className={style.item} key={i}>
-                    {sidebarWidth < 100 ? `${i}` : `doc ${i}`}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-          <div className={style.list}>
-
-            <div className={style.item__header}>
-              {sidebarWidth > 150 && (
-              <div className={style.title}>
-                teams
-              </div>
-              )}
-              <button
-                type="button"
-                className={style.show}
-                onClick={onShowTeams}
-              >
-                {showTeams ? '-' : '+'}
-              </button>
-            </div>
-
-            {showTeams && (
-              <div className={style.documents}>
-                {new Array(15).fill(1).map((_, i) => (
-                  <div className={style.item} key={i}>
-                    {sidebarWidth < 100 ? `${i}` : `user ${i}`}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
+          <List
+            title="documents"
+            sidebarWidth={sidebarWidth}
+            show={showDocuments}
+            onShow={onShowDocuments}
+            items={['document']}
+          />
+          <List
+            title="teams"
+            sidebarWidth={sidebarWidth}
+            show={showTeams}
+            onShow={onShowTeams}
+            items={new Array(10).fill(1).map((i) => i.toString())}
+          />
         </div>
         <div className={classNames(style.footer)}>
+          <Help />
           <Profile sidebarWidth={sidebarWidth} />
         </div>
       </div>

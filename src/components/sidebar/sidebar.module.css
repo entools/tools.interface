@@ -30,20 +30,6 @@
   width: 100%;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  max-height: 40%;
-  background-color: #303537;
-  border-radius: 12px;
-  margin-left: 8px;
-  margin-bottom: 0;
-  margin-top: 8px;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
 .list__container {
   display: flex;
   flex-direction: column;
@@ -66,34 +52,6 @@
 .list__container::-webkit-scrollbar-thumb {
   background-color: #8585ad;
   border-radius: 4px;
-}
-
-.item__header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 8px;
-  padding: 4px;
-  padding-right: 4px;
-  padding-left: 4px;
-  font-size: 16px;
-  line-height: 20px;
-  box-sizing: border-box;
-  background: linear-gradient(-45deg, rgb(135, 57, 229), rgb(84, 150, 255));
-}
-
-.item {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 16px;
-  line-height: 20px;
-  border-radius: 8px;
-  padding: 2px;
-  background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170));
-  margin-top: 8px;
 }
 
 .footer {
@@ -129,43 +87,9 @@
   font-size: 20px;
 }
 
-.documents {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  border-radius: 8px;
-  box-sizing: border-box;
-  overflow-y: overlay;
-  overflow-x: inherit;
-}
-
-.documents::-webkit-scrollbar {
-  width: 6px;
-}
-
-.documents::-webkit-scrollbar-track {
-  background-color: #2f2f37;
-  border-radius: 3px;
-}
-
-.documents::-webkit-scrollbar-thumb {
-  background-color: #8585ad;
-  border-radius: 3px;
-}
-
-.show {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 900;
-  border: none;
-  border-radius: 6px;
-  padding: 0;
-  margin: 0;
-  min-width: 20px;
-  background-color: #e5e7eb;
-  color: cadetblue;
+.no-select {
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+  user-select: none; /* Стандартный синтаксис */
 }
