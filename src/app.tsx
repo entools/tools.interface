@@ -6,12 +6,11 @@ import ThemeProvider from './providers/theme-provider.tsx';
 
 import MainPage from './pages/main-page/main-page.tsx';
 import AboutPage from './pages/about-page/about-page.tsx';
+import DocumentPage from './pages/document-page/document-page.tsx';
 import ProfilePage from './pages/profile-page/profile-page.tsx';
 import OauthPage from './pages/oauth-page/oauth-page.tsx';
 import SigninPage from './pages/signin-page/signin-page.tsx';
 import NotFoundPage from './pages/not-found-page/not-found-page.tsx';
-// ? projects -> sidebar
-import ProjectsPage from './pages/projects-page/projects-page.tsx';
 
 import './app.css';
 
@@ -26,11 +25,11 @@ function App() {
           <Route path="/" element={(<MainPage />)}>
             <Route path="/profile" element={(<ProfilePage />)} />
             <Route path="/about" element={(<AboutPage />)} />
+            <Route path="/document" element={(<DocumentPage />)} />
           </Route>
 
           <Route path="/oauth" element={(<OauthPage />)} />
           <Route path="/signin" element={(<SigninPage />)} />
-          <Route path="/projects" element={(<ProjectsPage />)} />
           <Route path="*" element={(<NotFoundPage />)} />
         </Routes>
       </ErrorBoundaryWrapper>
