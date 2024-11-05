@@ -1,6 +1,13 @@
+import style from './about-page.module.css';
+
 function AboutPage() {
   return (
-    <h1>About</h1>
+    <div className={style.layout}>
+      <h2 className={style.title}>About</h2>
+      <div className={style.form}>
+        ...
+      </div>
+    </div>
   );
 }
 
