@@ -7,9 +7,9 @@ services:
     ports:
       - '3100:80'
 
-  admin:
-    container_name: admin
-    image: {{ env.IMAGE_URL_ADMIN }}
-    restart: always
-    ports:
-      - '3101:80'
+  # admin:
+  #   container_name: admin
+  #   image: {{ env.IMAGE_URL_ADMIN }}
+  #   restart: always
+  #   ports:
+  #     - '3101:80'
