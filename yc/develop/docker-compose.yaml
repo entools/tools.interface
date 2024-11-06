@@ -1,14 +1,14 @@
 version: '3.7'
 services:
   tools:
-    container_name: tools
+    # container_name: tools
     image: {{ env.IMAGE_URL }}
     restart: always
     ports:
       - '3100:80'
 
   admin:
-    container_name: admin
+    # container_name: admin
     image: {{ env.IMAGE_URL_ADMIN }}
     restart: always
     ports:
