@@ -6,3 +6,10 @@ services:
     restart: always
     ports:
       - '3100:80'
+
+  admin:
+    container_name: admin
+    image: {{ env.IMAGE_URL_admin }}
+    restart: always
+    ports:
+      - '3101:80'
