@@ -7,6 +7,12 @@
   background-color: #303537;
   border-radius: 12px;
   padding: 8px;
+  width: auto;
+}
+
+.block {
+  display: flex;
+  flex-direction: row;
 }
 
 .pic {
@@ -27,6 +33,7 @@
   flex-direction: column;
   justify-content: center;
   margin: 0;
+  margin-left: 8px;
   padding: 0;
 }
 
@@ -41,6 +48,35 @@
 }
 
 .column {
-  flex-direction: column;
+  flex-direction: column-reverse;
   min-height: 68px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
+/*
+.ContextMenuContent {
+	min-width: 220px;
+	background-color: white;
+	border-radius: 6px;
+	overflow: hidden;
+	padding: 5px;
+	box-shadow:
+		0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+		0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+  color: blue;
+}
+
+.ContextMenuItem {
+	font-size: 13px;
+	line-height: 1;
+	color: var(--violet-11);
+	border-radius: 3px;
+	display: flex;
+	align-items: center;
+	height: 25px;
+	padding: 0 5px;
+	position: relative;
+	padding-left: 25px;
+	user-select: none;
+	outline: none;
+} */

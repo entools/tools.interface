@@ -81,14 +81,14 @@ export default function Sidebar() {
         <Search sidebarWidth={sidebarWidth} />
         <div className={style.list__container}>
           <List
-            title="documents"
+            title="Documents"
             sidebarWidth={sidebarWidth}
             show={showDocuments}
             onShow={onShowDocuments}
             items={['document']}
           />
           <List
-            title="teams"
+            title="Teams"
             sidebarWidth={sidebarWidth}
             show={showTeams}
             onShow={onShowTeams}
@@ -96,7 +96,7 @@ export default function Sidebar() {
           />
         </div>
         <div className={classNames(style.footer)}>
-          <Help />
+          <Help sidebarWidth={sidebarWidth} />
           <Profile sidebarWidth={sidebarWidth} />
         </div>
       </div>

@@ -18,20 +18,20 @@ export default function List({
 }: ListType) {
   return (
     <div className={style.list}>
-      <div className={style.header}>
+      <button
+        className={style.header}
+        type="button"
+        onClick={onShow}
+      >
         {sidebarWidth > 150 && (
           <div className={style.title}>
             {title}
           </div>
         )}
-        <button
-          type="button"
-          className={style.show}
-          onClick={onShow}
-        >
+        <div className={style.show}>
           {show ? '-' : '+'}
-        </button>
-      </div>
+        </div>
+      </button>
       {show && (
         <div className={style.items}>
           {items.map((item, i) => (
