@@ -26,8 +26,10 @@
   margin: 0;
   padding: 0;
   /* line-height: 28px; */
-  height: 28px;
-  width: 28px;
+  height: 26px;
+  width: 26px;
+  border: 1px solid yellow;
+  border-radius: 8px;
 }
 
 .title {
@@ -37,8 +39,9 @@
   margin: 0;
   margin-left: 8px;
   padding: 0;
-  height: 28px;
-  width: 28px;
+  line-height: 28px;
+  /* height: 28px;
+  width: 28px; */
 }
 
 .small {

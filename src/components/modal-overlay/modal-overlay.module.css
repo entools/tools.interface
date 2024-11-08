@@ -1,0 +1,17 @@
+.overlay {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	/* background: var(--background-overlay); */
+  background-color: rgb(0 0 0 / 60%);;
+	z-index: 100;
+	visibility: visible;
+	opacity: 1;
+	transition: 0.8s ease-out;
+	overflow: visible;
+}

@@ -21,12 +21,14 @@
 
 .icon {
   /* background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170)); */
-  height: 28px;
-  width: 28px;
+  height: 26px;
+  width: 26px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid yellow;
+  border-radius: 8px;
 }
 
 .title {
