@@ -49,7 +49,7 @@ export default function Modal({ title, children, onClose }: TypeModal) {
           animate={MODAL_CONFIG.ANIMATE}
           exit={MODAL_CONFIG.EXIT}
         >
-          {title && <h2 className="">{title}</h2>}
+          {title && <h2 className={style.title}>{title}</h2>}
           <button type="button" className={style.close} data-test="close-button">
             <IoIosClose type="primary" onClick={onClose} />
           </button>

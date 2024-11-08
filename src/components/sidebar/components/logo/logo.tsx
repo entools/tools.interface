@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
-import { IoIosAdd } from 'react-icons/io';
+import { IoIosAdd, IoIosArrowDown } from 'react-icons/io';
 
 import style from './logo.module.css';
 
@@ -13,9 +13,15 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
           <IoIosAdd />
         </div>
         {sidebarWidth >= 148 && (
-          <NavLink to="/" className={style.title}>
-            {sidebarWidth}
-          </NavLink>
+          <>
+            <div className={style.button}>
+              <IoIosArrowDown />
+            </div>
+            <NavLink to="/" className={style.title}>
+              C
+              {sidebarWidth}
+            </NavLink>
+          </>
         )}
       </div>
     </div>
