@@ -28,7 +28,7 @@ function App() {
           <Route path="/" element={(<MainPage />)}>
             <Route path="/profile" element={(<ProfilePage />)} />
             <Route path="/about" element={(<AboutPage />)} />
-            <Route path="/document" element={(<DocumentPage />)} />
+            <Route path="/projects/:projectId/documents/:documentId" element={(<DocumentPage />)} />
           </Route>
 
           <Route path="/oauth" element={(<OauthPage />)} />
