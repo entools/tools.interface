@@ -14,15 +14,17 @@
   margin: 0;
   margin-left: 8px;
   margin-top: 8px;
-  font-size: 20px;
-  line-height: 40px;
+  /* font-size: 20px;
+  line-height: 40px; */
+  font-size: 16px;
+  line-height: 16px;
   padding: 8px;
 }
 
 .icon {
   /* background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170)); */
-  height: 26px;
-  width: 26px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
