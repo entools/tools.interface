@@ -9,7 +9,7 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
   return (
     <div className={classNames(style.header, { [style.small]: sidebarWidth < 120 })}>
       <div className={style.logo}>
-        <div className={style.pic}>
+        <div className={style.icon}>
           <IoIosAdd />
         </div>
         {sidebarWidth >= 148 && (

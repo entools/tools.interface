@@ -24,7 +24,7 @@
   font-size: 16px;
   line-height: 20px;
   box-sizing: border-box;
-  background: linear-gradient(-45deg, rgb(135, 57, 229), rgb(84, 150, 255));
+  /* background: linear-gradient(-45deg, rgb(135, 57, 229), rgb(84, 150, 255)); */
   border: none;
 }
 
@@ -63,8 +63,12 @@
   line-height: 20px;
   border-radius: 8px;
   padding: 2px;
-  background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170));
+  /* background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170)); */
   margin-top: 8px;
+  color: var(--font-color);
+}
+.item:hover {
+  background-color: #2f2f37;
 }
 
 .show {

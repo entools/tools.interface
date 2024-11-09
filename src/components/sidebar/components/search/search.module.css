@@ -27,7 +27,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid yellow;
+  color: var(--font-color);
+  border: var(--button-border);
   border-radius: 8px;
 }
 
@@ -37,4 +38,5 @@
   margin-left: 8px;
   padding: 0;
   line-height: 12px;
+  color: var(--font-color);
 }

@@ -35,7 +35,7 @@ export default function List({
       {show && (
         <div className={style.items}>
           {items.map((item, i) => (
-            <NavLink key={item} to="/document" className={style.item}>
+            <NavLink key={item} to={`/projects/123/documents/${i}`} className={style.item}>
               {sidebarWidth < 100 ? `${i}` : `doc ${i}`}
             </NavLink>
           ))}

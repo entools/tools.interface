@@ -23,10 +23,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: yellow;
+  /* color: yellow; */
+  color: var(--font-color);
 }
 .pic:visited {
-  color: yellow;
+  /* color: yellow; */
+  color: var(--font-color);
 }
 .name {
   display: flex;
@@ -35,10 +37,11 @@
   margin: 0;
   margin-left: 8px;
   padding: 0;
+  color: var(--font-color);
 }
 
 .notification {
-  background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170));
+  /* background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170)); */
   height: 28px;
   width: 28px;
   border-radius: 50%;
