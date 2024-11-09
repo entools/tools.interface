@@ -1,10 +1,15 @@
+import {
+  // Link, useLocation, useNavigate,
+  useParams,
+} from 'react-router-dom';
 import style from './document-page.module.css';
 
 function DocumentPage() {
+  const { projectId, documentId } = useParams();
   return (
     <div className={style.layout}>
       <h2 className={style.title}>
-        Document
+        {`Document ${documentId} #${projectId}`}
       </h2>
       <div className={style.tools}>Tools</div>
       <div className={style.form}>
