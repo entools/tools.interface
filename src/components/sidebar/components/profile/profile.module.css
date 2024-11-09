@@ -17,8 +17,8 @@
 
 .pic {
   background: linear-gradient(-45deg, rgb(135, 57, 229), rgb(84, 150, 255));
-  height: 30px;
-  width: 30px;
+  height: 32px;
+  width: 32px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -46,8 +46,8 @@
 
 .notification {
   /* background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170)); */
-  height: 30px;
-  width: 30px;
+  height: 32px;
+  width: 32px;
   border-radius: 50%;
   display: flex;
   justify-content: center;

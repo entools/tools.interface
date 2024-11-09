@@ -6,7 +6,7 @@
 import { NavLink } from 'react-router-dom';
 import Select, { type DropdownIndicatorProps, components } from 'react-select';
 import classNames from 'classnames';
-import { IoIosAdd, IoIosArrowDown } from 'react-icons/io';
+import { IoIosAdd, IoIosArrowDown, IoMdHome } from 'react-icons/io';
 
 import style from './logo.module.css';
 
@@ -27,16 +27,17 @@ const DropdownIndicator: React.FC<DropdownIndicatorProps> = (props) => (
 
 export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
   return (
-    <div className={classNames(style.header, { [style.small]: sidebarWidth < 120 })}>
+    <div className={classNames(style.header, { [style.small]: sidebarWidth < 100 })}>
       <div className={style.logo}>
-        <div className={style.icon}>
-          <IoIosAdd />
-        </div>
-        {sidebarWidth >= 148 && (
-          <>
+        <NavLink to="/" className={style.home}>
+          <IoMdHome />
+          {/* {sidebarWidth} */}
+        </NavLink>
 
+        {sidebarWidth >= 178 && (
+          <>
             <Select
-              className="basic-single"
+              className={classNames('basic-single', style.full)}
               classNamePrefix="select"
               components={{ Placeholder, DropdownIndicator }}
               defaultValue={options[0]}
@@ -45,6 +46,7 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
                   ...baseStyles,
                   minHeight: 20,
                   marginLeft: '8px',
+                  border: 0,
                 }),
               }}
               theme={(theme) => ({
@@ -60,10 +62,9 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
               name="name"
               options={options}
             />
-            <NavLink to="/" className={style.title}>
-              C
-              {sidebarWidth}
-            </NavLink>
+            <button type="button" className={style.icon}>
+              <IoIosAdd />
+            </button>
           </>
         )}
       </div>

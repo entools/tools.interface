@@ -24,12 +24,29 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  height: 30px;
-  min-width: 30px;
-  width: 30px;
+  height: 32px;
+  width: 32px;
+  min-width: 32px;
   color: var(--font-color);
   border: var(--button-border);
   border-radius: 8px;
+  background-color: #303537;
+  margin-left: 8px;
+}
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  width: 30px;
+  min-width: 30px;
+  color: var(--font-color);
+  border: var(--button-border);
+  border-radius: 8px;
+  background-color: #303537;
 }
 
 .title {
@@ -60,4 +77,9 @@
 .small {
   justify-content: center;
   /* align-items: center; */
+}
+
+.full {
+  width: 100%;
+  min-width: 80px;
 }

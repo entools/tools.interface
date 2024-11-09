@@ -25,13 +25,15 @@
   /* background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170)); */
   height: 30px;
   width: 30px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--font-color);
   border: var(--button-border);
   border-radius: 8px;
+  padding: 0;
+  margin: 0;
 }
 
 .title {
