@@ -54,6 +54,7 @@
   align-items: center;
   font-size: 20px;
   line-height: 20px;
+  color: var(--font-color);
 }
 
 .column {
