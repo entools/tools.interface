@@ -21,7 +21,7 @@ const Placeholder = (props: any) => <components.Placeholder {...props} />;
 // added type if using typescript
 const DropdownIndicator: React.FC<DropdownIndicatorProps> = (props) => (
   <components.DropdownIndicator {...props}>
-    <IoIosArrowDown />
+    <IoIosArrowDown size={14} />
   </components.DropdownIndicator>
 );
 
