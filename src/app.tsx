@@ -12,6 +12,7 @@ import ProfilePage from './pages/profile-page/profile-page.tsx';
 import OauthPage from './pages/oauth-page/oauth-page.tsx';
 import SigninPage from './pages/signin-page/signin-page.tsx';
 import SearchPage from './pages/search-page/search-page.tsx';
+import ProjectAdd from './pages/project-add-page/project-add-page.tsx';
 import NotFoundPage from './pages/not-found-page/not-found-page.tsx';
 
 import './app.css';
@@ -29,6 +30,7 @@ function App() {
             <Route path="/profile" element={(<ProfilePage />)} />
             <Route path="/about" element={(<AboutPage />)} />
             <Route path="/projects/:projectId/documents/:documentId" element={(<DocumentPage />)} />
+            <Route path="/projects/add" element={(<ProjectAdd />)} />
           </Route>
 
           <Route path="/oauth" element={(<OauthPage />)} />

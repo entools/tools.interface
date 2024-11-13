@@ -1,0 +1,59 @@
+.layout {
+  background-color: #303537;
+  border-radius: 12px;
+  margin: 8px;
+  font-size: 20px;
+  line-height: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--font-color);
+  overflow-y: overlay;
+  overflow-x: hidden;
+}
+
+.title {
+  width: 100%;
+  font-size: 22px;
+  line-height: 28px;
+  text-align: left;
+  padding: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.tools {
+  font-size: 18px;
+  line-height: 28px;
+  text-align: left;
+  padding: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #2f2f37;
+  margin: 8px;
+  margin-bottom: 0;
+  border-radius: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 8px;
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #2f2f37;
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px;
+}
