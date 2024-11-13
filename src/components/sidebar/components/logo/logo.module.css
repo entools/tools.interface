@@ -24,9 +24,9 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  height: 32px;
-  width: 32px;
-  min-width: 32px;
+  height: 30px;
+  width: 30px;
+  min-width: 30px;
   color: var(--font-color);
   border: var(--button-border);
   border-radius: 8px;

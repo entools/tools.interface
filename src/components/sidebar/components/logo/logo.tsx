@@ -62,9 +62,9 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
               name="name"
               options={options}
             />
-            <button type="button" className={style.icon}>
+            <NavLink to="/projects/add" className={style.icon}>
               <IoIosAdd />
-            </button>
+            </NavLink>
           </>
         )}
       </div>
