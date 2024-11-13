@@ -13,7 +13,17 @@
 }
 
 .title {
-  font-size: 26px;
+  width: 100%;
+  font-size: 22px;
+  line-height: 28px;
+  text-align: left;
+  padding: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .form {
@@ -24,3 +34,15 @@
   margin: 8px;
   height: 100%;
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #2f2f37;
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px;
+}
+

@@ -7,17 +7,17 @@ function ProfilePage() {
         Profile
       </h2>
       <div className={style.form}>
-        <div>
+        <div className={style.main}>
           <div>status</div>
           <div>picture</div>
           <div>login</div>
           <div>email</div>
         </div>
-        <div>
+        <div className={style.main}>
           <div>theme</div>
           <div>notification</div>
         </div>
-        <div>save</div>
+        <div className={style.main}>save</div>
       </div>
     </div>
   );
