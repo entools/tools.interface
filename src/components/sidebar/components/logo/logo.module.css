@@ -7,12 +7,11 @@
 .logo {
   display: flex;
   justify-content:flex-start;
-  background-color: #303537;
+  background-color: var(--block-background);
   border-radius: 12px;
   margin: 0;
   margin-left: 8px;
-  margin-top: 8px;
-  font-size: 14px;
+  margin-top: 8px;  font-size: 14px;
   line-height: 14px;
   padding: 8px;
   align-items: center;
@@ -30,7 +29,7 @@
   color: var(--font-color);
   border: var(--button-border);
   border-radius: 8px;
-  background-color: #303537;
+  background-color: var(--button-background);
   margin-left: 8px;
 }
 
@@ -46,7 +45,7 @@
   color: var(--font-color);
   border: var(--button-border);
   border-radius: 8px;
-  background-color: #303537;
+  background-color: var(--button-background);
 }
 
 .title {
