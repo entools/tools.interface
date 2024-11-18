@@ -1,6 +1,7 @@
 /* eslint-disable react/require-default-props */
 import { NavLink } from 'react-router-dom';
-import { IoIosAdd } from 'react-icons/io';
+import { v4 as uuidv4 } from 'uuid';
+import { IoIosAdd, IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import style from './list.module.css';
 
 type ListType = {
@@ -34,7 +35,7 @@ export default function List({
             </div>
           )}
           <div className={style.show}>
-            {show ? '-' : '+'}
+            {show ? <IoIosArrowUp /> : <IoIosArrowDown />}
           </div>
         </button>
         {sidebarWidth > 150 && action
@@ -47,8 +48,8 @@ export default function List({
 
       {show && (
         <div className={style.items}>
-          {items.map((item, i) => (
-            <NavLink key={item} to={`/projects/123/documents/${i}`} className={style.item}>
+          {items.map((_, i) => (
+            <NavLink key={uuidv4()} to={`/projects/123/documents/${i}`} className={style.item}>
               {sidebarWidth < 100 ? `${i}` : `doc ${i}`}
             </NavLink>
           ))}
