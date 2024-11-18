@@ -63,3 +63,15 @@
   justify-content: space-between;
   align-items: flex-start;
 }
+
+.btncontainer {
+  display: flex;
+  align-items: center;
+}
+.popovercontent {
+  /* background-color: var(--block-background); */
+  padding: 8px;
+  min-width: 200px;
+  /* border-radius: 8px; */
+  z-index: 9;
+}
