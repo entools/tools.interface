@@ -26,7 +26,7 @@ export default function Profile({ sidebarWidth }: { sidebarWidth: number; }) {
               <IoMdNotifications />
             </div>
           )}
-          position={['right top', 'top right']}
+          position={['right top']}
           contentStyle={{
             backgroundColor: '#ffffff',
             textAlign: 'center',

@@ -21,17 +21,18 @@ function ProfilePage() {
             className={style.input}
             placeholder="email"
           />
+          <button
+            type="button"
+            className={style.main}
+          >
+            save
+          </button>
         </div>
         <div className={style.main}>
           <div>theme</div>
           <div>notification</div>
         </div>
-        <button
-          type="button"
-          className={style.main}
-        >
-          save
-        </button>
+
       </div>
     </div>
   );

@@ -28,7 +28,7 @@
 
 .form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border-radius: 8px;
   background-color: var(--block-background);
   border: #303537;
@@ -55,12 +55,14 @@
   font-size: 18px;
   margin: 0;
   margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .picture {
-  height: 120px;
-  width: 120px;
-  background-color: cornsilk;
+  height: 100px;
+  width: 100px;
+  background: linear-gradient(-45deg, rgb(255, 131, 89), rgb(255, 223, 64));
   border-radius: 50%;
   margin-bottom: 16px;
   display: flex;
