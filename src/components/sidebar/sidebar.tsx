@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -93,6 +94,7 @@ export default function Sidebar() {
             show={showTeams}
             onShow={onShowTeams}
             items={new Array(10).fill(1).map((i) => i.toString())}
+            action={() => console.log('action')}
           />
         </div>
         <div className={classNames(style.footer)}>
