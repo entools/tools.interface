@@ -8,16 +8,30 @@ function ProfilePage() {
       </h2>
       <div className={style.form}>
         <div className={style.main}>
-          <div>status</div>
-          <div>picture</div>
-          <div>login</div>
-          <div>email</div>
+          <div className={style.picture}>picture</div>
+          <input
+            className={style.input}
+            placeholder="status"
+          />
+          <input
+            className={style.input}
+            placeholder="login"
+          />
+          <input
+            className={style.input}
+            placeholder="email"
+          />
         </div>
         <div className={style.main}>
           <div>theme</div>
           <div>notification</div>
         </div>
-        <div className={style.main}>save</div>
+        <button
+          type="button"
+          className={style.main}
+        >
+          save
+        </button>
       </div>
     </div>
   );
