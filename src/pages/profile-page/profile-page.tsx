@@ -7,7 +7,7 @@ function ProfilePage() {
         Profile
       </h2>
       <div className={style.form}>
-        <div className={style.main}>
+        <div className={style.account}>
           <div className={style.picture}>picture</div>
           <input
             className={style.input}
@@ -28,9 +28,10 @@ function ProfilePage() {
             save
           </button>
         </div>
-        <div className={style.main}>
-          <div>theme</div>
-          <div>notification</div>
+        <div className={style.settings}>
+          <div className={style.theme}>theme</div>
+          <div className={style.notification}>notification</div>
+          <div className={style.base}>base</div>
         </div>
 
       </div>

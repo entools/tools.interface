@@ -1,5 +1,4 @@
 .layout {
-  background-color: var(--block-background);
   border-radius: 12px;
   margin: 8px;
   font-size: 20px;
@@ -10,6 +9,7 @@
   color: var(--font-color);
   overflow-y: overlay;
   overflow-x: hidden;
+  border: 1px solid var(--block-background);
 }
 
 .title {
@@ -27,18 +27,17 @@
 }
 
 .form {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 2fr 1fr;
+  gap: 8px;
   flex-direction: row;
   border-radius: 8px;
-  background-color: var(--block-background);
-  border: #303537;
-  margin: 8px;
   padding: 8px;
   height: 100%;
   box-sizing: border-box;
 }
 
-.main {
+.account {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -47,6 +46,36 @@
   border-radius: 8px;
   padding: 8px;
   box-sizing: border-box;
+  background-color: var(--block-background);
+  margin-right: 8px;
+}
+
+.settings {
+  display: grid;
+  grid-template: 'theme notification' 'base base';
+  gap: 8px;
+  width: 100%;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-right: 8px;
+}
+
+.theme {
+  background-color: var(--block-background);
+  border-radius: 8px;
+  grid-area: theme;
+}
+
+.notification {
+  background-color: var(--block-background);
+  border-radius: 8px;
+  grid-area: notification;
+}
+
+.base {
+  background-color: var(--block-background);
+  border-radius: 8px;
+  grid-area: base;
 }
 
 .input {
