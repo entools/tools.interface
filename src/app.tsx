@@ -13,6 +13,7 @@ import OauthPage from './pages/oauth-page/oauth-page.tsx';
 import SigninPage from './pages/signin-page/signin-page.tsx';
 import SearchPage from './pages/search-page/search-page.tsx';
 import ProjectAdd from './pages/project-add-page/project-add-page.tsx';
+import UsersPage from './pages/users-page/users-page.tsx';
 import NotFoundPage from './pages/not-found-page/not-found-page.tsx';
 
 import './app.css';
@@ -43,6 +44,7 @@ function App() {
         && (
           <Routes>
             <Route path="/search" element={(<SearchPage />)} />
+            <Route path="/users" element={(<UsersPage />)} />
           </Routes>
         )}
       </ErrorBoundaryWrapper>

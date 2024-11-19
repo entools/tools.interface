@@ -1,5 +1,5 @@
 /* eslint-disable react/require-default-props */
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { IoIosAdd, IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import style from './list.module.css';
@@ -21,6 +21,8 @@ export default function List({
   title,
   action,
 }: ListType) {
+  const location = useLocation();
+
   return (
     <div className={style.list}>
       <div className={style.buttons}>
@@ -40,7 +42,7 @@ export default function List({
         </button>
         {sidebarWidth > 150 && action
           && (
-            <NavLink to="/" className={style.icon}>
+            <NavLink to="/users" className={style.icon} state={{ pathname: location }}>
               <IoIosAdd />
             </NavLink>
           )}
