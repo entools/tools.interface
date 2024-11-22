@@ -6,11 +6,20 @@ function ProjectPage() {
       <h2 className={style.title}>
         Add project
       </h2>
-      <div className={style.tools}>Name</div>
       <div className={style.form}>
         <div className={style.main}>
-          <div>Tag</div>
-          <div>Details</div>
+          <input
+            className={style.input}
+            placeholder="Name"
+          />
+          <input
+            className={style.input}
+            placeholder="Tag"
+          />
+          <input
+            className={style.input}
+            placeholder="Details"
+          />
         </div>
       </div>
     </div>
