@@ -1,14 +1,21 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable import/no-extraneous-dependencies */
 import { NavLink } from 'react-router-dom';
 import Select, { type DropdownIndicatorProps, components } from 'react-select';
 import classNames from 'classnames';
 import { IoIosAdd, IoIosArrowDown, IoMdHome } from 'react-icons/io';
 
 import style from './logo.module.css';
+
+export interface ColourOption {
+  readonly value: string;
+  readonly label: string;
+  readonly color: string;
+  readonly isFixed?: boolean;
+  readonly isDisabled?: boolean;
+}
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -18,7 +25,6 @@ const options = [
 
 const Placeholder = (props: any) => <components.Placeholder {...props} />;
 
-// added type if using typescript
 const DropdownIndicator: React.FC<DropdownIndicatorProps> = (props) => (
   <components.DropdownIndicator {...props}>
     <IoIosArrowDown size={14} />
@@ -31,7 +37,6 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
       <div className={style.logo}>
         <NavLink to="/" className={style.home}>
           <IoMdHome />
-          {/* {sidebarWidth} */}
         </NavLink>
 
         {sidebarWidth >= 178 && (
@@ -48,6 +53,7 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
                   marginLeft: '8px',
                   border: 0,
                 }),
+                option: (styles) => ({ ...styles, color: '#ccc' }),
               }}
               theme={(theme) => ({
                 ...theme,
@@ -55,8 +61,8 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
                 padding: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'hotpink',
-                  primary: 'black',
+                  primary25: '#757575',
+                  primary: '#616161',
                 },
               })}
               name="name"
