@@ -8,7 +8,7 @@ function ProfilePage() {
       </h2>
       <div className={style.form}>
         <div className={style.account}>
-          <div className={style.picture}>picture</div>
+          <div className={style.picture}>U</div>
           <input
             className="input"
             placeholder="status"
