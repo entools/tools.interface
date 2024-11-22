@@ -2,7 +2,7 @@ import style from './project-add-page.module.css';
 
 function ProjectPage() {
   return (
-    <div className={style.layout}>
+    <div className="layout">
       <h2 className={style.title}>
         Add project
       </h2>
