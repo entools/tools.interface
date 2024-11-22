@@ -3,27 +3,27 @@ import style from './profile-page.module.css';
 function ProfilePage() {
   return (
     <div className="layout">
-      <h2 className={style.title}>
+      <h2 className="title">
         Profile
       </h2>
       <div className={style.form}>
         <div className={style.account}>
           <div className={style.picture}>picture</div>
           <input
-            className={style.input}
+            className="input"
             placeholder="status"
           />
           <input
-            className={style.input}
+            className="input"
             placeholder="login"
           />
           <input
-            className={style.input}
+            className="input"
             placeholder="email"
           />
           <button
             type="button"
-            className={style.main}
+            className="button"
           >
             save
           </button>
