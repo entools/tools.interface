@@ -2,7 +2,7 @@ import style from './profile-page.module.css';
 
 function ProfilePage() {
   return (
-    <div className={style.layout}>
+    <div className="layout">
       <h2 className={style.title}>
         Profile
       </h2>
