@@ -2,7 +2,7 @@ import style from './about-page.module.css';
 
 function AboutPage() {
   return (
-    <div className={style.layout}>
+    <div className="layout">
       <h2 className={style.title}>About</h2>
       <div className={style.form}>
         ...
