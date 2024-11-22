@@ -19,6 +19,38 @@
   border: 1px solid var(--block-background);
 }
 
+.title {
+  width: 100%;
+  font-size: 22px;
+  line-height: 28px;
+  text-align: left;
+  padding: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.input {
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 18px;
+  margin: 0;
+  margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+}
+
 /*
 .logo {
   height: 6em;
