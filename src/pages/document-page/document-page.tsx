@@ -8,7 +8,7 @@ function DocumentPage() {
 
   return (
     <div className="layout">
-      <h2 className={style.title}>
+      <h2 className="title">
         {`Document ${documentId} #${projectId}`}
       </h2>
       <div className={style.tools}>Tools</div>
