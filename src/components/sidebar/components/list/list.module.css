@@ -26,6 +26,7 @@
   box-sizing: border-box;
   border: none;
   width: 100%;
+  cursor: pointer;
 }
 
 
@@ -36,22 +37,25 @@
   width: 100%;
   border-radius: 8px;
   box-sizing: border-box;
-  overflow-y: overlay;
+  overflow-y: hidden;
   overflow-x: inherit;
+}
+.items:hover {
+  overflow-y: auto;
 }
 
 .items::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 .items::-webkit-scrollbar-track {
   background-color: #2f2f37;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .items::-webkit-scrollbar-thumb {
   background-color: #8585ad;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .item {
