@@ -24,6 +24,7 @@ export default function Profile({ sidebarWidth }: { sidebarWidth: number; }) {
           trigger={(
             <div className={style.btncontainer}>
               <IoMdNotifications />
+              <div className={style.new} />
             </div>
           )}
           position={['right top']}
