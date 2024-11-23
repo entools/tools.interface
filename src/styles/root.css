@@ -13,6 +13,9 @@
   --button-border: 1px solid #e5e7eb;
   --block-background: #303537;
   --button-background: #303537;
+  --sidebar-border-color: #303537;
+  --button-background-color: #efefef;
+  --button-font-color: #000;
 }
 
 a {
@@ -27,5 +30,8 @@ a {
     --button-border: 1px solid #c2c2c2;
     --block-background: #f0f1f5;
     --button-background: #f0f1f5;
+    --sidebar-border-color: #d0d4d6;
+    --button-background-color: #c2c2c2;
+    --button-font-color: #000;
   }
 }
