@@ -17,6 +17,7 @@ import Help from './components/help/help.tsx';
 import style from './sidebar.module.css';
 
 export default function Sidebar() {
+  // const initTheme = localStorage.getItem('theme');
   const initSidebarWidth = localStorage.getItem('sidebar');
   const initDocuments = localStorage.getItem('documents') === 'true';
   const initTeams = localStorage.getItem('teams') === 'true';
@@ -25,6 +26,7 @@ export default function Sidebar() {
   const [showDocuments, setShowDocuments] = useState<boolean>(initDocuments);
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(Number(initSidebarWidth) || 310);
+  // const [theme, setTheme] = useState(initTheme || 'light');
 
   const startResizing = useCallback((_mouseDownEvent: React.MouseEvent) => {
     // _mouseDownEvent.stopPropagation();
