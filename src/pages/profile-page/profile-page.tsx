@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CustomSelect as Select } from '../../components/select/select.tsx';
+import useDarkTheme from '../../hooks/use-dark-theme.tsx';
 
 import style from './profile-page.module.css';
 
@@ -13,16 +14,21 @@ const options = [
 
 function ProfilePage() {
   // const initTheme = localStorage.getItem('theme');
-  const [theme, setTheme] = useState<SelectType | null>(null);
+  const { providerValue: { toggleIsDark, isDark } } = useDarkTheme();
+  const current = options.find((x) => x.value === isDark);
+  const [theme, setTheme] = useState<SelectType | null>(current || options[0]);
 
   useEffect(() => {
     if (theme) {
       if (theme.value === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
+        // document.documentElement.setAttribute('data-theme', 'light');
+        toggleIsDark('light');
       } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
+        // document.documentElement.setAttribute('data-theme', 'dark');
+        toggleIsDark('dark');
       } else {
-        document.documentElement.setAttribute('data-theme', theme.value);
+        // document.documentElement.setAttribute('data-theme', theme.value);
+        toggleIsDark(theme.value);
       }
     }
   }, [theme]);
