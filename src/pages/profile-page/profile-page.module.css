@@ -60,6 +60,16 @@
   box-sizing: border-box;
 }
 
+.avatar {
+  display: grid;
+  grid-template: 'picture gap-top' 'picture status' 'picture gap-bottom';
+  gap: 8px;
+  width: 100%;
+}
+.status {
+  grid-area: status;
+}
+
 .picture {
   height: 100px;
   width: 100px;
@@ -71,4 +81,17 @@
   align-items: center;
   font-weight: 500;
   font-size: 36px;
+  grid-area: picture;
 }
+
+.block {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--block-background);
+  border-radius: 8px;
+  /* grid-area: theme; */
+  /* padding: 8px; */
+  box-sizing: border-box;
+}
+
+
