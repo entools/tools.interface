@@ -3,6 +3,7 @@ import { CustomSelect as Select } from '../../components/select/select.tsx';
 import useDarkTheme from '../../hooks/use-dark-theme.tsx';
 
 import style from './profile-page.module.css';
+import classNames from 'classnames';
 
 type SelectType = { value: string; label: string; };
 
@@ -17,17 +18,15 @@ function ProfilePage() {
   const { providerValue: { toggleIsDark, isDark } } = useDarkTheme();
   const current = options.find((x) => x.value === isDark);
   const [theme, setTheme] = useState<SelectType | null>(current || options[0]);
+  const [notification, setNotification] = useState(true);
 
   useEffect(() => {
     if (theme) {
       if (theme.value === 'light') {
-        // document.documentElement.setAttribute('data-theme', 'light');
         toggleIsDark('light');
       } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        // document.documentElement.setAttribute('data-theme', 'dark');
         toggleIsDark('dark');
       } else {
-        // document.documentElement.setAttribute('data-theme', theme.value);
         toggleIsDark(theme.value);
       }
     }
@@ -40,11 +39,14 @@ function ProfilePage() {
       </h2>
       <div className={style.form}>
         <div className={style.account}>
-          <div className={style.picture}>U</div>
-          <input
-            className="input"
-            placeholder="status"
-          />
+          <div className={style.avatar}>
+            <div className={style.picture}>U</div>
+            <input
+              className={classNames('input', style.status)}
+              placeholder="status"
+            />
+          </div>
+
           <input
             className="input"
             placeholder="login"
@@ -62,7 +64,7 @@ function ProfilePage() {
         </div>
         <div className={style.settings}>
           <div className={style.theme}>
-            {`theme ${theme?.value}`}
+            theme
             <div className={style.select}>
               <Select
                 name="theme"
@@ -74,7 +76,16 @@ function ProfilePage() {
 
           </div>
           <div className={style.notification}>
-            notification
+            <div className={style.block}>
+              notification
+              <button
+                type="button"
+                className="button"
+                onClick={() => setNotification(!notification)}
+              >
+                {`${notification ? 'on' : 'off'}`}
+              </button>
+            </div>
           </div>
           <div className={style.base}>base</div>
         </div>
