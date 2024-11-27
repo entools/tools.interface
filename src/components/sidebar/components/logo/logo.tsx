@@ -26,7 +26,7 @@ const options = [
 
 export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
   const [project, setProject] = useState<SelectType | null>(null);
-  console.log(project);
+  // console.log(project);
   return (
     <div className={classNames(style.header, { [style.small]: sidebarWidth < 100 })}>
       <div className={style.logo}>
