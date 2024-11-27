@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import { CustomSelect as Select } from '../../components/select/select.tsx';
 import useDarkTheme from '../../hooks/use-dark-theme.tsx';
 
 import style from './profile-page.module.css';
-import classNames from 'classnames';
 
 type SelectType = { value: string; label: string; };
 
