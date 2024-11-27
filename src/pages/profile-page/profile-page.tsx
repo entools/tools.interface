@@ -16,19 +16,15 @@ const options = [
 function ProfilePage() {
   // const initTheme = localStorage.getItem('theme');
   const { providerValue: { toggleIsDark, isDark } } = useDarkTheme();
+  // console.log(isDark);
+
   const current = options.find((x) => x.value === isDark);
   const [theme, setTheme] = useState<SelectType | null>(current || options[0]);
   const [notification, setNotification] = useState(true);
 
   useEffect(() => {
     if (theme) {
-      if (theme.value === 'light') {
-        toggleIsDark('light');
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        toggleIsDark('dark');
-      } else {
-        toggleIsDark(theme.value);
-      }
+      toggleIsDark(theme.value);
     }
   }, [theme]);
 
