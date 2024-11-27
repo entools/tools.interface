@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-type ThemeType = { isDark: string, toggleIsDark: () => void };
+type ThemeType = { isDark: string, toggleIsDark: (value: string) => void };
 
 // Context lets us pass a value deep into the component tree
 // without explicitly threading it through every component.
