@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
 import style from './signup-page.module.css';
 
 function SignupPage() {
   return (
-    <div>
+    <div className={style.layer}>
+      <Link to="/signin">Signin</Link>
       <div className={style.container}>
         <h1>Signup</h1>
         <input
@@ -20,6 +22,10 @@ function SignupPage() {
           signup
         </button>
       </div>
+      <ul>
+        <li>link 1</li>
+        <li>link 2</li>
+      </ul>
     </div>
   );
 }
