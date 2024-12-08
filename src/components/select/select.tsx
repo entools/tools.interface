@@ -57,7 +57,11 @@ export function CustomSelect({
           border: 0,
           ...extraClass,
         }),
-        option: (styles) => ({ ...styles, color: '#ccc' }),
+        option: (styles) => ({
+          ...styles,
+          color: '#ccc',
+          borderRadius: 8,
+        }),
       }}
       theme={(theme) => ({
         ...theme,
