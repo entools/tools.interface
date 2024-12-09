@@ -1,7 +1,9 @@
 /* eslint-disable react/require-default-props */
 import { NavLink, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import classNames from 'classnames';
 import { IoIosAdd, IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+
 import style from './list.module.css';
 
 type ListType = {
@@ -27,7 +29,7 @@ export default function List({
     <div className={style.list}>
       <div className={style.buttons}>
         <button
-          className={style.header}
+          className={classNames(style.header, style.button)}
           type="button"
           onClick={onShow}
         >
