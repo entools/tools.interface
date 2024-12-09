@@ -16,8 +16,11 @@
   border-radius: 8px;
   display: grid;
   gap: 8px;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 4fr;
+}
 
+.two {
+  grid-template-columns: 3fr 1fr;
 }
 
 .main {
