@@ -40,12 +40,11 @@
   box-sizing: border-box;
   overflow-y: hidden;
   overflow-x: inherit;
-
+  margin-top: 8px;
 }
 
 .items:hover {
   overflow-y: auto;
-
 }
 
 .items::-webkit-scrollbar {
