@@ -1,9 +1,39 @@
-.container {
-  display: flex;
+.shared {
   margin: 0;
   padding: 0;
+}
+
+.container {
+  composes: shared;
+  display: flex;
   height: 100vh;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.title {
+  composes: shared;
+  font-size: 40px;
+  color: var(--font-color);
+  margin-bottom: 40px;
+}
+
+.text {
+  display: flex;
+  flex-direction: row;
+}
+
+.subtitle {
+  composes: shared;
+  font-size: 20px;
+  color: var(--font-color);
+  margin-bottom: 20px;
+}
+
+.link {
+  composes: shared;
+  font-size: 16px;
+  color: rgb(84, 150, 255);
+  padding-left: 5px;
 }
