@@ -10,6 +10,8 @@ import {
 
 import style from './document-page.module.css';
 
+// const cx = classNames.bind('button', { [style.button]: true });
+
 function DocumentPage() {
   const { projectId, documentId } = useParams();
   const [history, setHistory] = useState(false);
@@ -25,21 +27,21 @@ function DocumentPage() {
           <div>
             <button
               type="button"
-              className="button"
+              className={classNames('button', style.button)}
               title="Подписаться"
             >
               <IoIosEye />
             </button>
             <button
               type="button"
-              className="button"
+              className={classNames('button', style.button)}
               title="Скачать"
             >
               <IoMdDownload />
             </button>
             <button
               type="button"
-              className="button"
+              className={classNames('button', style.button)}
               title="Share"
             >
               <IoMdShareAlt />
@@ -56,10 +58,18 @@ function DocumentPage() {
         </div>
         <div className={classNames(style.form, { [style.two]: history })}>
           <div className={style.main}>
+
             <input
               className="input"
               placeholder="Name"
             />
+            <button
+              type="button"
+              className="button"
+              title="Добавить блок"
+            >
+              <IoIosAdd />
+            </button>
             <div className={style.block}>
               <input
                 className="input"
@@ -81,7 +91,7 @@ function DocumentPage() {
               </div>
               <button
                 type="button"
-                className="button"
+                className={classNames('button', style.add)}
                 title="Добавить элемент"
               >
                 <IoIosAdd />
@@ -98,14 +108,14 @@ function DocumentPage() {
                   placeholder="Name item"
                 />
               </div>
+              <button
+                type="button"
+                className={classNames('button', style.add)}
+                title="Добавить элемент"
+              >
+                <IoIosAdd />
+              </button>
             </div>
-            <button
-              type="button"
-              className="button"
-              title="Добавить блок"
-            >
-              <IoIosAdd />
-            </button>
           </div>
           {history && (
             <div className={style.history}>

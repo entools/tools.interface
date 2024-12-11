@@ -30,24 +30,29 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 8px;
   background-color: var(--block-background);
 }
 
 .history {
   margin-left: 8px;
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: var(--block-background);
 }
 
 .block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   border: 1px solid red;
   width: 100%;
+
 }
 
 .items {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
+
 }
 
 .title {
@@ -64,4 +69,13 @@
 .item {
   font-size: 16px;
   line-height: 24px;
+}
+
+.button {
+  margin-right: 5px;
+  padding: 8px;
+}
+
+.add {
+  width: fit-content;
 }
