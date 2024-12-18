@@ -81,10 +81,13 @@
   padding-right: 8px;
   margin-top: 8px;
   color: var(--font-color);
-  /* width: calc(100% - 12px); */
   margin-left: 0;
   margin-right: auto;
   box-sizing: border-box;
+}
+
+.center {
+  align-items: center;
 }
 
 .item:hover {

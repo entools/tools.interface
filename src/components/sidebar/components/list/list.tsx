@@ -54,7 +54,7 @@ export default function List({
         <div className={style.items}>
           {items.map((_, i) => (
             <div key={uuidv4()} className={style.box}>
-              <NavLink to={`/projects/123/documents/${i}`} className={style.item}>
+              <NavLink to={`/projects/123/documents/${i}`} className={classNames(style.item, { [style.center]: sidebarWidth <= 150 })}>
                 {sidebarWidth < 100 ? `${i}` : `doc ${i}`}
               </NavLink>
             </div>
