@@ -9,9 +9,10 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import classNames from 'classnames';
 import {
   IoIosAlbums,
-  // IoIosAdd,
+  IoIosAdd,
   IoMdShareAlt, IoMdDownload, IoIosEye,
 } from 'react-icons/io';
+
 import style from './document-page.module.css';
 import '.app.css';
 
@@ -182,7 +183,8 @@ function Column({ children, className, title }: any) {
       className={className}
       style={{ backgroundColor: getBackgroundColor() }}
     >
-      <p>{title}</p>
+      <input value={title} />
+      <IoIosAdd />
       {children}
     </div>
   );
@@ -283,6 +285,7 @@ export default function DocumentPage() {
             <Column title={DONE} className="column done-column">
               {returnItemsForColumn(DONE)}
             </Column>
+            <IoIosAdd />
           </DndProvider>
         </div>
         {history && (
