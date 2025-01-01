@@ -13,6 +13,7 @@ import {
 
 import Column from './components/column/column.tsx';
 import MovableItem from './components/movable-item/movable-item.tsx';
+
 import { COLUMN_NAMES } from './components/index.ts';
 
 import style from './document-page.module.css';
