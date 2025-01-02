@@ -1,103 +1,79 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-param-reassign */
-/* eslint-disable consistent-return */
-/* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
+
+import { v4 as uuidv4 } from 'uuid';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import classNames from 'classnames';
 import {
   IoIosAlbums, IoIosAdd, IoMdShareAlt, IoMdDownload, IoIosEye,
 } from 'react-icons/io';
 
-import Column from './components/column/column.tsx';
-import MovableItem from './components/movable-item/movable-item.tsx';
-
-import { COLUMN_NAMES } from './components/index.ts';
+import Block from './components/block/block.tsx';
+import History from './components/history/history.tsx';
 
 import style from './document-page.module.css';
 import '.app.css';
 
-const tasks = [
-  { id: 1, name: 'Item 1', column: 'Do it' },
-  { id: 2, name: 'Item 2', column: 'Do it' },
-  { id: 3, name: 'Item 3', column: 'Do it' },
-  { id: 4, name: 'Item 4', column: 'Do it' },
-];
+const tasks = [{ id: 1, name: 'Item 1', column: 'block_1' }];
+const initBlocks = ['block_1', 'block_2', 'block_3'];
 
 export default function DocumentPage() {
   const { projectId, documentId } = useParams();
   const [history, setHistory] = useState(false);
   const [items, setItems] = useState(tasks);
+  const [blocks, setBlocks] = useState(initBlocks);
 
   const addItem = () => {
-    setItems([...items, { id: items.length + 1, name: `Item ${items.length + 1}`, column: 'Do it' }]);
+    setItems([...items, { id: items.length + 1, name: `Item ${items.length + 1}`, column: 'block_1' }]);
   };
 
-  const moveCardHandler = (dragIndex: any, hoverIndex: any) => {
-    const dragItem = items[dragIndex];
-
-    if (dragItem) {
-      setItems((prevState) => {
-        const coppiedStateArray = [...prevState];
-        // remove item by "hoverIndex" and put "dragItem" instead
-        const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
-        // remove item by "dragIndex" and put "prevItem" instead
-        coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
-
-        return coppiedStateArray;
-      });
-    }
-  };
-
-  const returnItemsForColumn = (columnName: any) => items
-    .filter((item) => item.column === columnName)
-    .map((item, index) => (
-      <MovableItem
-        key={item.id}
-        name={item.name}
-        currentColumnName={item.column}
-        setItems={setItems}
-        index={index}
-        moveCardHandler={moveCardHandler}
-      />
-    ));
-
-  const {
-    DO_IT, IN_PROGRESS, AWAITING_REVIEW, DONE,
-  } = COLUMN_NAMES;
+  const returnBlocksForColumn = () => blocks.map((item, index) => (
+    <Block
+      key={uuidv4()}
+      item={item}
+      index={index}
+      setBlocks={setBlocks}
+      addItem={addItem}
+      blocks={blocks}
+      items={items}
+      setItems={setItems}
+    />
+  ));
 
   return (
     <div className="layout">
       <h2 className="title">{`Document ${documentId} #${projectId}`}</h2>
       <div className={style.tools}>
         Tools
-        <div>
+        <div className={style.btools}>
           <button
             type="button"
-            className={classNames('button', style.button)}
+            className={style.button}
             title="Подписаться"
           >
             <IoIosEye />
           </button>
           <button
             type="button"
-            className={classNames('button', style.button)}
+            className={style.button}
             title="Скачать"
           >
             <IoMdDownload />
           </button>
           <button
             type="button"
-            className={classNames('button', style.button)}
+            className={style.button}
             title="Share"
           >
             <IoMdShareAlt />
           </button>
           <button
             type="button"
-            className="button"
+            className={style.button}
             onClick={() => setHistory(!history)}
             title={history ? 'On' : 'Off'}
           >
@@ -108,37 +84,15 @@ export default function DocumentPage() {
       <div className={classNames(style.form, { [style.two]: history })}>
         <div className="container">
           <DndProvider backend={HTML5Backend}>
-            <Column
-              title={DO_IT}
-              className="column do-it-column"
-              addItem={addItem}
-            >
-              {returnItemsForColumn(DO_IT)}
-            </Column>
-            <Column title={IN_PROGRESS} className="column in-progress-column">
-              {returnItemsForColumn(IN_PROGRESS)}
-            </Column>
-            <Column
-              title={AWAITING_REVIEW}
-              className="column awaiting-review-column"
-            >
-              {returnItemsForColumn(AWAITING_REVIEW)}
-            </Column>
-            <Column title={DONE} className="column done-column">
-              {returnItemsForColumn(DONE)}
-            </Column>
-            <IoIosAdd />
+            {returnBlocksForColumn()}
+            <div className={style.buttons}>
+              <button className={style.add} type="button">
+                <IoIosAdd />
+              </button>
+            </div>
           </DndProvider>
         </div>
-        {history && (
-        <div className={style.history}>
-          <h3 className={style.title}>History</h3>
-          <ul className={style.list}>
-            <li className={style.item}>item 1</li>
-            <li className={style.item}>item 2</li>
-          </ul>
-        </div>
-        )}
+        {history && (<History />)}
       </div>
     </div>
   );

@@ -1,16 +1,21 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable max-len */
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { COLUMN_NAMES } from '../index.ts';
+import { IoIosRemove } from 'react-icons/io';
+
+import style from './movable-item.module.css';
 
 export default function MovableItem({
   name,
   index,
   currentColumnName,
-  moveCardHandler,
+  items,
   setItems,
+  id,
 }: any) {
   const changeItemColumn = (currentItem: any, columnName: any) => {
     setItems((prevState: any) => prevState.map((e: any) => ({
@@ -19,14 +24,31 @@ export default function MovableItem({
     })));
   };
 
+  const moveCardHandler = (dragIndex: any, hoverIndex: any, item: any) => {
+    // const dragItem = items[dragIndex];
+    const dragItem = items.find((x: any) => x.id === item.id);
+    dragIndex = items.findIndex((x: any) => x.id === item.id);
+
+    if (dragItem) {
+      setItems((prevState: any) => {
+        const coppiedStateArray = [...prevState];
+        const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
+        coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
+
+        return coppiedStateArray;
+      });
+    }
+  };
+  const removeItem = (id: number) => setItems(items.filter((x: any) => x.id !== id));
+
   const ref = useRef(null);
   const [, drop] = useDrop({
-    accept: 'Our first type',
+    accept: 'items',
     hover(item: any, monitor: any) {
       if (!ref.current) {
         return;
       }
-      // @ts-ignore
+
       const dragIndex = item.index;
       const hoverIndex = index;
 
@@ -47,39 +69,24 @@ export default function MovableItem({
         return;
       }
 
-      moveCardHandler(dragIndex, hoverIndex);
+      moveCardHandler(dragIndex, hoverIndex, item);
       item.index = hoverIndex;
     },
   });
 
   const [{ isDragging }, drag] = useDrag({
-    type: 'Our first type',
+    type: 'items',
     item: {
-      index, name, currentColumnName, // type: 'Our first type',
+      index, name, currentColumnName, id, // type: 'Our first type',
     },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
 
       if (dropResult) {
         const { name } = dropResult as any;
-        const {
-          DO_IT, IN_PROGRESS, AWAITING_REVIEW, DONE,
-        } = COLUMN_NAMES;
-        switch (name) {
-          case IN_PROGRESS:
-            changeItemColumn(item, IN_PROGRESS);
-            break;
-          case AWAITING_REVIEW:
-            changeItemColumn(item, AWAITING_REVIEW);
-            break;
-          case DONE:
-            changeItemColumn(item, DONE);
-            break;
-          case DO_IT:
-            changeItemColumn(item, DO_IT);
-            break;
-          default:
-            break;
+
+        if (name && name.split('_')[0] === 'block') {
+          changeItemColumn(item, name);
         }
       }
     },
@@ -94,7 +101,10 @@ export default function MovableItem({
 
   return (
     <div ref={ref} className="movable-item" style={{ opacity }}>
-      {name}
+      <input className={style.name} value={name} onChange={(e) => console.log(e)} />
+      <button className={style.remove} type="button" onClick={() => removeItem(id)}>
+        <IoIosRemove />
+      </button>
     </div>
   );
 }

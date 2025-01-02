@@ -1,14 +1,16 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDrop } from 'react-dnd';
-import { IoIosAdd } from 'react-icons/io';
-import { COLUMN_NAMES } from '../index.ts';
+import { IoIosAdd, IoIosRemove } from 'react-icons/io';
+// import { COLUMN_NAMES } from '../index.ts';
+
+import style from './column.module.css';
 
 export default function Column({
   children, className, title, addItem,
 }: any) {
   const [{ isOver, canDrop }, drop] = useDrop({
-    accept: 'Our first type',
+    accept: 'items',
     drop: () => ({ name: title }),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -16,18 +18,16 @@ export default function Column({
     }),
     // Override monitor.canDrop() function
     canDrop: (item) => {
-      const {
-        DO_IT, IN_PROGRESS, AWAITING_REVIEW, DONE,
-      } = COLUMN_NAMES;
+      // const { DO_IT, IN_PROGRESS } = COLUMN_NAMES;
       const { currentColumnName } = item as any;
+      // console.log(item);
+
       return (
-        currentColumnName === title
-        || (currentColumnName === DO_IT && title === IN_PROGRESS)
-        || (currentColumnName === IN_PROGRESS
-          && (title === DO_IT || title === AWAITING_REVIEW))
-        || (currentColumnName === AWAITING_REVIEW
-          && (title === IN_PROGRESS || title === DONE))
-        || (currentColumnName === DONE && title === AWAITING_REVIEW)
+        currentColumnName.split('_')[0] === 'block'
+        // currentColumnName === title
+        // || (currentColumnName === DO_IT && title === IN_PROGRESS)
+        // || (currentColumnName === IN_PROGRESS
+        // )
       );
     },
   });
@@ -50,12 +50,17 @@ export default function Column({
       className={className}
       style={{ backgroundColor: getBackgroundColor() }}
     >
-      <input value={title} onChange={(e) => console.log(e)} />
-      <button type="button" onClick={addItem}>
-        <IoIosAdd />
-      </button>
+      <div className={style.header}>
+        <input className={style.title} value={title} onChange={(e) => console.log(e)} />
+        <button className={style.remove} type="button">
+          <IoIosRemove />
+        </button>
+      </div>
 
       {children}
+      <button className={style.add} type="button" onClick={addItem}>
+        <IoIosAdd />
+      </button>
     </div>
   );
 }
