@@ -8,8 +8,8 @@
   height: max-content;
   margin: 10px;
   border-radius: 10px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  border: 2px solid #7d7d7d; /* Параметры границы */
+  /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); */
+  border: 2px solid var(--sidebar-border-color); /* Параметры границы */
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -17,11 +17,14 @@
   padding: 10px;
   margin-left: 0;
   margin-right: 0;
+  margin-bottom: 0;
 }
 
 .movable-item {
   border-radius: 8px;
-  background-color: #fafdff;
+  /* background-color: #fafdff; */
+  background-color: var(--block-background);
+  border: 1px solid var(--sidebar-border-color);
   font-size: 16px;
   width: 100%;
   margin: 5px auto;
@@ -31,25 +34,5 @@
   align-items: center;
   box-sizing: border-box;
   padding: 5px;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
-}
-
-.do-it-column {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  /* padding: 10px; */
-  margin-bottom: 0;
-  /* margin-left: 0;
-  margin-right: 0; */
-}
-
-.in-progress-column {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  /* padding: 10px; */
-  margin-bottom: 0;
-  /* margin-left: 0;
-  margin-right: 0; */
+  /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5); */
 }

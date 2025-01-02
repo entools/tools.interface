@@ -27,8 +27,11 @@ export default function DocumentPage() {
   const [items, setItems] = useState(tasks);
   const [blocks, setBlocks] = useState(initBlocks);
 
-  const addItem = () => {
-    setItems([...items, { id: items.length + 1, name: `Item ${items.length + 1}`, column: 'block_1' }]);
+  const addItem = (block: string) => {
+    setItems([...items, { id: items.length + 1, name: `Item ${items.length + 1}`, column: block }]);
+  };
+  const addBlock = () => {
+    setBlocks([...blocks, `block_${blocks.length + 1}`]);
   };
 
   const returnBlocksForColumn = () => blocks.map((item, index) => (
@@ -86,7 +89,12 @@ export default function DocumentPage() {
           <DndProvider backend={HTML5Backend}>
             {returnBlocksForColumn()}
             <div className={style.buttons}>
-              <button className={style.add} type="button">
+              <button
+                className={style.add}
+                title="Добавить блок"
+                type="button"
+                onClick={addBlock}
+              >
                 <IoIosAdd />
               </button>
             </div>

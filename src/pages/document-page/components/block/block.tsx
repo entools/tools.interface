@@ -12,6 +12,7 @@ export default function Block({
   index, item, setBlocks, addItem, blocks, items, setItems,
 }: any) {
   const block = useRef(null);
+  const removeBlock = (title: string) => setBlocks(blocks.filter((x: string) => x !== title));
   const moveBlockHandler = (dragIndex: any, hoverIndex: any) => {
     const dragItem = blocks[dragIndex];
 
@@ -85,12 +86,9 @@ export default function Block({
         name={item}
         currentBlockName={item}
         setBlocks={setBlocks}
-        className={classNames(
-          'column',
-          { 'do-it-column': item === 'block_1' },
-          { 'in-progress-column': item !== 'block_2' },
-        )}
+        className={classNames('column')}
         addItem={addItem}
+        removeBlock={removeBlock}
       >
         {returnItemsForColumn(item)}
       </Column>

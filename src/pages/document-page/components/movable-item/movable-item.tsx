@@ -1,5 +1,4 @@
 /* eslint-disable no-nested-ternary */
-/* eslint-disable max-len */
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -102,7 +101,12 @@ export default function MovableItem({
   return (
     <div ref={ref} className="movable-item" style={{ opacity }}>
       <input className={style.name} value={name} onChange={(e) => console.log(e)} />
-      <button className={style.remove} type="button" onClick={() => removeItem(id)}>
+      <button
+        className={style.remove}
+        type="button"
+        onClick={() => removeItem(id)}
+        title="Удалить строку"
+      >
         <IoIosRemove />
       </button>
     </div>

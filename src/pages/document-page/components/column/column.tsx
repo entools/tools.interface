@@ -2,12 +2,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDrop } from 'react-dnd';
 import { IoIosAdd, IoIosRemove } from 'react-icons/io';
-// import { COLUMN_NAMES } from '../index.ts';
 
 import style from './column.module.css';
 
 export default function Column({
-  children, className, title, addItem,
+  children, className, title, addItem, removeBlock,
 }: any) {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: 'items',
@@ -18,17 +17,9 @@ export default function Column({
     }),
     // Override monitor.canDrop() function
     canDrop: (item) => {
-      // const { DO_IT, IN_PROGRESS } = COLUMN_NAMES;
       const { currentColumnName } = item as any;
-      // console.log(item);
 
-      return (
-        currentColumnName.split('_')[0] === 'block'
-        // currentColumnName === title
-        // || (currentColumnName === DO_IT && title === IN_PROGRESS)
-        // || (currentColumnName === IN_PROGRESS
-        // )
-      );
+      return (currentColumnName.split('_')[0] === 'block');
     },
   });
 
@@ -52,13 +43,22 @@ export default function Column({
     >
       <div className={style.header}>
         <input className={style.title} value={title} onChange={(e) => console.log(e)} />
-        <button className={style.remove} type="button">
+        <button
+          className={style.remove}
+          type="button"
+          onClick={() => removeBlock(title)}
+          title="Удалить блок"
+        >
           <IoIosRemove />
         </button>
       </div>
-
       {children}
-      <button className={style.add} type="button" onClick={addItem}>
+      <button
+        className={style.add}
+        type="button"
+        onClick={() => addItem(title)}
+        title="Добавить строку"
+      >
         <IoIosAdd />
       </button>
     </div>
