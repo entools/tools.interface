@@ -1,19 +1,14 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
-
-import { v4 as uuidv4 } from 'uuid';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import classNames from 'classnames';
-import {
-  IoIosAlbums, IoIosAdd, IoMdShareAlt, IoMdDownload, IoIosEye,
-} from 'react-icons/io';
+import { v4 as uuidv4 } from 'uuid';
+import { IoIosAdd } from 'react-icons/io';
 
 import Block from './components/block/block.tsx';
 import History from './components/history/history.tsx';
+import Tools from './components/tools/tools.tsx';
 
 import style from './document-page.module.css';
 import '.app.css';
@@ -26,13 +21,8 @@ export default function DocumentPage() {
   const [history, setHistory] = useState(false);
   const [items, setItems] = useState(tasks);
   const [blocks, setBlocks] = useState(initBlocks);
-
-  const addItem = (block: string) => {
-    setItems([...items, { id: items.length + 1, name: `Item ${items.length + 1}`, column: block }]);
-  };
-  const addBlock = () => {
-    setBlocks([...blocks, `block_${blocks.length + 1}`]);
-  };
+  const addBlock = () => setBlocks([...blocks, `block_${blocks.length + 1}`]);
+  const toggleHistory = () => setHistory(!history);
 
   const returnBlocksForColumn = () => blocks.map((item, index) => (
     <Block
@@ -40,7 +30,6 @@ export default function DocumentPage() {
       item={item}
       index={index}
       setBlocks={setBlocks}
-      addItem={addItem}
       blocks={blocks}
       items={items}
       setItems={setItems}
@@ -49,40 +38,9 @@ export default function DocumentPage() {
 
   return (
     <div className="layout">
-      <h2 className="title">{`Document ${documentId} #${projectId}`}</h2>
       <div className={style.tools}>
-        Tools
-        <div className={style.btools}>
-          <button
-            type="button"
-            className={style.button}
-            title="Подписаться"
-          >
-            <IoIosEye />
-          </button>
-          <button
-            type="button"
-            className={style.button}
-            title="Скачать"
-          >
-            <IoMdDownload />
-          </button>
-          <button
-            type="button"
-            className={style.button}
-            title="Share"
-          >
-            <IoMdShareAlt />
-          </button>
-          <button
-            type="button"
-            className={style.button}
-            onClick={() => setHistory(!history)}
-            title={history ? 'On' : 'Off'}
-          >
-            <IoIosAlbums />
-          </button>
-        </div>
+        <input className={style.title} value={`Document ${documentId} #${projectId}`} onChange={(e) => console.log(e)} />
+        <Tools toggleHistory={toggleHistory} history={history} />
       </div>
       <div className={classNames(style.form, { [style.two]: history })}>
         <div className="container">

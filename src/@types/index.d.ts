@@ -5,3 +5,20 @@ type User = {
   avatar: string;
   email: string;
 };
+
+type ItemType = {
+  id: number;
+  name: string;
+  column: string;
+  index?: number;
+};
+
+type BlockType = {
+  index: number;
+  item: string;
+  setBlocks: (blocks: string[] | ((prevState: string[]) => string[])) => void;
+  // addItem: (block: string) => void;
+  blocks: string[];
+  items: ItemType[];
+  setItems: (items: ItemType[]) => void;
+};
