@@ -22,3 +22,11 @@ type BlockType = {
   items: ItemType[];
   setItems: (items: ItemType[]) => void;
 };
+
+type ColumnType = {
+  children: ReactNode;
+  className: string;
+  title: string;
+  addItem: (block: string) => void;
+  removeBlock: (title: string) => void;
+};

@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -16,20 +15,20 @@ export default function MovableItem({
   setItems,
   id,
 }: any) {
-  const changeItemColumn = (currentItem: any, columnName: any) => {
-    setItems((prevState: any) => prevState.map((e: any) => ({
+  const changeItemColumn = (currentItem: any, columnName: string) => {
+    setItems((prevState: ItemType[]) => prevState.map((e: ItemType) => ({
       ...e,
       column: e.name === currentItem.name ? columnName : e.column,
     })));
   };
 
-  const moveCardHandler = (dragIndex: any, hoverIndex: any, item: any) => {
+  const moveCardHandler = (dragIndex: number, hoverIndex: number, item: any) => {
     // const dragItem = items[dragIndex];
-    const dragItem = items.find((x: any) => x.id === item.id);
-    dragIndex = items.findIndex((x: any) => x.id === item.id);
+    const dragItem = items.find((x: ItemType) => x.id === item.id);
+    dragIndex = items.findIndex((x: ItemType) => x.id === item.id);
 
     if (dragItem) {
-      setItems((prevState: any) => {
+      setItems((prevState: ItemType[]) => {
         const coppiedStateArray = [...prevState];
         const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
         coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
@@ -38,7 +37,7 @@ export default function MovableItem({
       });
     }
   };
-  const removeItem = (id: number) => setItems(items.filter((x: any) => x.id !== id));
+  const removeItem = (id: number) => setItems(items.filter((x: ItemType) => x.id !== id));
 
   const ref = useRef(null);
   const [, drop] = useDrop({
@@ -82,7 +81,7 @@ export default function MovableItem({
       const dropResult = monitor.getDropResult();
 
       if (dropResult) {
-        const { name } = dropResult as any;
+        const { name } = dropResult as { name: string };
 
         if (name && name.split('_')[0] === 'block') {
           changeItemColumn(item, name);
@@ -100,7 +99,11 @@ export default function MovableItem({
 
   return (
     <div ref={ref} className="movable-item" style={{ opacity }}>
-      <input className={style.name} value={name} onChange={(e) => console.log(e)} />
+      <input
+        className={style.name}
+        value={name}
+        onChange={(e) => console.log(e)}
+      />
       <button
         className={style.remove}
         type="button"

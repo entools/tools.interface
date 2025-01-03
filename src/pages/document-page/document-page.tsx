@@ -39,7 +39,11 @@ export default function DocumentPage() {
   return (
     <div className="layout">
       <div className={style.tools}>
-        <input className={style.title} value={`Document ${documentId} #${projectId}`} onChange={(e) => console.log(e)} />
+        <input
+          className={style.title}
+          value={`Document ${documentId} #${projectId}`}
+          onChange={(e) => console.log(e)}
+        />
         <Tools toggleHistory={toggleHistory} history={history} />
       </div>
       <div className={classNames(style.form, { [style.two]: history })}>

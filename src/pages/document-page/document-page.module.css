@@ -1,8 +1,6 @@
 .tools {
   display: flex;
   justify-content: space-between;
-  /* font-size: 18px; */
-  /* line-height: 28px; */
   text-align: left;
   padding: 0;
   padding-left: 8px;
@@ -13,7 +11,6 @@
 }
 
 .title {
-  /* height: 30px; */
   border-radius: 4px;
   min-width: 300px;
   border: 0;
@@ -51,11 +48,6 @@
   justify-content: flex-start;
   border: 1px solid red;
   width: 100%;
-
-}
-
-.items {
-
 }
 
 .add {

@@ -82,11 +82,11 @@ export default function Block({
   return (
     <div ref={block}>
       <Column
-        index={index}
+        // index={index}
+        // name={item}
+        // currentBlockName={item}
+        // setBlocks={setBlocks}
         title={item}
-        name={item}
-        currentBlockName={item}
-        setBlocks={setBlocks}
         className={classNames('column')}
         addItem={addItem}
         removeBlock={removeBlock}
