@@ -1,11 +1,10 @@
-/* eslint-disable consistent-return */
 import { useDrop } from 'react-dnd';
 import { IoIosAdd, IoIosRemove } from 'react-icons/io';
 
 import style from './column.module.css';
 
 export default function Column({
-  children, className, title, addItem, removeBlock,
+  children, title, addItem, removeBlock,
 }: ColumnType) {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: 'items',
@@ -14,14 +13,13 @@ export default function Column({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
     }),
-    // Override monitor.canDrop() function
     canDrop: (item) => {
       const { currentColumnName } = item as { currentColumnName: string; };
 
       return (currentColumnName.split('_')[0] === 'block');
     },
   });
-
+  // eslint-disable-next-line consistent-return
   const getBackgroundColor = () => {
     if (isOver) {
       if (canDrop) {
@@ -37,7 +35,7 @@ export default function Column({
   return (
     <div
       ref={drop}
-      className={className}
+      className="column"
       style={{ backgroundColor: getBackgroundColor() }}
     >
       <div className={style.header}>

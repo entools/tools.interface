@@ -1,6 +1,9 @@
 .history {
+  margin-top: 10px;
+  margin-bottom: 8px;
   border-radius: 12px;
-  background-color: var(--block-background);
+  background-color: var(--background-color);
+  border: 1px solid var(--sidebar-border-color);
 }
 
 .title {

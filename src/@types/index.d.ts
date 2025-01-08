@@ -15,18 +15,25 @@ type ItemType = {
 
 type BlockType = {
   index: number;
-  item: string;
-  setBlocks: (blocks: string[] | ((prevState: string[]) => string[])) => void;
-  // addItem: (block: string) => void;
+  block: string;
   blocks: string[];
   items: ItemType[];
-  setItems: (items: ItemType[]) => void;
+  setBlocks: Dispatch<SetStateAction<string[]>>;
+  setItems: Dispatch<SetStateAction<ItemType[]>>;
 };
 
 type ColumnType = {
   children: ReactNode;
-  className: string;
   title: string;
   addItem: (block: string) => void;
   removeBlock: (title: string) => void;
+};
+
+type MovableItemType = {
+  name: string;
+  index: number;
+  currentColumnName: string;
+  items: ItemType[];
+  setItems: Dispatch<SetStateAction<ItemType[]>>;
+  id: number;
 };

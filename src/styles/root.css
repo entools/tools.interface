@@ -6,6 +6,7 @@ html {
   --sidebar-border-color: #d0d4d6;
   --button-background-color: #c2c2c2;
   --button-font-color: #000;
+  --background-color: #ffffff;
   background-color: #ffffff;
 }
 
@@ -19,6 +20,7 @@ html[data-theme="dark"] {
   --sidebar-border-color: #303537;
   --button-background-color: #efefef;
   --button-font-color: #000;
+  --background-color: #242424;
   background-color: #242424;
 }
 

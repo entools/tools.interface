@@ -24,10 +24,10 @@ export default function DocumentPage() {
   const addBlock = () => setBlocks([...blocks, `block_${blocks.length + 1}`]);
   const toggleHistory = () => setHistory(!history);
 
-  const returnBlocksForColumn = () => blocks.map((item, index) => (
+  const returnBlocksForColumn = () => blocks.map((block, index) => (
     <Block
       key={uuidv4()}
-      item={item}
+      block={block}
       index={index}
       setBlocks={setBlocks}
       blocks={blocks}

@@ -1,6 +1,5 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { IoIosRemove } from 'react-icons/io';
@@ -14,15 +13,15 @@ export default function MovableItem({
   items,
   setItems,
   id,
-}: any) {
-  const changeItemColumn = (currentItem: any, columnName: string) => {
+}: MovableItemType) {
+  const changeItemColumn = (currentItem: ItemType, columnName: string) => {
     setItems((prevState: ItemType[]) => prevState.map((e: ItemType) => ({
       ...e,
       column: e.name === currentItem.name ? columnName : e.column,
     })));
   };
 
-  const moveCardHandler = (dragIndex: number, hoverIndex: number, item: any) => {
+  const moveCardHandler = (dragIndex: number, hoverIndex: number, item: ItemType) => {
     // const dragItem = items[dragIndex];
     const dragItem = items.find((x: ItemType) => x.id === item.id);
     dragIndex = items.findIndex((x: ItemType) => x.id === item.id);
@@ -42,12 +41,12 @@ export default function MovableItem({
   const ref = useRef(null);
   const [, drop] = useDrop({
     accept: 'items',
-    hover(item: any, monitor: any) {
+    hover(item: ItemType, monitor) {
       if (!ref.current) {
         return;
       }
 
-      const dragIndex = item.index;
+      const dragIndex = item.index!;
       const hoverIndex = index;
 
       if (dragIndex === hoverIndex) {
@@ -56,7 +55,7 @@ export default function MovableItem({
       // @ts-ignore
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const clientOffset = monitor.getClientOffset();
+      const clientOffset = monitor.getClientOffset()!;
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
@@ -75,7 +74,7 @@ export default function MovableItem({
   const [{ isDragging }, drag] = useDrag({
     type: 'items',
     item: {
-      index, name, currentColumnName, id, // type: 'Our first type',
+      index, name, currentColumnName, id,
     },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
@@ -84,7 +83,7 @@ export default function MovableItem({
         const { name } = dropResult as { name: string };
 
         if (name && name.split('_')[0] === 'block') {
-          changeItemColumn(item, name);
+          changeItemColumn(item as unknown as ItemType, name);
         }
       }
     },
@@ -94,7 +93,6 @@ export default function MovableItem({
   });
 
   const opacity = isDragging ? 0.4 : 1;
-
   drag(drop(ref));
 
   return (

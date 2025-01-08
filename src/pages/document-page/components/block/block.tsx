@@ -1,16 +1,15 @@
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import classNames from 'classnames';
 
 import Column from '../column/column.tsx';
 import MovableItem from '../movable-item/movable-item.tsx';
 
 export default function Block({
-  index, item, setBlocks, blocks, items, setItems,
+  index, block, setBlocks, blocks, items, setItems,
 }: BlockType) {
-  const block = useRef(null);
-  const addItem = (blck: string) => {
-    setItems([...items, { id: items.length + 1, name: `Item ${items.length + 1}`, column: blck }]);
+  const ref = useRef(null);
+  const addItem = (column: string) => {
+    setItems([...items, { id: items.length + 1, name: `Item ${items.length + 1}`, column }]);
   };
   const removeBlock = (title: string) => setBlocks(blocks.filter((x: string) => x !== title));
   const moveBlockHandler = (dragIndex: number, hoverIndex: number) => {
@@ -30,7 +29,7 @@ export default function Block({
   const [, drop] = useDrop({
     accept: 'blocks',
     hover(itm: { index: number }, monitor) {
-      if (!block.current) {
+      if (!ref.current) {
         return;
       }
       const dragIndex = itm.index!;
@@ -40,7 +39,7 @@ export default function Block({
         return;
       }
       // @ts-ignore
-      const hoverBoundingRect = block.current?.getBoundingClientRect();
+      const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset()!;
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
@@ -59,39 +58,42 @@ export default function Block({
     },
   });
 
-  const [, drag] = useDrag({
+  const [{ isDragging }, drag] = useDrag({
     type: 'blocks',
     item: { index },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
   });
 
   const returnItemsForColumn = (columnName: string) => items
-    .filter((itm: ItemType) => itm.column === columnName)
-    .map((itm: ItemType, idx: number) => (
+    .filter((item: ItemType) => item.column === columnName)
+    .map((item: ItemType, idx: number) => (
       <MovableItem
-        key={itm.id}
-        name={itm.name}
-        currentColumnName={itm.column}
+        key={item.id}
+        name={item.name}
+        currentColumnName={item.column}
         setItems={setItems}
         index={idx}
         items={items}
-        id={itm.id}
+        id={item.id}
       />
     ));
 
-  drag(drop(block));
+  const opacity = isDragging ? 0.4 : 1;
+
+  drag(drop(ref));
   return (
-    <div ref={block}>
+    <div
+      ref={ref}
+      style={{ opacity }}
+    >
       <Column
-        // index={index}
-        // name={item}
-        // currentBlockName={item}
-        // setBlocks={setBlocks}
-        title={item}
-        className={classNames('column')}
+        title={block}
         addItem={addItem}
         removeBlock={removeBlock}
       >
-        {returnItemsForColumn(item)}
+        {returnItemsForColumn(block)}
       </Column>
     </div>
   );
