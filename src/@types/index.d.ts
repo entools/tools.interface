@@ -1,9 +1,14 @@
 type User = {
   id: number;
-  name: string;
-  about: string;
-  avatar: string;
-  email: string;
+  // name: string;
+  // about: string;
+  // avatar: string;
+  // email: string;
+  firstName: '',
+  lastName: '',
+  username: '',
+  email: '',
+  password: '',
 };
 
 type ItemType = {
