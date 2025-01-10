@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/display-name */
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import classNames from 'classnames';
 
 import { type InputHTMLAttributes } from 'react';
