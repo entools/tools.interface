@@ -1,0 +1,12 @@
+.text-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0;
+}
+.label {
+  font-size: 12px;
+  padding: 5px 0;
+  margin: 0;
+}

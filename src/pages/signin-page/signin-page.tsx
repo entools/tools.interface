@@ -1,23 +1,15 @@
-import { Link } from 'react-router-dom';
-
 import SigninForm from './signin-form.tsx';
+import Header from './header.tsx';
+import Footer from '../signup-page/footer.tsx';
 
 import style from './signin-page.module.css';
 
 function SigninPage() {
   return (
     <div className={style.layer}>
-      <Link
-        to="/signup"
-        className={style.signin}
-      >
-        Signup
-      </Link>
+      <Header />
       <SigninForm />
-      <ul className={style.links}>
-        <li className={style.link}>link 1</li>
-        <li className={style.link}>link 2</li>
-      </ul>
+      <Footer />
     </div>
   );
 }

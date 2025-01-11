@@ -43,7 +43,6 @@ const InputField = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         value={value}
         placeholder={placeholder}
         className={classNames('input', className)}
-        // className="input"
         readOnly={readonly}
       />
       {errorText

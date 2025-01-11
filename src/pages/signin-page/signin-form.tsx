@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Controller, useForm } from 'react-hook-form';
+import classNames from 'classnames';
 
 import InputField from '../../components/input-field/input-field.tsx';
 
@@ -47,7 +47,7 @@ export default function SigninForm() {
       className={style.container}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h1>Signup</h1>
+      <h1>Signin</h1>
       {inputs.map((input) => (
         <Controller
           key={input.name}
@@ -68,9 +68,9 @@ export default function SigninForm() {
       ))}
       <button
         type="button"
-        className="button"
+        className={classNames('button', style.button)}
       >
-        signup
+        Войти
       </button>
     </form>
   );

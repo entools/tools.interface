@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Controller, useForm } from 'react-hook-form';
+import classNames from 'classnames';
 
 import InputField from '../../components/input-field/input-field.tsx';
 
@@ -101,9 +101,9 @@ export default function SignupForm() {
       ))}
       <button
         type="button"
-        className="button"
+        className={classNames('button', style.button)}
       >
-        signup
+        Зарегистрироваться
       </button>
     </form>
   );

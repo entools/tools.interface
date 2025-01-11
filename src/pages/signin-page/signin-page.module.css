@@ -3,12 +3,13 @@
   flex-direction: column;
   padding: 60px;
   box-sizing: border-box;
+  width: 480px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  /* max-width: 400px; */
   width: 100%;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -30,4 +31,15 @@
 
 .signin {
 
+}
+
+.button {
+  margin-top: 20px;
+  font-weight: 900;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
