@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import SigninForm from './signin-form.tsx';
+
 import style from './signin-page.module.css';
 
 function SigninPage() {
@@ -7,27 +9,11 @@ function SigninPage() {
     <div className={style.layer}>
       <Link
         to="/signup"
-        className={style.signup}
+        className={style.signin}
       >
         Signup
       </Link>
-      <div className={style.container}>
-        <h1>Signin</h1>
-        <input
-          className="input"
-          placeholder="login"
-        />
-        <input
-          className="input"
-          placeholder="password"
-        />
-        <button
-          type="button"
-          className="button"
-        >
-          signin
-        </button>
-      </div>
+      <SigninForm />
       <ul className={style.links}>
         <li className={style.link}>link 1</li>
         <li className={style.link}>link 2</li>
