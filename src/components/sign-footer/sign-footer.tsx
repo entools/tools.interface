@@ -1,6 +1,6 @@
-import style from './signup-page.module.css';
+import style from './sign-footer.module.css';
 
-export default function Footer() {
+export default function SignFooter() {
   return (
     <div className={style.footer}>
       <h2 className={style.title}>Войти с помощью</h2>

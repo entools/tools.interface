@@ -1,6 +1,6 @@
 import SignupForm from './signup-form.tsx';
 import Header from './header.tsx';
-import Footer from './footer.tsx';
+import SignFooter from '../../components/sign-footer/sign-footer.tsx';
 
 import style from './signup-page.module.css';
 
@@ -11,7 +11,7 @@ function SignupPage() {
     <div className={style.layer}>
       <Header />
       <SignupForm />
-      <Footer />
+      <SignFooter />
     </div>
   );
 }

@@ -80,7 +80,7 @@ export default function SignupForm() {
       className={style.container}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h1>Signup</h1>
+      <h1 className={style.name}>Регистрация</h1>
       {inputs.map((input) => (
         <Controller
           key={input.name}

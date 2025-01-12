@@ -47,7 +47,7 @@ export default function SigninForm() {
       className={style.container}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h1>Signin</h1>
+      <h1 className={style.name}>Вход</h1>
       {inputs.map((input) => (
         <Controller
           key={input.name}
