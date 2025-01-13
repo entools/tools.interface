@@ -63,7 +63,7 @@ const inputs = [
   },
 ];
 
-export default function SignupForm() {
+export default function SignupForm({ onSubmit }: { onSubmit: (data: FormPayload) => void }) {
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
       firstName: '',
@@ -73,7 +73,6 @@ export default function SignupForm() {
       password: '',
     },
   });
-  const onSubmit = () => {};
 
   return (
     <form
@@ -100,7 +99,7 @@ export default function SignupForm() {
         />
       ))}
       <button
-        type="button"
+        type="submit"
         className={classNames('button', style.button)}
       >
         Зарегистрироваться

@@ -4,25 +4,12 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 // import { createReduxHistoryContext } from 'redux-first-history';
 // import { createBrowserHistory, createMemoryHistory } from 'history';
 
-// import {
-//   authApi,
-//   userApi,
-//   cardsApi,
-//   filesApi,
-//   tagsApi,
-// } from './api';
+import { authApi } from './api/index.ts';
 import userReducer from './slices/user-slice.ts';
-// import usersReducer from './slices/users-slice';
-// import cardReducer from './slices/card-slice';
-// import cardsReducer from './slices/cards-slice';
-// import userCardsReducer from './slices/user-cards-slice';
 // import { isServer } from '../utils';
 
-// export * from './api/auth-api/endpoints';
-// export * from './api/user-api/endpoints';
-// export * from './api/card-api/endpoints';
-// export * from './api/file-api/endpoints';
-// export * from './api/tag-api/endpoints';
+export * from './api/auth-api/endpoints/index.ts';
+
 export * from './slices/index.ts';
 
 // global redeclared types
@@ -45,7 +32,7 @@ export const store = configureStore({
     // card: cardReducer,
     // cards: cardsReducer,
     // ucards: userCardsReducer,
-    // [authApi.reducerPath]: authApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
     // [userApi.reducerPath]: userApi.reducer,
     // [cardsApi.reducerPath]: cardsApi.reducer,
     // [filesApi.reducerPath]: filesApi.reducer,
@@ -53,15 +40,11 @@ export const store = configureStore({
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
-  // .concat(
-  //   authApi.middleware,
-  //   userApi.middleware,
-  //   cardsApi.middleware,
-  //   filesApi.middleware,
-  //   tagsApi.middleware,
-  //   // routerMiddleware,
-  // ),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+    .concat(
+      authApi.middleware,
+    // routerMiddleware,
+    ),
 });
 
 // export const history = createReduxHistory(store);
