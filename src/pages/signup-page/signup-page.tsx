@@ -25,7 +25,7 @@ function SignupPage() {
 
   const onSubmit = async (data: FormPayload) => {
     await signUp(data);
-    navigate('/');
+    // navigate('/');
   };
 
   return (

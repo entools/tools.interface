@@ -33,14 +33,13 @@ const inputs = [
   },
 ];
 
-export default function SigninForm() {
+export default function SigninForm({ onSubmit }: { onSubmit: (data: FormPayload) => void }) {
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
       email: '',
       password: '',
     },
   });
-  const onSubmit = () => {};
 
   return (
     <form
@@ -67,7 +66,7 @@ export default function SigninForm() {
         />
       ))}
       <button
-        type="button"
+        type="submit"
         className={classNames('button', style.button)}
       >
         Войти

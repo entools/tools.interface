@@ -2,7 +2,7 @@ import { createApi, retry } from '@reduxjs/toolkit/query/react';
 
 import oauthQuery from '../../base-auth-query.ts';
 
-export const baseQueryWithRetry = retry(oauthQuery, { maxRetries: 1 });
+export const baseQueryWithRetry = retry(oauthQuery, { maxRetries: 0 });
 
 // Define a service using a base URL and expected endpoints
 const authApi = createApi({

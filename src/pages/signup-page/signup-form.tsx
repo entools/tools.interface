@@ -42,7 +42,7 @@ const inputs = [
     autoComplete: 'new-password',
   },
   {
-    name: 'first_name',
+    name: 'firstName',
     label: 'First name',
     pattern: {
       value: /^[a-zA-Zа-яА-ЯёЁ-]{3,15}$/,
@@ -52,7 +52,7 @@ const inputs = [
     autoComplete: 'first-name',
   },
   {
-    name: 'last_name',
+    name: 'lastName',
     label: 'Last name',
     pattern: {
       value: /^[a-zA-Zа-яА-ЯёЁ-]{3,15}$/,
