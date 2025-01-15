@@ -23,14 +23,12 @@ const inputs = [
   },
 ];
 
-export default function ResetPasswordForm() {
+export default function ResetPasswordForm({ onSubmit }: { onSubmit: (data: FormPayload) => void }) {
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
       email: '',
     },
   });
-
-  const onSubmit = () => {};
 
   return (
     <form
@@ -58,7 +56,7 @@ export default function ResetPasswordForm() {
         />
       ))}
       <button
-        type="button"
+        type="submit"
         className={classNames('button', style.button)}
       >
         Сбросить
