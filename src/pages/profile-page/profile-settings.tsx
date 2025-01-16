@@ -1,0 +1,59 @@
+import { useEffect, useState } from 'react';
+
+import { CustomSelect as Select } from '../../components/select/select.tsx';
+
+import useDarkTheme from '../../hooks/use-dark-theme.tsx';
+
+import style from './profile-page.module.css';
+
+type SelectType = { value: string; label: string; };
+
+const options = [
+  { value: 'system', label: 'system' },
+  { value: 'dark', label: 'dark' },
+  { value: 'light', label: 'light' },
+];
+
+export default function ProfileSettings() {
+  const { providerValue: { toggleIsDark, isDark } } = useDarkTheme();
+  const current = options.find((x) => x.value === isDark);
+  const [theme, setTheme] = useState<SelectType | null>(current || options[0]);
+  const [notification, setNotification] = useState(true);
+
+  useEffect(() => {
+    if (theme) {
+      toggleIsDark(theme.value);
+    }
+  }, [theme]);
+
+  return (
+    <div className={style.settings}>
+      <div className={style.theme}>
+        theme
+        <div className={style.select}>
+          <Select
+            name="theme"
+            options={options}
+            action={setTheme}
+            value={theme}
+          />
+        </div>
+      </div>
+
+      <div className={style.notification}>
+        <div className={style.block}>
+          notification
+          <button
+            type="button"
+            className="button"
+            onClick={() => setNotification(!notification)}
+          >
+            {`${notification ? 'on' : 'off'}`}
+          </button>
+        </div>
+      </div>
+
+      <div className={style.base}>base</div>
+    </div>
+  );
+}
