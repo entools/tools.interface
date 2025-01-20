@@ -10,7 +10,7 @@ function SearchPage() {
   const handleClose = useCallback(() => {
     navigate(location.state.pathname || '/');
   }, [location.state, navigate]);
-  return (<Modal title="Search" onClose={handleClose} children={(<h2>form</h2>)} />);
+  return (<Modal title="Search" onClose={handleClose} children={(<h2>form</h2>)} overlay />);
 }
 
 export default SearchPage;

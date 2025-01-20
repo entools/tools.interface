@@ -16,9 +16,12 @@ type TypeModal = {
   title?: string;
   children: ReactNode;
   onClose: () => void;
+  overlay?: boolean;
 };
 
-export default function Modal({ title, children, onClose }: TypeModal) {
+export default function Modal({
+  title, children, onClose, overlay,
+}: TypeModal) {
   const reactModals = document.getElementById('modals');
 
   const handleEscape = (e: KeyboardEvent) => {
@@ -41,7 +44,7 @@ export default function Modal({ title, children, onClose }: TypeModal) {
 
   return ReactDOM.createPortal(
     <AnimatePresence>
-      <ModalOverlay closeModal={closeModal}>
+      <ModalOverlay closeModal={closeModal} overlay={overlay}>
         <motion.div
           className={style.container}
           onClick={(e) => e.stopPropagation()}

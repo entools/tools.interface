@@ -1,8 +1,13 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/no-children-prop */
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { IoIosRemove } from 'react-icons/io';
+import { IoIosRemove, IoMdCreate } from 'react-icons/io';
+
+import RainWaterForm from '../form/rain-water.tsx';
+import Modal from '../../../../components/modal/modal.tsx';
 
 import style from './movable-item.module.css';
 
@@ -14,6 +19,7 @@ export default function MovableItem({
   setItems,
   id,
 }: MovableItemType) {
+  const [popupForm, setPopupForm] = useState<number | null>(null);
   const changeItemColumn = (currentItem: ItemType, columnName: string) => {
     setItems((prevState: ItemType[]) => prevState.map((e: ItemType) => ({
       ...e,
@@ -36,6 +42,8 @@ export default function MovableItem({
       });
     }
   };
+  const editItem = (id: number) => setPopupForm(id);
+  const handleClose = () => setPopupForm(null);
   const removeItem = (id: number) => setItems(items.filter((x: ItemType) => x.id !== id));
 
   const ref = useRef(null);
@@ -97,19 +105,28 @@ export default function MovableItem({
 
   return (
     <div ref={ref} className="movable-item" style={{ opacity }}>
-      <input
-        className={style.name}
-        value={name}
-        onChange={(e) => console.log(e)}
-      />
-      <button
-        className={style.remove}
-        type="button"
-        onClick={() => removeItem(id)}
-        title="Удалить строку"
-      >
-        <IoIosRemove />
-      </button>
+      <ul className={style.fields}>
+        {Array.from({ length: 5 }, (_, i) => i).map((x) => (<li className={style.field}>{x}</li>))}
+      </ul>
+      <div className={style.tools}>
+        <button
+          className={style.edit}
+          type="button"
+          onClick={() => editItem(id)}
+          title="Редактировать строку"
+        >
+          <IoMdCreate />
+        </button>
+        <button
+          className={style.remove}
+          type="button"
+          onClick={() => removeItem(id)}
+          title="Удалить строку"
+        >
+          <IoIosRemove />
+        </button>
+      </div>
+      {popupForm && <Modal title="Rain Water" onClose={handleClose} children={(<RainWaterForm />)} />}
     </div>
   );
 }
