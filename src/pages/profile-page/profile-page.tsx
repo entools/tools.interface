@@ -8,6 +8,8 @@ export type FormPayload = Omit<User, 'id'>;
 function ProfilePage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (data: FormPayload) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
   };
 
   return (
