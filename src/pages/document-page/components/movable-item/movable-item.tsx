@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable no-shadow */
@@ -5,6 +6,7 @@
 import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { IoIosRemove, IoMdCreate } from 'react-icons/io';
+import { v4 as uuidv4 } from 'uuid';
 
 import RainWaterForm from '../form/rain-water.tsx';
 import Modal from '../../../../components/modal/modal.tsx';
@@ -106,7 +108,7 @@ export default function MovableItem({
   return (
     <div ref={ref} className="movable-item" style={{ opacity }}>
       <ul className={style.fields}>
-        {Array.from({ length: 5 }, (_, i) => i).map((x) => (<li className={style.field}>{x}</li>))}
+        {Array.from({ length: 5 }, (_, i) => i).map((x) => (<li key={uuidv4()} className={style.field}>{x}</li>))}
       </ul>
       <div className={style.tools}>
         <button
