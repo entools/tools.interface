@@ -1,4 +1,6 @@
+/* eslint-disable max-len */
 import { useDrop } from 'react-dnd';
+import { v4 as uuidv4 } from 'uuid';
 import { IoIosAdd, IoIosRemove } from 'react-icons/io';
 
 import style from './column.module.css';
@@ -54,6 +56,11 @@ export default function Column({
         </button>
       </div>
       {children}
+      <div className="movable-item">
+        <ul className={style.fields}>
+          {Array.from({ length: 5 }, (_, i) => i).map((x) => (<li key={uuidv4()} className={style.field}>{`${x === 0 ? 'res' : '_'}`}</li>))}
+        </ul>
+      </div>
       <button
         className={style.add}
         type="button"

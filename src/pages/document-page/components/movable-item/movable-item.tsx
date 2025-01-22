@@ -108,7 +108,8 @@ export default function MovableItem({
   return (
     <div ref={ref} className="movable-item" style={{ opacity }}>
       <ul className={style.fields}>
-        {Array.from({ length: 5 }, (_, i) => i).map((x) => (<li key={uuidv4()} className={style.field}>{x}</li>))}
+        {id}
+        {Array.from({ length: 5 }, (_, i) => i).map(() => (<li key={uuidv4()} className={style.field}>x</li>))}
       </ul>
       <div className={style.tools}>
         <button
