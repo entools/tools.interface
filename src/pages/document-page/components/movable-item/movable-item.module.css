@@ -54,10 +54,20 @@
   margin: 0;
   margin-right: 5px;
   padding: 0;
-  min-width: 60px;
+  min-width: 80px;
   background-color: var(--background-color);
   border-radius: 8px;
   justify-content: center;
   align-items: center;
   height: 26px;
+}
+
+.position {
+  display: flex;
+  height: 26px;
+  min-width: 40px;
+  margin-right: 5px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
 }

@@ -55,20 +55,27 @@ export default function Column({
           <IoIosRemove />
         </button>
       </div>
+      <div className="movable-item">
+        <ul className={style.fields}>
+          <li className={style.position}>#</li>
+          {Array.from({ length: 9 }, (_, i) => i).map(() => (<li key={uuidv4()} className={style.field}>label</li>))}
+        </ul>
+        <button
+          className={style.add}
+          type="button"
+          onClick={() => addItem(title)}
+          title="Добавить строку"
+        >
+          <IoIosAdd />
+        </button>
+      </div>
       {children}
       <div className="movable-item">
         <ul className={style.fields}>
-          {Array.from({ length: 5 }, (_, i) => i).map((x) => (<li key={uuidv4()} className={style.field}>{`${x === 0 ? 'res' : '_'}`}</li>))}
+          <li className={style.position} />
+          {Array.from({ length: 9 }, (_, i) => i).map(() => (<li key={uuidv4()} className={style.field}>sum</li>))}
         </ul>
       </div>
-      <button
-        className={style.add}
-        type="button"
-        onClick={() => addItem(title)}
-        title="Добавить строку"
-      >
-        <IoIosAdd />
-      </button>
     </div>
   );
 }

@@ -21,12 +21,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 8px 0;
-  margin-bottom: 0;
   height: 26px;
   width: 26px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 6px;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
 }
 
@@ -57,10 +57,19 @@
   margin: 0;
   margin-right: 5px;
   padding: 0;
-  min-width: 60px;
+  min-width: 80px;
   background-color: var(--background-color);
   border-radius: 8px;
   justify-content: center;
   align-items: center;
 }
 
+.position {
+  display: flex;
+  height: 26px;
+  min-width: 40px;
+  margin-right: 5px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
