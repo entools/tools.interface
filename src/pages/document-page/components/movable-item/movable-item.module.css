@@ -45,7 +45,7 @@
   margin: 0;
   padding: 0;
   height: 26px;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 }
 
@@ -54,20 +54,26 @@
   margin: 0;
   margin-right: 5px;
   padding: 0;
-  min-width: 80px;
+  min-width: 90px;
   background-color: var(--background-color);
   border-radius: 8px;
   justify-content: center;
   align-items: center;
   height: 26px;
+
+  font-size: 10px;
+  line-height: 11px;
 }
 
 .position {
   display: flex;
   height: 26px;
-  min-width: 40px;
+  min-width: 30px;
   margin-right: 5px;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
+
+  font-size: 10px;
+  line-height: 11px;
 }

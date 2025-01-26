@@ -58,7 +58,21 @@ export default function Column({
       <div className="movable-item">
         <ul className={style.fields}>
           <li className={style.position}>#</li>
-          {Array.from({ length: 9 }, (_, i) => i).map(() => (<li key={uuidv4()} className={style.field}>label</li>))}
+          {[
+            'Кровля зданий и сооружений, асфальтобетонные покрытия дорог',
+            'Брусчатые мостовые и черные щебеночные покрытия дорог',
+            'Гравийные садово-парковые дорожки',
+            'Грунтовые поверхности (спланированные)',
+            'Булыжные мостовые',
+            'Щебеночные покрытия, не обработанные вяжущими',
+            'Газоны',
+            'Интенсивность дождя, л/с',
+            'Время поверхностной концентрации стока, мин',
+            'Длина трубы',
+            'Длина лотка',
+            'Скорость',
+            'Скорость',
+          ].map((x) => (<li key={uuidv4()} className={style.field}>{x}</li>))}
         </ul>
         <button
           className={style.add}
@@ -71,9 +85,9 @@ export default function Column({
       </div>
       {children}
       <div className="movable-item">
-        <ul className={style.fields}>
+        <ul className={style['footer-fields']}>
           <li className={style.position} />
-          {Array.from({ length: 9 }, (_, i) => i).map(() => (<li key={uuidv4()} className={style.field}>sum</li>))}
+          {Array.from({ length: 13 }, (_, i) => i).map(() => (<li key={uuidv4()} className={style.field}>sum</li>))}
         </ul>
       </div>
     </div>
