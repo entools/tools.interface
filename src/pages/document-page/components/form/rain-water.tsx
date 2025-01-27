@@ -33,7 +33,7 @@ const inputs = [
     name: 'roof',
     label: 'Кровля зданий и сооружений, асфальтобетонные покрытия дорог',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Roof is invalid',
     },
     required: true,
@@ -171,31 +171,20 @@ const inputs = [
   },
 ];
 
-export default function RainWaterForm() {
+export default function RainWaterForm({ data, setData, onClose }: {
+  data: Record<string, number>; setData: (d: Record<string, number>) => void; onClose: () => void;
+}) {
   const { control, handleSubmit } = useForm<FormPayload>({
-    defaultValues: {
-      roof: 0.31,
-      flow: 0.224,
-      pavements: 0.09,
-      tracks: 0.125,
-      ground: 0.064,
-      cobblestone: 0.145,
-      stone: 0,
-      lawns: 0.38,
-      place: 1,
-      intensity: 80,
-      condition: 0,
-      // koef: 0.65,
-      timeInit: 5,
-      lengthPipe: 350,
-      lengthTray: 50,
-      velocityPipe: 0.8,
-      velocityTray: 0.7,
-    },
+    defaultValues: { ...data },
   });
 
-  const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (d: Record<string, number | string>) => {
+    const res: Record<string, number> = {};
+    Object.keys(d).forEach((key) => {
+      res[key] = (typeof d[key] === 'string') ? Number(d[key].replace(',', '.')) : d[key];
+    });
+    setData(res);
+    onClose();
   });
 
   return (

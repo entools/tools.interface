@@ -50,7 +50,7 @@
   margin: 0;
   padding: 0;
   /* height: 26px; */
-  height: 52px;
+  height: 26px;
 }
 .footer-fields {
   list-style: none;
@@ -67,7 +67,7 @@
   margin-right: 5px;
   padding: 0;
   /* min-width: 90px; */
-  width: 90px;
+  width: 60px;
   /* background-color: var(--background-color); */
   border-radius: 8px;
   justify-content: center;

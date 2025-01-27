@@ -34,6 +34,14 @@ export default function Column({
     }
   };
 
+  // const initValues = {
+
+  //   flow: 0.224,
+  //   place: 1,
+
+  //   condition: 0,
+  // };
+
   return (
     <div
       ref={drop}
@@ -59,19 +67,22 @@ export default function Column({
         <ul className={style.fields}>
           <li className={style.position}>#</li>
           {[
-            'Кровля зданий и сооружений, асфальтобетонные покрытия дорог',
-            'Брусчатые мостовые и черные щебеночные покрытия дорог',
-            'Гравийные садово-парковые дорожки',
-            'Грунтовые поверхности (спланированные)',
-            'Булыжные мостовые',
-            'Щебеночные покрытия, не обработанные вяжущими',
-            'Газоны',
-            'Интенсивность дождя, л/с',
-            'Время поверхностной концентрации стока, мин',
-            'Длина трубы',
-            'Длина лотка',
-            'Скорость',
-            'Скорость',
+            's1', // roof
+            's2', // pavements
+            's3', // tracks
+            's4', // ground
+            's5', // cobblestone
+            's6', // stone
+            's7', // lawns
+            '*',
+            'place',
+            'q, л/с', // intensity
+            'condition', // condition
+            't, мин', // timeInit
+            'l, трубы', // lengthPipe
+            'l, лотка', // lengthTray
+            'v1, трубы', // velocityPipe
+            'v2, лотка', // velocityTray
           ].map((x) => (<li key={uuidv4()} className={style.field}>{x}</li>))}
         </ul>
         <button
@@ -87,7 +98,7 @@ export default function Column({
       <div className="movable-item">
         <ul className={style['footer-fields']}>
           <li className={style.position} />
-          {Array.from({ length: 13 }, (_, i) => i).map(() => (<li key={uuidv4()} className={style.field}>sum</li>))}
+          {Array.from({ length: 16 }, (_, i) => i).map(() => (<li key={uuidv4()} className={style.field}>-</li>))}
         </ul>
       </div>
     </div>

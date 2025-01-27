@@ -54,7 +54,7 @@
   margin: 0;
   margin-right: 5px;
   padding: 0;
-  min-width: 90px;
+  width: 60px;
   background-color: var(--background-color);
   border-radius: 8px;
   justify-content: center;

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable no-shadow */
@@ -105,11 +104,32 @@ export default function MovableItem({
   const opacity = isDragging ? 0.4 : 1;
   drag(drop(ref));
 
+  const initValues = {
+    roof: 0.31,
+    pavements: 0.09,
+    tracks: 0.125,
+    ground: 0.064,
+    cobblestone: 0.145,
+    stone: 0,
+    lawns: 0.38,
+    flow: 0.224,
+    place: 1,
+    intensity: 80,
+    condition: 0,
+    // koef: 0.65,
+    timeInit: 5,
+    lengthPipe: 350,
+    lengthTray: 50,
+    velocityPipe: 0.8,
+    velocityTray: 0.7,
+  };
+  const [values, setValues] = useState<Record<string, number>>(initValues);
+
   return (
     <div ref={ref} className="movable-item" style={{ opacity }}>
       <ul className={style.fields}>
         <li className={style.position}>{id}</li>
-        {Array.from({ length: 13 }, (_, i) => i).map(() => (<li key={uuidv4()} className={style.field}>x</li>))}
+        {Object.values(values).map((x) => (<li key={uuidv4()} className={style.field}>{x}</li>))}
       </ul>
       <div className={style.tools}>
         <button
@@ -129,7 +149,13 @@ export default function MovableItem({
           <IoIosRemove />
         </button>
       </div>
-      {popupForm && <Modal title="Rain Water" onClose={handleClose} children={(<RainWaterForm />)} />}
+      {popupForm && (
+        <Modal
+          title="Rain Water"
+          onClose={handleClose}
+          children={(<RainWaterForm data={values} setData={setValues} onClose={handleClose} />)}
+        />
+      )}
     </div>
   );
 }
