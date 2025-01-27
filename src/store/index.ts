@@ -4,11 +4,14 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 // import { createReduxHistoryContext } from 'redux-first-history';
 // import { createBrowserHistory, createMemoryHistory } from 'history';
 
-import { authApi } from './api/index.ts';
-import userReducer from './slices/user-slice.ts';
+import { authApi, profileApi } from './api/index.ts';
+
+import userReducer from './slices/profile-slice.ts';
+
 // import { isServer } from '../utils';
 
 export * from './api/auth-api/endpoints/index.ts';
+export * from './api/profile-api/endpoints/index.ts';
 
 export * from './slices/index.ts';
 
@@ -33,6 +36,7 @@ export const store = configureStore({
     // cards: cardsReducer,
     // ucards: userCardsReducer,
     [authApi.reducerPath]: authApi.reducer,
+    [profileApi.reducerPath]: profileApi.reducer,
     // [userApi.reducerPath]: userApi.reducer,
     // [cardsApi.reducerPath]: cardsApi.reducer,
     // [filesApi.reducerPath]: filesApi.reducer,
@@ -43,6 +47,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(
       authApi.middleware,
+      profileApi.middleware,
     // routerMiddleware,
     ),
 });

@@ -1,1 +1,1 @@
-export * from './user-slice.ts';
+export * from './profile-slice.ts';

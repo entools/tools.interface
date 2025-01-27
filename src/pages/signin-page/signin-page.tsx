@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ import SignFooter from '../../components/sign-footer/sign-footer.tsx';
 
 import { useSignInMutation } from '../../store/index.ts';
 import useUser from '../../hooks/use-user.tsx';
+import withUser from '../../hocs/with-user.tsx';
 
 import style from './signin-page.module.css';
 
@@ -16,11 +18,11 @@ function SigninPage() {
   const navigate = useNavigate();
   const userData = useUser();
   const [signIn] = useSignInMutation();
+  // eslint-disable-next-line no-console
+  console.log(userData);
 
   useEffect(() => {
     if (userData) {
-      // eslint-disable-next-line no-console
-      console.log('1');
       navigate('/');
     }
   });
@@ -38,4 +40,4 @@ function SigninPage() {
   );
 }
 
-export default SigninPage;
+export default withUser(SigninPage, false);
