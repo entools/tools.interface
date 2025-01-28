@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ import SignFooter from '../../components/sign-footer/sign-footer.tsx';
 
 import { useSignUpMutation } from '../../store/index.ts';
 import useUser from '../../hooks/use-user.tsx';
+import withUser from '../../hocs/with-user.tsx';
 
 import style from './signup-page.module.css';
 
@@ -37,4 +39,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default withUser(SignupPage, false);

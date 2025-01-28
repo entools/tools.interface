@@ -1,9 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/no-extraneous-dependencies */
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import classNames from 'classnames';
 
+import Alert from '../../components/alert/alert.tsx';
 import InputField from '../../components/input-field/input-field.tsx';
+
+import { useSignInMutation } from '../../store/index.ts';
 
 import style from './signin-page.module.css';
 
@@ -33,7 +38,10 @@ const inputs = [
   },
 ];
 
-export default function SigninForm({ onSubmit }: { onSubmit: (data: FormPayload) => void }) {
+export default function SigninForm() {
+  const [err, setErr] = useState(false);
+  const navigate = useNavigate();
+  const [signIn] = useSignInMutation();
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
       email: '',
@@ -41,12 +49,24 @@ export default function SigninForm({ onSubmit }: { onSubmit: (data: FormPayload)
     },
   });
 
+  const onSubmit = handleSubmit(async (formData: FormPayload) => {
+    setErr(false);
+    const res = await signIn(formData);
+
+    if ('error' in res) {
+      setErr(true);
+    } else {
+      navigate('/');
+    }
+  });
+
   return (
     <form
       className={style.container}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={onSubmit}
     >
       <h1 className={style.name}>Вход</h1>
+      {err && <Alert message="Неизвестное сочетание email и пароля" />}
       {inputs.map((input) => (
         <Controller
           key={input.name}
