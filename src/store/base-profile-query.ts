@@ -32,7 +32,7 @@ const baseQueryWithReauth: BaseQueryFn<
   if (result.error && result.error.status === 400) {
     toast('400 Bad Request ', options);
   } else if (result.error && result.error.status === 401) {
-    toast('401', options);
+    // toast('401', options);
   } else if (result.error && result.error.status === 404) {
     toast('404', options);
   } else if (result.error && result.error.status === 500) {

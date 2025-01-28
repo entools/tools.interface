@@ -38,9 +38,6 @@ const baseQueryWithReauth: BaseQueryFn<
   } else if (result.error && result.error.status === 500) {
     toast('500 Internal Server Error', options);
   }
-  // else {
-  //   toast('Error', options);
-  // }
 
   return result;
 };
