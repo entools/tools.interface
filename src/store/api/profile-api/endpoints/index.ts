@@ -1,8 +1,8 @@
-import usersApi from '../index.ts';
+import profileApi from '../index.ts';
 
-const profileApiEndpoints = usersApi
+const profileApiEndpoints = profileApi
   .enhanceEndpoints({
-    addTagTypes: ['Users'],
+    addTagTypes: ['Profile'],
   })
   .injectEndpoints({
     endpoints: (builder) => ({

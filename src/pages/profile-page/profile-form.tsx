@@ -5,6 +5,8 @@ import classNames from 'classnames';
 
 import InputField from '../../components/input-field/input-field.tsx';
 
+import useUser from '../../hooks/use-user.tsx';
+
 import style from './profile-page.module.css';
 
 export type FormPayload = Omit<User, 'id'>;
@@ -53,9 +55,12 @@ const inputs = [
 ];
 
 export default function ProfileForm({ onSubmit }: { onSubmit: (data: FormPayload) => void }) {
+  const { email, firstName, lastName } = useUser()!;
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
-      email: '',
+      email,
+      firstName,
+      lastName,
       password: '',
     },
   });

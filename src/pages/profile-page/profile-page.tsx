@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import ProfileForm from './profile-form.tsx';
 import ProfileSettings from './profile-settings.tsx';
 

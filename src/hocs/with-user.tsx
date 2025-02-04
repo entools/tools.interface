@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useEffect, type ComponentType } from 'react';
 import { Navigate } from 'react-router-dom';
-// import { useErrorHandler } from 'react-error-boundary';
+import { useErrorBoundary } from 'react-error-boundary';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 // import Preloader from '../components/preloader';
@@ -17,7 +17,12 @@ export default function withUser<P extends Record<string, unknown>>(
 ) {
   return function WithUser(pageProps: P & { user?: User }) {
     const location = useAppLocation();
-    // const handleErrors = useErrorHandler();
+    const {
+      // ErrorBoundary,
+      showBoundary,
+      // error,
+      // reset
+    } = useErrorBoundary();
     let userData: User | null = useUser();
     const [getUser, {
       isUninitialized,
@@ -28,9 +33,9 @@ export default function withUser<P extends Record<string, unknown>>(
     }] = useGetUserMeMutation();
 
     useEffect(() => {
-      if (isUninitialized && !userData) {
+      if ((isUninitialized && !userData)) {
         getUser().then(() => {
-          if (data && !isError) userData = data as unknown as User;
+          if (data && !isError) userData = data;// as unknown as User;
         });
       }
     }, [getUser, isError, isLoading, isUninitialized, userData]);
@@ -47,7 +52,7 @@ export default function withUser<P extends Record<string, unknown>>(
     }
 
     if (isError && (error as FetchBaseQueryError)?.status !== 401 && !shouldBeAuthorized) {
-      // handleErrors(error);
+      showBoundary(error);
       // eslint-disable-next-line no-console
       console.log(error);
       return <div>Something went wrong</div>;
