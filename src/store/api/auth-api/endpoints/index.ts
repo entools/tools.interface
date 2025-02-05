@@ -30,11 +30,10 @@ const authApiEndpoints = authApi
           body: data,
         }),
       }),
-      signOut: builder.mutation<void, SignInType>({
-        query: (data: FormPayload) => ({
+      signOut: builder.mutation<void, void>({
+        query: () => ({
           url: '/logout',
           method: 'POST',
-          body: data,
         }),
       }),
       refreshToken: builder.mutation<ResponseToken, Record<string, string>>({

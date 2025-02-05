@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 
 import { CustomSelect as Select } from '../../components/select/select.tsx';
 
 import useDarkTheme from '../../hooks/use-dark-theme.tsx';
+import { useSignOutMutation } from '../../store/index.ts';
 
 import style from './profile-page.module.css';
 
@@ -20,6 +22,11 @@ export default function ProfileSettings() {
   const current = options.find((x) => x.value === isDark);
   const [theme, setTheme] = useState<SelectType | null>(current || options[0]);
   const [notification, setNotification] = useState(true);
+  const [signOut] = useSignOutMutation();
+
+  const onLogout = async () => {
+    await signOut();
+  };
 
   useEffect(() => {
     if (theme) {
@@ -54,7 +61,16 @@ export default function ProfileSettings() {
         </div>
       </div>
 
-      <div className={style.base}>base</div>
+      <div className={style.base}>
+        base
+        <button
+          type="button"
+          onClick={onLogout}
+          className={classNames('button', style.button)}
+        >
+          Выйти
+        </button>
+      </div>
     </div>
   );
 }
