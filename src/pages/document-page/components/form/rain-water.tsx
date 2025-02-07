@@ -2,30 +2,31 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/no-extraneous-dependencies */
 import { useForm, Controller } from 'react-hook-form';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 
-import InputField from '../../../../components/input-field/input-field.tsx';
+import { Button, TextInput } from '@gravity-ui/uikit';
+// import InputField from '../../../../components/input-field/input-field.tsx';
 
 import style from './rain-water.module.css';
 
 type FormPayload = {
-  roof: number;
-  pavements: number;
-  tracks: number;
-  ground: number;
-  cobblestone: number;
-  stone: number;
-  lawns: number;
-  place: number;
-  intensity: number;
-  condition: number;
+  roof: string;
+  pavements: string;
+  tracks: string;
+  ground: string;
+  cobblestone: string;
+  stone: string;
+  lawns: string;
+  place: string;
+  intensity: string;
+  condition: string;
   // koef: number;
-  timeInit: number;
-  lengthPipe: number;
-  lengthTray: number;
-  velocityPipe: number;
-  velocityTray: number;
-  flow: number;
+  timeInit: string;
+  lengthPipe: string;
+  lengthTray: string;
+  velocityPipe: string;
+  velocityTray: string;
+  flow: string;
 };
 
 const inputs = [
@@ -109,16 +110,6 @@ const inputs = [
     required: true,
     autoComplete: 'intensity',
   },
-  // {
-  //   name: 'koef',
-  //   label: 'Поправочный коэффициент',
-  //   pattern: {
-  //     value: /^[a-z0-9_-]{1,15}$/,
-  //     message: 'Koef is invalid',
-  //   },
-  //   required: true,
-  //   autoComplete: 'koef',
-  // },
   {
     name: 'timeInit',
     label: 'Время поверхностной концентрации стока, мин',
@@ -172,18 +163,14 @@ const inputs = [
 ];
 
 export default function RainWaterForm({ data, setData, onClose }: {
-  data: Record<string, number>; setData: (d: Record<string, number>) => void; onClose: () => void;
+  data: Record<string, string>; setData: (d: Record<string, string>) => void; onClose: () => void;
 }) {
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: { ...data },
   });
 
-  const onSubmit = handleSubmit(async (d: Record<string, number | string>) => {
-    const res: Record<string, number> = {};
-    Object.keys(d).forEach((key) => {
-      res[key] = (typeof d[key] === 'string') ? Number(d[key].replace(',', '.')) : d[key];
-    });
-    setData(res);
+  const onSubmit = handleSubmit(async (d: Record<string, string>) => {
+    setData(d);
     onClose();
   });
 
@@ -202,22 +189,23 @@ export default function RainWaterForm({ data, setData, onClose }: {
           }}
           control={control}
           render={({ field, fieldState }) => (
-            <InputField
+            <TextInput
               {...field}
               {...input}
-              className="input"
-              errorText={fieldState.error?.message}
+              size="l"
+              error={fieldState.error?.message}
             />
           )}
         />
       ))}
-      <button
-        className={classNames('button', style.button)}
+      <Button
         type="submit"
-        title="Сохранить изменения"
+        view="normal"
+        pin="round-round"
+        size="l"
       >
         Сохранить
-      </button>
+      </Button>
     </form>
   );
 }

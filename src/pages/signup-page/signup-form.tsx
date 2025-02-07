@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/no-extraneous-dependencies */
 import { Controller, useForm } from 'react-hook-form';
-import classNames from 'classnames';
+// import classNames from 'classnames';
+import { Button, TextInput, Text } from '@gravity-ui/uikit';
 
-import InputField from '../../components/input-field/input-field.tsx';
+// import InputField from '../../components/input-field/input-field.tsx';
 
 import style from './signup-page.module.css';
 
@@ -79,7 +80,7 @@ export default function SignupForm({ onSubmit }: { onSubmit: (data: FormPayload)
       className={style.container}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h1 className={style.name}>Регистрация</h1>
+      <Text variant="header-2">Регистрация</Text>
       {inputs.map((input) => (
         <Controller
           key={input.name}
@@ -90,20 +91,24 @@ export default function SignupForm({ onSubmit }: { onSubmit: (data: FormPayload)
           }}
           control={control}
           render={({ field, fieldState }) => (
-            <InputField
+            <TextInput
               {...field}
               {...input}
-              errorText={fieldState.error?.message}
+              size="xl"
+              type={input.name === 'password' ? 'password' : 'text'}
+              error={fieldState.error?.message}
             />
           )}
         />
       ))}
-      <button
+      <Button
         type="submit"
-        className={classNames('button', style.button)}
+        view="normal"
+        pin="round-round"
+        size="xl"
       >
         Зарегистрироваться
-      </button>
+      </Button>
     </form>
   );
 }

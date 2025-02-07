@@ -1,7 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-len */
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
-import { IoIosAdd, IoIosRemove } from 'react-icons/io';
+import { TextInput, Button, Icon } from '@gravity-ui/uikit';
+import { Minus, Plus } from '@gravity-ui/icons';
 
 import style from './column.module.css';
 
@@ -25,7 +27,7 @@ export default function Column({
   const getBackgroundColor = () => {
     if (isOver) {
       if (canDrop) {
-        return 'rgb(188,251,255)';
+        return 'var(--g-color-base-generic)';
       } if (!canDrop) {
         return 'rgb(255,188,188)';
       }
@@ -34,14 +36,6 @@ export default function Column({
     }
   };
 
-  // const initValues = {
-
-  //   flow: 0.224,
-  //   place: 1,
-
-  //   condition: 0,
-  // };
-
   return (
     <div
       ref={drop}
@@ -49,19 +43,19 @@ export default function Column({
       style={{ backgroundColor: getBackgroundColor() }}
     >
       <div className={style.header}>
-        <input
-          className={style.title}
+        <TextInput
           value={title}
+          className={style.title}
           onChange={(e) => console.log(e)}
         />
-        <button
+        <Button
           className={style.remove}
           type="button"
           onClick={() => removeBlock(title)}
           title="Удалить блок"
         >
-          <IoIosRemove />
-        </button>
+          <Icon data={Minus} size={16} />
+        </Button>
       </div>
       <div className="movable-item">
         <ul className={style.fields}>
@@ -85,14 +79,14 @@ export default function Column({
             'v2, лотка', // velocityTray
           ].map((x) => (<li key={uuidv4()} className={style.field}>{x}</li>))}
         </ul>
-        <button
+        <Button
           className={style.add}
           type="button"
           onClick={() => addItem(title)}
           title="Добавить строку"
         >
-          <IoIosAdd />
-        </button>
+          <Icon data={Plus} size={16} />
+        </Button>
       </div>
       {children}
       <div className="movable-item">

@@ -1,10 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { IoIosRemove, IoMdCreate } from 'react-icons/io';
+import { Button, Icon } from '@gravity-ui/uikit';
+import { Minus, Plus } from '@gravity-ui/icons';
+// import { IoIosRemove, IoMdCreate } from 'react-icons/io';
 import { v4 as uuidv4 } from 'uuid';
 
 import RainWaterForm from '../form/rain-water.tsx';
@@ -105,25 +109,25 @@ export default function MovableItem({
   drag(drop(ref));
 
   const initValues = {
-    roof: 0.31,
-    pavements: 0.09,
-    tracks: 0.125,
-    ground: 0.064,
-    cobblestone: 0.145,
-    stone: 0,
-    lawns: 0.38,
-    flow: 0.224,
-    place: 1,
-    intensity: 80,
-    condition: 0,
+    roof: '0.31',
+    pavements: '0.09',
+    tracks: '0.125',
+    ground: '0.064',
+    cobblestone: '0.145',
+    stone: '0',
+    lawns: '0.38',
+    flow: '0.224',
+    place: '1',
+    intensity: '80',
+    condition: '0',
     // koef: 0.65,
-    timeInit: 5,
-    lengthPipe: 350,
-    lengthTray: 50,
-    velocityPipe: 0.8,
-    velocityTray: 0.7,
+    timeInit: '5',
+    lengthPipe: '350',
+    lengthTray: '50',
+    velocityPipe: '0.8',
+    velocityTray: '0.7',
   };
-  const [values, setValues] = useState<Record<string, number>>(initValues);
+  const [values, setValues] = useState<Record<string, string>>(initValues);
 
   return (
     <div ref={ref} className="movable-item" style={{ opacity }}>
@@ -132,22 +136,22 @@ export default function MovableItem({
         {Object.values(values).map((x) => (<li key={uuidv4()} className={style.field}>{x}</li>))}
       </ul>
       <div className={style.tools}>
-        <button
+        <Button
           className={style.edit}
           type="button"
           onClick={() => editItem(id)}
           title="Редактировать строку"
         >
-          <IoMdCreate />
-        </button>
-        <button
+          <Icon data={Plus} size={16} />
+        </Button>
+        <Button
           className={style.remove}
           type="button"
           onClick={() => removeItem(id)}
           title="Удалить строку"
         >
-          <IoIosRemove />
-        </button>
+          <Icon data={Minus} size={16} />
+        </Button>
       </div>
       {popupForm && (
         <Modal

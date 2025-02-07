@@ -3,10 +3,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
-import classNames from 'classnames';
+// import classNames from 'classnames';
+
+import { Button, TextInput, Text } from '@gravity-ui/uikit';
 
 import Alert from '../../components/alert/alert.tsx';
-import InputField from '../../components/input-field/input-field.tsx';
+// import InputField from '../../components/input-field/input-field.tsx';
 
 import { useSignInMutation } from '../../store/index.ts';
 
@@ -33,7 +35,7 @@ const inputs = [
       message: 'Password is invalid',
     },
     required: true,
-    type: 'password',
+    // type: 'password',
     autoComplete: 'new-password',
   },
 ];
@@ -65,7 +67,7 @@ export default function SigninForm() {
       className={style.container}
       onSubmit={onSubmit}
     >
-      <h1 className={style.name}>Вход</h1>
+      <Text variant="header-2">Вход</Text>
       {err && <Alert message="Неизвестное сочетание email и пароля" />}
       {inputs.map((input) => (
         <Controller
@@ -77,20 +79,24 @@ export default function SigninForm() {
           }}
           control={control}
           render={({ field, fieldState }) => (
-            <InputField
+            <TextInput
               {...field}
               {...input}
-              errorText={fieldState.error?.message}
+              type={input.name === 'password' ? 'password' : 'text'}
+              size="xl"
+              error={fieldState.error?.message}
             />
           )}
         />
       ))}
-      <button
+      <Button
         type="submit"
-        className={classNames('button', style.button)}
+        view="normal"
+        pin="round-round"
+        size="xl"
       >
         Войти
-      </button>
+      </Button>
     </form>
   );
 }

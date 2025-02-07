@@ -81,12 +81,13 @@ export default function Block({
     ));
 
   const opacity = isDragging ? 0.4 : 1;
+  const border = isDragging ? 'solid 1px var(--g-color-base-generic)' : 'none';
 
   drag(drop(ref));
   return (
     <div
       ref={ref}
-      style={{ opacity }}
+      style={{ opacity, border, borderRadius: '8px' }}
     >
       <Column
         title={block}

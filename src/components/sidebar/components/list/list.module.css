@@ -3,7 +3,8 @@
   flex-direction: column;
   height: auto;
   max-height: 40%;
-  background-color: var(--block-background);
+  /* background-color: var(--block-background); */
+  background: var(--g-color-base-generic);
   border-radius: 12px;
   margin-left: 8px;
   margin-bottom: 0;

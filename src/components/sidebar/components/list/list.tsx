@@ -1,8 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/require-default-props */
 import { NavLink, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
-import { IoIosAdd, IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+
+import { Plus, ChevronUp, ChevronDown } from '@gravity-ui/icons';
 
 import style from './list.module.css';
 
@@ -39,13 +41,13 @@ export default function List({
             </div>
           )}
           <div className={style.show}>
-            {show ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            {show ? <ChevronUp /> : <ChevronDown />}
           </div>
         </button>
         {sidebarWidth > 150 && action
           && (
             <NavLink to="/users" className={style.icon} state={{ pathname: location }}>
-              <IoIosAdd />
+              <Plus />
             </NavLink>
           )}
       </div>

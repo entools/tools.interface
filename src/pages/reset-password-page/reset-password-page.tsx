@@ -9,9 +9,11 @@ function ResetPasswordPage() {
   const onSubmit = () => {};
 
   return (
-    <div className={style.layer}>
-      <ResetPasswordForm onSubmit={onSubmit} />
-      <SignFooter />
+    <div className="box">
+      <div className={style.layer}>
+        <ResetPasswordForm onSubmit={onSubmit} />
+        <SignFooter />
+      </div>
     </div>
   );
 }

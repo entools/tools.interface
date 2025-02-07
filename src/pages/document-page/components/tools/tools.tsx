@@ -1,6 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { Button, Icon } from '@gravity-ui/uikit';
 import {
-  IoIosAlbums, IoMdShareAlt, IoMdDownload, IoIosEye,
-} from 'react-icons/io';
+  Eye, ArrowDownToLine, ArrowShapeTurnUpRight, ClockArrowRotateLeft,
+} from '@gravity-ui/icons';
 
 import style from './tools.module.css';
 
@@ -8,35 +10,35 @@ export default function Tools({ toggleHistory, history }
   : { toggleHistory: () => void; history: boolean; }) {
   return (
     <div className={style.tools}>
-      <button
+      <Button
         type="button"
         className={style.button}
         title="Подписаться"
       >
-        <IoIosEye />
-      </button>
-      <button
+        <Icon data={Eye} size={16} />
+      </Button>
+      <Button
         type="button"
         className={style.button}
         title="Скачать"
       >
-        <IoMdDownload />
-      </button>
-      <button
+        <Icon data={ArrowDownToLine} size={16} />
+      </Button>
+      <Button
         type="button"
         className={style.button}
         title="Share"
       >
-        <IoMdShareAlt />
-      </button>
-      <button
+        <Icon data={ArrowShapeTurnUpRight} size={16} />
+      </Button>
+      <Button
         type="button"
         className={style.button}
         onClick={toggleHistory}
         title={history ? 'On' : 'Off'}
       >
-        <IoIosAlbums />
-      </button>
+        <Icon data={ClockArrowRotateLeft} size={16} />
+      </Button>
     </div>
   );
 }

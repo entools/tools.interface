@@ -2,7 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import { useAppLocation } from './hooks/use-app-location.tsx';
 import ErrorBoundaryWrapper from './components/error-boundary-wrapper/index.ts';
-import ThemeProvider from './providers/theme-provider.tsx';
+// import ThemeContext from './context/theme-context.ts';
+// import useDarkTheme from './hooks/use-dark-theme.tsx';
 
 import MainPage from './pages/main-page/main-page.tsx';
 import AboutPage from './pages/about-page/about-page.tsx';
@@ -21,33 +22,34 @@ import NotFoundPage from './pages/not-found-page/not-found-page.tsx';
 export default function App() {
   const location = useAppLocation();
   const background = location.state?.pathname;
+  // const { providerValue } = useDarkTheme();
 
   return (
-    <ThemeProvider>
-      <ErrorBoundaryWrapper>
-        <Routes location={background || location}>
-          <Route path="/" element={(<MainPage />)}>
-            <Route path="/profile" element={(<ProfilePage />)} />
-            <Route path="/about" element={(<AboutPage />)} />
-            <Route path="/projects/:projectId/documents/:documentId" element={(<DocumentPage />)} />
-            <Route path="/projects/add" element={(<ProjectAdd />)} />
-          </Route>
-          <Route path="/oauth" element={(<OauthPage />)} />
-          <Route path="/signin" element={(<SigninPage />)} />
-          <Route path="/signup" element={(<SignupPage />)} />
-          <Route path="/reset-password" element={(<ResetPasswordPage />)} />
-          <Route path="/confirm-email" element={(<ConfirmEmailPage />)} />
-          <Route path="*" element={(<NotFoundPage />)} />
-        </Routes>
+  // <ThemeContext.Provider value={providerValue}>
+    <ErrorBoundaryWrapper>
+      <Routes location={background || location}>
+        <Route path="/" element={(<MainPage />)}>
+          <Route path="/profile" element={(<ProfilePage />)} />
+          <Route path="/about" element={(<AboutPage />)} />
+          <Route path="/projects/:projectId/documents/:documentId" element={(<DocumentPage />)} />
+          <Route path="/projects/add" element={(<ProjectAdd />)} />
+        </Route>
+        <Route path="/oauth" element={(<OauthPage />)} />
+        <Route path="/signin" element={(<SigninPage />)} />
+        <Route path="/signup" element={(<SignupPage />)} />
+        <Route path="/reset-password" element={(<ResetPasswordPage />)} />
+        <Route path="/confirm-email" element={(<ConfirmEmailPage />)} />
+        <Route path="*" element={(<NotFoundPage />)} />
+      </Routes>
 
-        {background
+      {background
         && (
           <Routes>
             <Route path="/search" element={(<SearchPage />)} />
             <Route path="/users" element={(<UsersPage />)} />
           </Routes>
         )}
-      </ErrorBoundaryWrapper>
-    </ThemeProvider>
+    </ErrorBoundaryWrapper>
+  // </ThemeContext.Provider>
   );
 }

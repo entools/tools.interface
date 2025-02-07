@@ -6,7 +6,8 @@
   flex-shrink: 0;
   min-width: 64px;
   max-width: 40%;
-  border-right: solid 1px var(--sidebar-border-color);
+  /* border-right: solid 1px var(--sidebar-border-color); */
+  border-right: solid 1px var(--g-color-line-generic);
   margin: 0;
   padding: 0;
   height: 100vh;

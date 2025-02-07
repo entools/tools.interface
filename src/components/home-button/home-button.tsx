@@ -1,17 +1,19 @@
-import { Link } from 'react-router-dom';
-import { IoMdArrowBack } from 'react-icons/io';
+/* eslint-disable import/no-extraneous-dependencies */
+import { Link } from '@gravity-ui/uikit';
+import { ChevronLeft } from '@gravity-ui/icons';
 
-import style from './home-button.module.css';
+// import style from './home-button.module.css';
 
 export type FormPayload = Omit<User, 'id'>;
 
 export default function HomeButton() {
   return (
     <Link
-      to="/"
-      className={style.home}
+      href="/"
+      view="normal"
+      // className={style.home}
     >
-      <IoMdArrowBack />
+      <ChevronLeft />
     </Link>
   );
 }

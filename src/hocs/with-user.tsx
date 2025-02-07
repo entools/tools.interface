@@ -1,9 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
 import { useEffect, type ComponentType } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useErrorBoundary } from 'react-error-boundary';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { Loader } from '@gravity-ui/uikit';
 
 // import Preloader from '../components/preloader';
 
@@ -42,7 +45,7 @@ export default function withUser<P extends Record<string, unknown>>(
 
     if (isLoading || (isUninitialized && !userData)) {
       // return <Preloader />;
-      return <div>loading</div>;
+      return <div className="box"><Loader size="m" /></div>;
     }
 
     if (userData || !shouldBeAuthorized) {

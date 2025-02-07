@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -5,7 +6,9 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
-import { IoIosAdd } from 'react-icons/io';
+
+import { TextInput, Button, Icon } from '@gravity-ui/uikit';
+import { Plus } from '@gravity-ui/icons';
 
 import Block from './components/block/block.tsx';
 import History from './components/history/history.tsx';
@@ -40,8 +43,8 @@ export default function DocumentPage() {
   return (
     <div className="layout">
       <div className={style.tools}>
-        <input
-          className={style.title}
+        <TextInput
+          size="m"
           value={`Document ${documentId} #${projectId}`}
           onChange={(e) => console.log(e)}
         />
@@ -52,14 +55,14 @@ export default function DocumentPage() {
           <DndProvider backend={HTML5Backend}>
             {returnBlocksForColumn()}
             <div className={style.buttons}>
-              <button
+              <Button
                 className={style.add}
                 title="Добавить блок"
                 type="button"
                 onClick={addBlock}
               >
-                <IoIosAdd />
-              </button>
+                <Icon data={Plus} size={16} />
+              </Button>
             </div>
           </DndProvider>
         </div>

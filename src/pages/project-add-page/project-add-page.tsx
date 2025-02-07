@@ -1,31 +1,34 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { Button, TextInput, Text } from '@gravity-ui/uikit';
+
 import style from './project-add-page.module.css';
 
 function ProjectPage() {
   return (
     <div className="layout">
-      <h2 className="title">
-        Add project
-      </h2>
+      <Text variant="header-2">Добавить проект</Text>
       <div className={style.form}>
         <div className={style.main}>
-          <input
-            className="input"
+          <TextInput
+            size="l"
             placeholder="Name"
           />
-          <input
-            className="input"
+          <TextInput
+            size="l"
             placeholder="Tag"
           />
-          <input
-            className="input"
+          <TextInput
+            size="l"
             placeholder="Details"
           />
-          <button
+          <Button
             type="button"
-            className="button"
+            size="l"
+            view="normal"
+            pin="round-round"
           >
-            save
-          </button>
+            Сохранить
+          </Button>
         </div>
       </div>
     </div>

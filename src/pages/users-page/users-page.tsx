@@ -10,6 +10,7 @@ function UsersPage() {
   const handleClose = useCallback(() => {
     navigate(location.state.pathname || '/');
   }, [location.state, navigate]);
+
   return (<Modal title="Users" onClose={handleClose} children={(<h2>form</h2>)} />);
 }
 

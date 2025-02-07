@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-props-no-spreading */
 import { Controller, useForm } from 'react-hook-form';
-import classNames from 'classnames';
+import { Avatar, Button, TextInput } from '@gravity-ui/uikit';
 
-import InputField from '../../components/input-field/input-field.tsx';
+// import classNames from 'classnames';
 
 import useUser from '../../hooks/use-user.tsx';
 
@@ -12,16 +12,16 @@ import style from './profile-page.module.css';
 export type FormPayload = Omit<User, 'id'>;
 
 const inputs = [
-  {
-    name: 'username',
-    label: 'Username',
-    pattern: {
-      value: /^[a-z0-9_-]{3,15}$/,
-      message: 'Username',
-    },
-    required: true,
-    autoComplete: 'username',
-  },
+  // {
+  //   name: 'username',
+  //   label: 'Username',
+  //   pattern: {
+  //     value: /^[a-z0-9_-]{3,15}$/,
+  //     message: 'Username',
+  //   },
+  //   required: true,
+  //   autoComplete: 'username',
+  // },
   {
     name: 'email',
     label: 'Email',
@@ -58,9 +58,9 @@ export default function ProfileForm({ onSubmit }: { onSubmit: (data: FormPayload
   const { email, firstName, lastName } = useUser()!;
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
-      email,
-      firstName,
-      lastName,
+      email: email || '',
+      firstName: firstName || '',
+      lastName: lastName || '',
       password: '',
     },
   });
@@ -71,10 +71,12 @@ export default function ProfileForm({ onSubmit }: { onSubmit: (data: FormPayload
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className={style.avatar}>
-        <div className={style.picture}>U</div>
-        <input
-          className={classNames('input', style.status)}
-          placeholder="status"
+
+        <Avatar imgUrl="https://loremflickr.com/640/480/cats?lock=8610182282084352" size="xl" />
+        <TextInput
+          name="status"
+          label="status"
+          size="l"
         />
       </div>
 
@@ -88,20 +90,23 @@ export default function ProfileForm({ onSubmit }: { onSubmit: (data: FormPayload
           }}
           control={control}
           render={({ field, fieldState }) => (
-            <InputField
+            <TextInput
               {...field}
               {...input}
-              errorText={fieldState.error?.message}
+              size="l"
+              error={fieldState.error?.message}
             />
           )}
         />
       ))}
-      <button
+      <Button
         type="submit"
-        className={classNames('button', style.button)}
+        view="normal"
+        pin="round-round"
+        size="l"
       >
         Сохранить
-      </button>
+      </Button>
     </form>
   );
 }

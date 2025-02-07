@@ -31,10 +31,12 @@ function SignupPage() {
   };
 
   return (
-    <div className={style.layer}>
-      <Header />
-      <SignupForm onSubmit={onSubmit} />
-      <SignFooter />
+    <div className="box">
+      <div className={style.layer}>
+        <Header />
+        <SignupForm onSubmit={onSubmit} />
+        <SignFooter />
+      </div>
     </div>
   );
 }

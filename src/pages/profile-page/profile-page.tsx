@@ -1,4 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react-refresh/only-export-components */
+import { Text } from '@gravity-ui/uikit';
 import ProfileForm from './profile-form.tsx';
 import ProfileSettings from './profile-settings.tsx';
 
@@ -15,9 +17,7 @@ function ProfilePage() {
 
   return (
     <div className="layout">
-      <h2 className="title">
-        Profile
-      </h2>
+      <Text variant="header-2">Profile</Text>
       <div className={style.form}>
         <ProfileForm onSubmit={onSubmit} />
         <ProfileSettings />

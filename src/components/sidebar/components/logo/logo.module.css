@@ -7,7 +7,8 @@
 .logo {
   display: flex;
   justify-content:flex-start;
-  background-color: var(--block-background);
+  /* background-color: var(--block-background); */
+  background: var(--g-color-base-generic);
   border-radius: 12px;
   margin: 0;
   margin-left: 8px;

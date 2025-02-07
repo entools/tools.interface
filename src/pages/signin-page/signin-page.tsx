@@ -25,10 +25,12 @@ function SigninPage() {
   });
 
   return (
-    <div className={style.layer}>
-      <Header />
-      <SigninForm />
-      <SignFooter />
+    <div className="box">
+      <div className={style.layer}>
+        <Header />
+        <SigninForm />
+        <SignFooter />
+      </div>
     </div>
   );
 }

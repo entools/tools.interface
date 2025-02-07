@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+/* eslint-disable import/no-extraneous-dependencies */
+// import { Link } from 'react-router-dom';
+import { Link } from '@gravity-ui/uikit';
 
 import HomeButton from '../../components/home-button/home-button.tsx';
 
@@ -9,10 +11,11 @@ export default function Header() {
     <div className={style.header}>
       <HomeButton />
       <Link
-        to="/signup"
-        className={style.signin}
+        view="normal"
+        href="/signup"
+        // className={style.signin}
       >
-        Signup
+        Регистрация
       </Link>
     </div>
   );

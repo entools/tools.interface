@@ -1,34 +1,56 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/jsx-no-constructed-context-values */
+import { useState, useEffect, useContext } from 'react';
+import { ThemeProvider } from '@gravity-ui/uikit';
+import { ToastContainer } from 'react-toastify';
 
-export default function useDarkTheme() {
-  const currentTheme = localStorage.getItem('data-theme');
-  let condition = 'light'; // currentTheme === 'dark' ? 'dark' : 'light';
+import ThemeContext, { supportedThemes } from '../context/theme-context.ts';
 
-  if (currentTheme === 'light') {
-    condition = 'light';
-  } else if (currentTheme === 'dark') {
-    condition = 'dark';
-  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    condition = 'dark';
+type Themes = keyof typeof supportedThemes;
+
+const getTheme = (): Themes => {
+  let theme = localStorage.getItem('data-theme');
+
+  if (!theme || theme === 'undefined') {
+    localStorage.setItem('data-theme', 'light');
+    theme = 'light';
   }
 
-  const [isDark, setIsDark] = useState(currentTheme || 'system');
+  return theme as Themes;
+};
 
-  const toggleIsDark = (value: string) => {
-    setIsDark(value);
+export function useTheme() {
+  const context = useContext(ThemeContext);
 
-    // if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  if (!context) {
+    throw new Error(
+      'You can use "useTheme" hook only within a <ThemeProvider> component.',
+    );
+  }
 
-    // }
-    localStorage.setItem('data-theme', value);
-    // console.log(value);
-    // setIsDark(isDark === 'light' ? 'dark' : 'light');
-    // localStorage.setItem('data-theme', isDark === 'light' ? 'dark' : 'light');
-  };
+  return context;
+}
 
-  const providerValue = { isDark, toggleIsDark };
+export default function Theme({ children }: { children: React.ReactNode }) {
+  const [theme, setTheme] = useState<Themes>(getTheme);
 
-  useEffect(() => document.documentElement.setAttribute('data-theme', condition), [isDark]);
+  useEffect(() => {
+    localStorage.setItem('data-theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
-  return { providerValue };
+  return (
+    <ThemeContext.Provider
+      value={{
+        theme,
+        setTheme,
+        supportedThemes,
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        {children}
+        <ToastContainer theme={theme} />
+      </ThemeProvider>
+    </ThemeContext.Provider>
+  );
 }

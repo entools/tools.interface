@@ -1,5 +1,6 @@
 .help {
-  background-color: var(--block-background);
+  /* background-color: var(--block-background); */
+  background: var(--g-color-base-generic);
   border-radius: 12px;
   margin-bottom: 8px;
   font-size: 18px;

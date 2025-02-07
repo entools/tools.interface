@@ -9,7 +9,8 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  background-color: var(--block-background);
+  /* background-color: var(--block-background); */
+  background: var(--g-color-base-generic);
   border-radius: 12px;
   margin: 0;
   margin-left: 8px;

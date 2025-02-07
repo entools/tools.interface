@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/no-extraneous-dependencies */
 import { Controller, useForm } from 'react-hook-form';
-import classNames from 'classnames';
+import { TextInput, Button } from '@gravity-ui/uikit';
+// import classNames from 'classnames';
 
 import Header from './header.tsx';
-import InputField from '../../components/input-field/input-field.tsx';
+// import InputField from '../../components/input-field/input-field.tsx';
 
 import style from './reset-password-page.module.css';
 
@@ -47,20 +48,23 @@ export default function ResetPasswordForm({ onSubmit }: { onSubmit: (data: FormP
           }}
           control={control}
           render={({ field, fieldState }) => (
-            <InputField
+            <TextInput
               {...field}
               {...input}
-              errorText={fieldState.error?.message}
+              size="xl"
+              error={fieldState.error?.message}
             />
           )}
         />
       ))}
-      <button
+      <Button
         type="submit"
-        className={classNames('button', style.button)}
+        view="normal"
+        pin="round-round"
+        size="xl"
       >
         Сбросить
-      </button>
+      </Button>
     </form>
   );
 }
