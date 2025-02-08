@@ -1,6 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { Text } from '@gravity-ui/uikit';
+
 function OauthPage() {
   return (
-    <h1>Oauth</h1>
+    <Text variant="header-2">Oauth</Text>
   );
 }
 

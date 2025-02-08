@@ -3,11 +3,9 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
-// import { IoIosAdd, IoMdHome } from 'react-icons/io';
-import { House, Plus } from '@gravity-ui/icons';
 
 import { Select } from '@gravity-ui/uikit';
-// import { CustomSelect as Select } from '../../../select/select.tsx';
+import { House, Plus } from '@gravity-ui/icons';
 
 import style from './logo.module.css';
 

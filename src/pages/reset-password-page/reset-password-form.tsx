@@ -5,7 +5,6 @@ import { TextInput, Button } from '@gravity-ui/uikit';
 // import classNames from 'classnames';
 
 import Header from './header.tsx';
-// import InputField from '../../components/input-field/input-field.tsx';
 
 import style from './reset-password-page.module.css';
 

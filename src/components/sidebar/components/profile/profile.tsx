@@ -11,10 +11,7 @@ export default function Profile({ sidebarWidth }: { sidebarWidth: number; }) {
   return (
     <div className={classNames(style.profile, { [style.column]: sidebarWidth < 148 })}>
       <NavLink to="/profile" className={style.block}>
-        {/* <div className={style.pic}> */}
-        {/* <IoMdPerson /> */}
         <Avatar imgUrl="https://loremflickr.com/640/480/cats?lock=8610182282084352" size="m" />
-        {/* </div> */}
         {sidebarWidth >= 148 && (
           <div className={style.name}>
             Profile

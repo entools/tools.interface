@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-// import { IoIosSearch } from 'react-icons/io';
 import { Magnifier } from '@gravity-ui/icons';
 
 import style from './search.module.css';

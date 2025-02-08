@@ -8,7 +8,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { Button, TextInput, Text } from '@gravity-ui/uikit';
 
 import Alert from '../../components/alert/alert.tsx';
-// import InputField from '../../components/input-field/input-field.tsx';
 
 import { useSignInMutation } from '../../store/index.ts';
 

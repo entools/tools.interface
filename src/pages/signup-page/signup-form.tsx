@@ -4,8 +4,6 @@ import { Controller, useForm } from 'react-hook-form';
 // import classNames from 'classnames';
 import { Button, TextInput, Text } from '@gravity-ui/uikit';
 
-// import InputField from '../../components/input-field/input-field.tsx';
-
 import style from './signup-page.module.css';
 
 export type FormPayload = Omit<User, 'id'>;

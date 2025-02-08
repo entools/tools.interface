@@ -1,6 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { Text } from '@gravity-ui/uikit';
+
 function ConfirmEmailPage() {
   return (
-    <h1>Confirm email page</h1>
+    <Text variant="header-2">
+      Confirm email page
+    </Text>
   );
 }
 
