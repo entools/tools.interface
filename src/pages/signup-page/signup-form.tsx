@@ -93,6 +93,7 @@ export default function SignupForm({ onSubmit }: { onSubmit: (data: FormPayload)
               {...field}
               {...input}
               size="xl"
+              className={style.xl}
               type={input.name === 'password' ? 'password' : 'text'}
               error={fieldState.error?.message}
             />
@@ -104,6 +105,7 @@ export default function SignupForm({ onSubmit }: { onSubmit: (data: FormPayload)
         view="normal"
         pin="round-round"
         size="xl"
+        className={style.xl}
       >
         Зарегистрироваться
       </Button>

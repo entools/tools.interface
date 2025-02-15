@@ -19,9 +19,8 @@
 
 }
 
-.button {
+.xl {
   margin-top: 20px;
-  font-weight: 900;
 }
 
 .header {
@@ -35,11 +34,3 @@
   line-height: 26px;
   color: var(--font-color);
 }
-
-/* .box {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-} */

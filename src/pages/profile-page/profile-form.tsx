@@ -94,6 +94,7 @@ export default function ProfileForm({ onSubmit }: { onSubmit: (data: FormPayload
               {...field}
               {...input}
               size="l"
+              className={style.xl}
               error={fieldState.error?.message}
             />
           )}
@@ -104,6 +105,7 @@ export default function ProfileForm({ onSubmit }: { onSubmit: (data: FormPayload
         view="normal"
         pin="round-round"
         size="l"
+        className={style.xl}
       >
         Сохранить
       </Button>

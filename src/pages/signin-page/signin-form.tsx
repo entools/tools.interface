@@ -83,6 +83,7 @@ export default function SigninForm() {
               {...input}
               type={input.name === 'password' ? 'password' : 'text'}
               size="xl"
+              className={style.xl}
               error={fieldState.error?.message}
             />
           )}
@@ -93,6 +94,7 @@ export default function SigninForm() {
         view="normal"
         pin="round-round"
         size="xl"
+        className={style.xl}
       >
         Войти
       </Button>
