@@ -78,7 +78,12 @@ export default function SignupForm({ onSubmit }: { onSubmit: (data: FormPayload)
       className={style.container}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Text variant="header-2">Регистрация</Text>
+      <Text
+        variant="header-2"
+        className={style.xl}
+      >
+        Регистрация
+      </Text>
       {inputs.map((input) => (
         <Controller
           key={input.name}

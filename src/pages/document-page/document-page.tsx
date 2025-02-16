@@ -59,9 +59,12 @@ export default function DocumentPage() {
                 className={style.add}
                 title="Добавить блок"
                 type="button"
+                view="action"
+                size="s"
                 onClick={addBlock}
               >
                 <Icon data={Plus} size={16} />
+                Добавить блок
               </Button>
             </div>
           </DndProvider>

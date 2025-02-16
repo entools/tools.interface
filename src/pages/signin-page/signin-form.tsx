@@ -66,7 +66,12 @@ export default function SigninForm() {
       className={style.container}
       onSubmit={onSubmit}
     >
-      <Text variant="header-2">Вход</Text>
+      <Text
+        variant="header-2"
+        className={style.xl}
+      >
+        Вход
+      </Text>
       {err && <Alert message="Неизвестное сочетание email и пароля" />}
       {inputs.map((input) => (
         <Controller
