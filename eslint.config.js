@@ -43,6 +43,7 @@ export default tseslint.config(
       quotes: ['error', 'single'],
       'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
       'import/no-unresolved': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off',
     },
   },
 );

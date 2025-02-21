@@ -1,0 +1,79 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  justify-content:flex-start;
+  /* background-color: var(--block-background); */
+  /* background: var(--g-color-base-generic); */
+  border-radius: 12px;
+  margin: 0;
+  margin-left: 8px;
+  margin-top: 8px;  font-size: 14px;
+  line-height: 14px;
+  padding: 8px;
+  align-items: center;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  width: 30px;
+  min-width: 30px;
+  color: var(--font-color);
+  border: var(--button-border);
+  border-radius: 8px;
+  background-color: var(--button-background);
+  margin-left: 8px;
+}
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  width: 30px;
+  min-width: 30px;
+  color: var(--font-color);
+  border: var(--button-border);
+  border-radius: 8px;
+  background-color: var(--button-background);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  margin-left: 8px;
+  padding: 0;
+  line-height: 28px;
+  color: var(--font-color);
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  margin-left: 8px;
+  padding: 0;
+  height: 26px;
+  width: 26px;
+  color: var(--font-color);
+  border: var(--button-border);
+  border-radius: 8px;
+}
+
+.small {
+  justify-content: center;
+}

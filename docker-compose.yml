@@ -5,7 +5,7 @@ services:
     container_name: compose-tools-frontend-container
     build:
       dockerfile: Dockerfile
-    image: cr.yandex/${CR_REGISTRY}/${CR_REPOSITORY}-tools-frontend:latest
+    image: cr.yandex/${CR_REGISTRY}/${CR_REPOSITORY}-tools-frontend:${IMAGE_TAG}
     platform: linux/amd64
     networks:
       - internet

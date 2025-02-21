@@ -1,0 +1,100 @@
+.form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8px;
+  flex-direction: row;
+  border-radius: 8px;
+  padding: 8px;
+  height: 100%;
+  box-sizing: border-box;
+  line-height: 14px;
+}
+
+.account {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: var(--block-background);
+  margin-right: 8px;
+}
+
+.settings {
+  display: grid;
+  grid-template: 'theme notification' 'base base' 'base base';
+  gap: 8px;
+  width: 100%;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-right: 8px;
+}
+
+.theme {
+  background-color: var(--block-background);
+  border-radius: 8px;
+  grid-area: theme;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.select {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.notification {
+  background-color: var(--block-background);
+  border-radius: 8px;
+  grid-area: notification;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.base {
+  /* background-color: var(--block-background); */
+  border-radius: 8px;
+  grid-area: base;
+  padding: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar {
+  display: grid;
+  grid-template: 'picture gap-top' 'picture status' 'picture gap-bottom';
+  gap: 8px;
+  width: 100%;
+}
+.status {
+  grid-area: status;
+}
+
+.picture {
+  height: 100px;
+  width: 100px;
+  background: linear-gradient(-45deg, rgb(255, 131, 89), rgb(255, 223, 64));
+  border-radius: 50%;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 36px;
+  grid-area: picture;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--block-background);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.xl {
+  margin-top: 20px;
+}

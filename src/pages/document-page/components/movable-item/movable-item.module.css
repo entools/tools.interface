@@ -1,0 +1,71 @@
+.name {
+  height: 26px;
+  border-radius: 4px;
+  min-width: 300px;
+  border: 0;
+  padding: 0 8px;
+}
+
+.tools {
+  display: flex;
+  flex-direction: row;
+}
+
+.edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 26px;
+  width: 26px;
+  padding: 0;
+  margin: 0;
+  margin-right: 5px;
+}
+
+.remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 26px;
+  width: 26px;
+  padding: 0;
+  margin: 0;
+}
+
+.fields {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  height: 26px;
+  justify-content: start;
+  align-items: center;
+}
+
+.field {
+  display: flex;
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+  width: 60px;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  height: 26px;
+  font-size: 10px;
+  line-height: 11px;
+}
+
+.position {
+  display: flex;
+  height: 26px;
+  min-width: 30px;
+  margin-right: 5px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 10px;
+  line-height: 11px;
+}
