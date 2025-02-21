@@ -1,8 +1,21 @@
 version: '3.7'
 services:
-  app:
-    container_name: app
+  admin:
+    # container_name: admin
+    image: {{ env.IMAGE_URL_ADMIN }}
+    restart: always
+    ports:
+      - '3101:80'
+  tools_dev:
+    # container_name: tools
     image: {{ env.IMAGE_URL }}
+    restart: always
+    ports:
+      - '3100:80'
+
+  tools_prod:
+    container_name: app
+    image: {{ env.IMAGE_URL_PROD }}
     restart: always
     ports:
       - '3000:80'
