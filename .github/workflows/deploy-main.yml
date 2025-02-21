@@ -30,15 +30,14 @@ jobs:
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
-
       - name: Build, tag, and push image to Yandex Cloud Container Registry
         env:
           CR_REGISTRY: ${{ secrets.CR_REGISTRY }}
-          CR_REPOSITORY: ${{ secrets.CR_REPOSITORY }}
+          CR_REPOSITORY: ${{ secrets.CR_REPOSITORY_PROD }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
-          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
+          docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY_PROD:$IMAGE_TAG .
+          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY_PROD:$IMAGE_TAG
   deploy:
     needs:
       - build
@@ -50,7 +49,7 @@ jobs:
         id: deploy-coi
         uses: yc-actions/yc-coi-deploy@b22db2965c8af6bf0980e8b026c5e80ad6e15adf
         env:
-          IMAGE_URL: cr.yandex/crpfap56bqr8nkph7d9g/entools:${{ github.sha }}
+          IMAGE_URL: cr.yandex/${{ secrets.CR_REGISTRY }}/${{ secrets.CR_REPOSITORY_PROD }}:${{ github.sha }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
