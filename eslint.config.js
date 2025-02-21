@@ -22,6 +22,7 @@ export default tseslint.config(
       js.configs.recommended,
       ...compat.extends('airbnb'),
       ...compat.extends('plugin:react/recommended'),
+      ...compat.extends('plugin:import/recommended'),
       ...tseslint.configs.recommended,
     ],
     files: ['**/*.{js,ts,tsx}'],
