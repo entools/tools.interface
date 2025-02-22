@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -8,11 +7,9 @@ import { useErrorBoundary } from 'react-error-boundary';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { Loader } from '@gravity-ui/uikit';
 
-// import Preloader from '../components/preloader';
-
-import useUser from '../hooks/use-user.tsx';
-import { useAppLocation } from '../hooks/use-app-location.tsx';
-import { useGetUserMeMutation } from '../store/index.ts';
+import useUser from '../hooks/use-user';
+import { useAppLocation } from '../hooks/use-app-location';
+import { useGetUserMeMutation } from '../store/index';
 
 export default function withUser<P extends Record<string, unknown>>(
   Page: ComponentType<P>,
@@ -21,10 +18,7 @@ export default function withUser<P extends Record<string, unknown>>(
   return function WithUser(pageProps: P & { user?: User }) {
     const location = useAppLocation();
     const {
-      // ErrorBoundary,
       showBoundary,
-      // error,
-      // reset
     } = useErrorBoundary();
     let userData: User | null = useUser();
     const [getUser, {
@@ -44,7 +38,6 @@ export default function withUser<P extends Record<string, unknown>>(
     }, [getUser, isError, isLoading, isUninitialized, userData]);
 
     if (isLoading || (isUninitialized && !userData)) {
-      // return <Preloader />;
       return <div className="box"><Loader size="m" /></div>;
     }
 
