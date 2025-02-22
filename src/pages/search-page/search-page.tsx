@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import Modal from '../../components/modal/modal.tsx';
+import Modal from '../../components/modal/modal';
 
 function SearchPage() {
   const navigate = useNavigate();

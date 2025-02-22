@@ -1,10 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 import { Outlet } from 'react-router-dom';
 
-import Sidebar from '../../components/sidebar/sidebar.tsx';
-// import Board from '../../components/board/board.tsx';
+import Sidebar from '../../components/sidebar/sidebar';
 
-import withUser from '../../hocs/with-user.tsx';
+import withUser from '../../hocs/with-user';
 
 import style from './main-page.module.css';
 

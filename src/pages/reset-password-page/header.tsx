@@ -1,4 +1,4 @@
-import HomeButton from '../../components/home-button/home-button.tsx';
+import HomeButton from '../../components/home-button/home-button';
 
 import style from './reset-password-page.module.css';
 

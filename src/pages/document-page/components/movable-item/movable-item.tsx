@@ -1,6 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/jsx-key */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
@@ -8,11 +5,10 @@ import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { Button, Icon } from '@gravity-ui/uikit';
 import { Minus, Plus } from '@gravity-ui/icons';
-// import { IoIosRemove, IoMdCreate } from 'react-icons/io';
 import { v4 as uuidv4 } from 'uuid';
 
-import RainWaterForm from '../form/rain-water.tsx';
-import Modal from '../../../../components/modal/modal.tsx';
+import RainWaterForm from '../form/rain-water';
+import Modal from '../../../../components/modal/modal';
 
 import style from './movable-item.module.css';
 
@@ -33,7 +29,6 @@ export default function MovableItem({
   };
 
   const moveCardHandler = (dragIndex: number, hoverIndex: number, item: ItemType) => {
-    // const dragItem = items[dragIndex];
     const dragItem = items.find((x: ItemType) => x.id === item.id);
     dragIndex = items.findIndex((x: ItemType) => x.id === item.id);
 

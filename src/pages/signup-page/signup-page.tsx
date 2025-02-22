@@ -2,13 +2,13 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import SignupForm from './signup-form.tsx';
-import Header from './header.tsx';
-import SignFooter from '../../components/sign-footer/sign-footer.tsx';
+import SignupForm from './signup-form';
+import Header from './header';
+import SignFooter from '../../components/sign-footer/sign-footer';
 
-import { useSignUpMutation } from '../../store/index.ts';
-import useUser from '../../hooks/use-user.tsx';
-import withUser from '../../hocs/with-user.tsx';
+import { useSignUpMutation } from '../../store/index';
+import useUser from '../../hooks/use-user';
+import withUser from '../../hocs/with-user';
 
 import style from './signup-page.module.css';
 

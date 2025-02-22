@@ -1,14 +1,13 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react-refresh/only-export-components */
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import SigninForm from './signin-form.tsx';
-import Header from './header.tsx';
-import SignFooter from '../../components/sign-footer/sign-footer.tsx';
+import SigninForm from './signin-form';
+import Header from './header';
+import SignFooter from '../../components/sign-footer/sign-footer';
 
-import useUser from '../../hooks/use-user.tsx';
-import withUser from '../../hocs/with-user.tsx';
+import useUser from '../../hooks/use-user';
+import withUser from '../../hocs/with-user';
 
 import style from './signin-page.module.css';
 

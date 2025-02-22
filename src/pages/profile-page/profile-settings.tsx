@@ -1,19 +1,11 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { Button, Select } from '@gravity-ui/uikit';
-// import classNames from 'classnames';
 
-// import { CustomSelect as Select } from '../../components/select/select.tsx';
-
-import { useTheme } from '../../hooks/use-dark-theme.tsx';
-import { useSignOutMutation } from '../../store/index.ts';
-
-// import { supportedThemes } from '../../context/theme-context.ts';
+import { useTheme } from '../../hooks/use-dark-theme';
+import { useSignOutMutation } from '../../store/index';
 
 import style from './profile-page.module.css';
-
-// type Themes = keyof typeof supportedThemes;
 
 const options = [
   { value: 'system', content: 'system' },

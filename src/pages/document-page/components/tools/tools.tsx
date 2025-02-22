@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Button, Icon } from '@gravity-ui/uikit';
 import {
   Eye, ArrowDownToLine, ArrowShapeTurnUpRight, ClockArrowRotateLeft,
