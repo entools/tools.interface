@@ -1,11 +1,10 @@
+/* eslint-disable no-console */
 /* eslint-disable react/no-children-prop */
-// import React from 'react';
-// import { Link } from 'react-router-dom';
 import type { PropsWithChildren } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import classNames from 'classnames';
 
-import Content from '../content/index.ts';
+import Content from '../content/index';
 
 import style from './error-boundary.module.css';
 

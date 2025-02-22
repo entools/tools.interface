@@ -4,11 +4,11 @@ import { useEffect, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { IoIosClose } from 'react-icons/io';
-import ModalOverlay from '../modal-overlay/modal-overlay.tsx';
+import { Icon } from '@gravity-ui/uikit';
+import { Xmark } from '@gravity-ui/icons';
+import ModalOverlay from '../modal-overlay/modal-overlay';
 
-import { ESC_CLOSE_ON, OVERLAY_CLOSE_ON, MODAL_CONFIG } from '../../utils/constants/constants.ts';
+import { ESC_CLOSE_ON, OVERLAY_CLOSE_ON, MODAL_CONFIG } from '../../utils/constants/constants';
 
 import style from './modal.module.css';
 
@@ -53,8 +53,8 @@ export default function Modal({
           exit={MODAL_CONFIG.EXIT}
         >
           {title && <h2 className={style.title}>{title}</h2>}
-          <button type="button" className={style.close} data-test="close-button">
-            <IoIosClose type="primary" onClick={onClose} />
+          <button type="button" className={style.close} data-test="close-button" onClick={onClose}>
+            <Icon data={Xmark} size={16} />
           </button>
           {children}
         </motion.div>
