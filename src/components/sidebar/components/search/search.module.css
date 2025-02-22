@@ -9,8 +9,6 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  /* background-color: var(--block-background); */
-  /* background: var(--g-color-base-generic); */
   border-radius: 12px;
   margin: 0;
   margin-left: 8px;
@@ -22,7 +20,6 @@
 }
 
 .icon {
-  /* background: linear-gradient(-45deg, rgb(44, 191, 199), rgb(70, 238, 170)); */
   height: 30px;
   width: 30px;
   display: flex;

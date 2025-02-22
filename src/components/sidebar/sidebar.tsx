@@ -1,23 +1,20 @@
 /* eslint-disable no-console */
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unsafe-optional-chaining */
 import {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import classNames from 'classnames';
 
-import Logo from './components/logo/logo.tsx';
-import Search from './components/search/search.tsx';
-import Profile from './components/profile/profile.tsx';
-import List from './components/list/list.tsx';
-import Help from './components/help/help.tsx';
+import Logo from './components/logo/logo';
+import Search from './components/search/search';
+import Profile from './components/profile/profile';
+import List from './components/list/list';
+import Help from './components/help/help';
 
 import style from './sidebar.module.css';
 
 export default function Sidebar() {
-  // const initTheme = localStorage.getItem('theme');
   const initSidebarWidth = localStorage.getItem('sidebar');
   const initDocuments = localStorage.getItem('documents') === 'true';
   const initTeams = localStorage.getItem('teams') === 'true';
@@ -26,10 +23,8 @@ export default function Sidebar() {
   const [showDocuments, setShowDocuments] = useState<boolean>(initDocuments);
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(Number(initSidebarWidth) || 310);
-  // const [theme, setTheme] = useState(initTheme || 'light');
 
   const startResizing = useCallback((_mouseDownEvent: React.MouseEvent) => {
-    // _mouseDownEvent.stopPropagation();
     _mouseDownEvent.preventDefault();
     setIsResizing(true);
   }, []);

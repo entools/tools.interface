@@ -1,9 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react-refresh/only-export-components */
 import { Text } from '@gravity-ui/uikit';
 
-import ProfileForm from './profile-form.tsx';
-import ProfileSettings from './profile-settings.tsx';
+import ProfileForm from './profile-form';
+import ProfileSettings from './profile-settings';
 
 import style from './profile-page.module.css';
 

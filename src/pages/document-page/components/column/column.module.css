@@ -39,7 +39,6 @@
   flex-direction: row;
   margin: 0;
   padding: 0;
-  /* height: 26px; */
   height: 26px;
 }
 .footer-fields {
@@ -56,9 +55,7 @@
   margin: 0;
   margin-right: 5px;
   padding: 0;
-  /* min-width: 90px; */
   width: 60px;
-  /* background-color: var(--background-color); */
   border-radius: 8px;
   justify-content: center;
   align-items: center;
@@ -68,7 +65,6 @@
 
 .position {
   display: flex;
-  /* height: 26px; */
   min-width: 30px;
   margin-right: 5px;
   justify-content: center;

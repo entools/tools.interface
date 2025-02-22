@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { Magnifier } from '@gravity-ui/icons';

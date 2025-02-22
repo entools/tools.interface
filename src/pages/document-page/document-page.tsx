@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -10,9 +9,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { TextInput, Button, Icon } from '@gravity-ui/uikit';
 import { Plus } from '@gravity-ui/icons';
 
-import Block from './components/block/block.tsx';
-import History from './components/history/history.tsx';
-import Tools from './components/tools/tools.tsx';
+import Block from './components/block/block';
+import History from './components/history/history';
+import Tools from './components/tools/tools';
 
 import style from './document-page.module.css';
 import '.app.css';

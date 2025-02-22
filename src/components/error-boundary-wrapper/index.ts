@@ -1,3 +1,3 @@
-import ErrorBoundaryWrapper from './error-boundary-wrapper.tsx';
+import ErrorBoundaryWrapper from './error-boundary-wrapper';
 
 export default ErrorBoundaryWrapper;

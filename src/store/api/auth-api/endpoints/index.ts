@@ -1,4 +1,4 @@
-import authApi from '../index.ts';
+import authApi from '../index';
 
 export type FormPayload = Omit<User, 'id'>;
 type SignInType = {

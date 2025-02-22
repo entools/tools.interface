@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/no-extraneous-dependencies */
 import { Controller, useForm } from 'react-hook-form';
-// import classNames from 'classnames';
 import { Button, TextInput, Text } from '@gravity-ui/uikit';
 
 import style from './signup-page.module.css';

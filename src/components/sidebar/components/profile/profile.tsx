@@ -1,9 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
-import Popup from 'reactjs-popup';
-import { Avatar } from '@gravity-ui/uikit';
-import { IoMdNotifications } from 'react-icons/io';
+import { Popover, Avatar, Icon } from '@gravity-ui/uikit';
+import { BellDot } from '@gravity-ui/icons';
 
 import style from './profile.module.css';
 
@@ -19,25 +17,9 @@ export default function Profile({ sidebarWidth }: { sidebarWidth: number; }) {
         )}
       </NavLink>
       <div className={style.notification}>
-        <Popup
-          trigger={(
-            <div className={style.btncontainer}>
-              <IoMdNotifications />
-              <div className={style.new} />
-            </div>
-          )}
-          position={['right top']}
-          contentStyle={{
-            backgroundColor: '#ffffff',
-            textAlign: 'center',
-            border: '0',
-            borderRadius: '8px',
-          }}
-          closeOnDocumentClick
-          arrow={false}
-        >
-          <div className={style.popovercontent}>popup</div>
-        </Popup>
+        <Popover offset={{ mainAxis: 10, crossAxis: 10 }} content={<div>123</div>}>
+          <Icon data={BellDot} size={16} />
+        </Popover>
       </div>
     </div>
   );

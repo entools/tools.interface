@@ -1,11 +1,6 @@
-/* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable import/no-extraneous-dependencies */
 import { useForm, Controller } from 'react-hook-form';
-// import classNames from 'classnames';
-
 import { Button, TextInput } from '@gravity-ui/uikit';
-// import InputField from '../../../../components/input-field/input-field.tsx';
 
 import style from './rain-water.module.css';
 

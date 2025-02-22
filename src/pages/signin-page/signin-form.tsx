@@ -1,15 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable import/no-extraneous-dependencies */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
-// import classNames from 'classnames';
 
-import { Button, TextInput, Text } from '@gravity-ui/uikit';
+import {
+  Button, TextInput, Text, Alert,
+} from '@gravity-ui/uikit';
 
-import Alert from '../../components/alert/alert.tsx';
-
-import { useSignInMutation } from '../../store/index.ts';
+import { useSignInMutation } from '../../store/index';
 
 import style from './signin-page.module.css';
 
@@ -72,7 +70,7 @@ export default function SigninForm() {
       >
         Вход
       </Text>
-      {err && <Alert message="Неизвестное сочетание email и пароля" />}
+      {err && <Alert theme="danger" message="Неизвестное сочетание email и пароля" />}
       {inputs.map((input) => (
         <Controller
           key={input.name}

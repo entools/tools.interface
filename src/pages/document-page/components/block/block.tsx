@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
-import Column from '../column/column.tsx';
-import MovableItem from '../movable-item/movable-item.tsx';
+import Column from '../column/column';
+import MovableItem from '../movable-item/movable-item';
 
 export default function Block({
   index, block, setBlocks, blocks, items, setItems,

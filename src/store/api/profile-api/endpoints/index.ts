@@ -1,4 +1,4 @@
-import profileApi from '../index.ts';
+import profileApi from '../index';
 
 const profileApiEndpoints = profileApi
   .enhanceEndpoints({

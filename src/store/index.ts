@@ -4,16 +4,16 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 // import { createReduxHistoryContext } from 'redux-first-history';
 // import { createBrowserHistory, createMemoryHistory } from 'history';
 
-import { authApi, profileApi } from './api/index.ts';
+import { authApi, profileApi } from './api/index';
 
-import userReducer from './slices/profile-slice.ts';
+import userReducer from './slices/profile-slice';
 
 // import { isServer } from '../utils';
 
-export * from './api/auth-api/endpoints/index.ts';
-export * from './api/profile-api/endpoints/index.ts';
+export * from './api/auth-api/endpoints/index';
+export * from './api/profile-api/endpoints/index';
 
-export * from './slices/index.ts';
+export * from './slices/index';
 
 // global redeclared types
 declare global {

@@ -2,7 +2,7 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/query';
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { toast, type ToastOptions } from 'react-toastify';
 
-import { BASE_PROFILE_API_URL } from '../utils/constants/constants.ts';
+import { BASE_PROFILE_API_URL } from '../utils/constants/constants';
 
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

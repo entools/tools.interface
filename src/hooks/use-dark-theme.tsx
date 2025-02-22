@@ -1,10 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { useState, useEffect, useContext } from 'react';
 import { ThemeProvider } from '@gravity-ui/uikit';
 import { ToastContainer } from 'react-toastify';
 
-import ThemeContext, { supportedThemes } from '../context/theme-context.ts';
+import ThemeContext, { supportedThemes } from '../context/theme-context';
 
 type Themes = keyof typeof supportedThemes;
 

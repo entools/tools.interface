@@ -1,11 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-props-no-spreading */
 import { Controller, useForm } from 'react-hook-form';
 import { Avatar, Button, TextInput } from '@gravity-ui/uikit';
 
-// import classNames from 'classnames';
-
-import useUser from '../../hooks/use-user.tsx';
+import useUser from '../../hooks/use-user';
 
 import style from './profile-page.module.css';
 

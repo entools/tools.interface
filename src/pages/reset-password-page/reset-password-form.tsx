@@ -1,10 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable import/no-extraneous-dependencies */
 import { Controller, useForm } from 'react-hook-form';
 import { TextInput, Button } from '@gravity-ui/uikit';
-// import classNames from 'classnames';
 
-import Header from './header.tsx';
+import Header from './header';
 
 import style from './reset-password-page.module.css';
 

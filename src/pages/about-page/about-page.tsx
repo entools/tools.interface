@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Text } from '@gravity-ui/uikit';
 
 import style from './about-page.module.css';

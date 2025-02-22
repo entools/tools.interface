@@ -4,7 +4,6 @@
   text-align: left;
   padding: 0;
   padding-left: 8px;
-  /* padding-right: 8px; */
   margin: 0 8px;
   margin-top: 12px;
   border-radius: 8px;
@@ -51,13 +50,6 @@
 }
 
 .add {
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0; */
-  /* height: 26px;
-  width: 26px; */
-  /* border: 0; */
 }
 
 .buttons {
