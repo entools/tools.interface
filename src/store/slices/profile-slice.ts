@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { profileApiEndpoints } from '../api/profile-api/endpoints/index.ts';
-import type { RootState } from '../index.ts';
+import { profileApiEndpoints } from '../api/profile-api/endpoints/index';
+import type { RootState } from '..';
 
 export type InfoState = {
   data: User | null,
