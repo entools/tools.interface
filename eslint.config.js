@@ -19,10 +19,10 @@ export default tseslint.config(
   { ignores: ['dist', 'eslint.config.js', 'vite.config.ts'] },
   {
     extends: [
-      js.configs.recommended,
-      ...compat.extends('airbnb'),
+      // js.configs.recommended,
       ...compat.extends('plugin:react/recommended'),
       ...compat.extends('plugin:import/recommended'),
+      ...compat.extends('airbnb'),
       ...tseslint.configs.recommended,
     ],
     files: ['**/*.{js,ts,tsx}'],
@@ -45,6 +45,13 @@ export default tseslint.config(
       'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
       'import/no-unresolved': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
+      'import/no-extraneous-dependencies': ['error', { 'devDependencies': true }],
+      'import/extensions': 'off',
     },
+    'settings': {
+      'import/core-modules': [
+        '@gravity-ui/icons',
+      ]
+    }
   },
 );
