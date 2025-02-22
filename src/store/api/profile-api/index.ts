@@ -1,6 +1,6 @@
 import { createApi, retry } from '@reduxjs/toolkit/query/react';
 
-import baseQuery from '../../base-profile-query.ts';
+import baseQuery from '../../base-profile-query';
 
 export const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 });
 
