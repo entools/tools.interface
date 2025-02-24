@@ -1,7 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import classNames from 'classnames';
+
 import { Popover, Avatar, Icon } from '@gravity-ui/uikit';
 import { BellDot } from '@gravity-ui/icons';
+
+import classNames from 'classnames';
 
 import style from './profile.module.css';
 

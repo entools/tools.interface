@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
