@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { useState, useEffect, useContext } from 'react';
 import { ThemeProvider } from '@gravity-ui/uikit';
