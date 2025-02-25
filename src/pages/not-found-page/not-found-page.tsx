@@ -1,21 +1,29 @@
-import { NavLink } from 'react-router-dom';
+import { Text, Link } from '@gravity-ui/uikit';
 
 import style from './not-found-page.module.css';
 
 export default function NotFoundPage() {
   return (
     <div className={style.container}>
-      <h1 className={style.title}>404</h1>
-      <h2 className={style.subtitle}>Нет такой страницы</h2>
-      <div className={style.text}>
+      <Text
+        variant="display-1"
+      >
+        404
+      </Text>
+      <Text
+        variant="header-1"
+      >
+        Нет такой страницы
+      </Text>
+      <Text variant="subheader-1">
         {'Вы можете перейти на '}
-        <NavLink
-          to="/"
+        <Link
+          href="/"
           className={style.link}
         >
           главную
-        </NavLink>
-      </div>
+        </Link>
+      </Text>
     </div>
   );
 }
