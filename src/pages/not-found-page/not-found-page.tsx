@@ -5,14 +5,10 @@ import style from './not-found-page.module.css';
 export default function NotFoundPage() {
   return (
     <div className={style.container}>
-      <Text
-        variant="display-1"
-      >
+      <Text variant="display-1">
         404
       </Text>
-      <Text
-        variant="header-1"
-      >
+      <Text variant="header-1">
         Нет такой страницы
       </Text>
       <Text variant="subheader-1">

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Controller, useForm } from 'react-hook-form';
-import { TextInput, Button } from '@gravity-ui/uikit';
+import { TextInput, Button, Text } from '@gravity-ui/uikit';
 
 import Header from './header';
 
@@ -34,7 +34,7 @@ export default function ResetPasswordForm({ onSubmit }: { onSubmit: (data: FormP
       onSubmit={handleSubmit(onSubmit)}
     >
       <Header />
-      <h1 className={style.name}>Сбросить пароль</h1>
+      <Text variant="display-1">Сбросить пароль</Text>
       {inputs.map((input) => (
         <Controller
           key={input.name}
