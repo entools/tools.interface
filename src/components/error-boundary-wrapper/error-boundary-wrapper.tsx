@@ -2,7 +2,8 @@
 /* eslint-disable react/no-children-prop */
 import type { PropsWithChildren } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
-import classNames from 'classnames';
+import { Button, Text } from '@gravity-ui/uikit';
+// import classNames from 'classnames';
 
 import Content from '../content/index';
 
@@ -15,26 +16,27 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
     <Content
       children={(
         <div className={style.boundary}>
-          <h2 className={style.title}>APP-ERROR</h2>
-          <p className={style.message}>{error.message}</p>
-          <div className={style.block}>
+          <Text variant="header-1">APP-ERROR</Text>
+          <Text className={style.mt} variant="body-1">{error.message}</Text>
+
+          <Text variant="body-1" className={style.block}>
             Try to
-            <button
-              type="button"
-              className={style.button}
+            <Button
+              view="action"
+              size="xl"
               onClick={resetErrorBoundary}
             >
               Reload app
-            </button>
+            </Button>
             or
-            <button
-              type="button"
-              className={classNames('link', style.link)}
+            <Button
+              view="flat"
+              size="l"
               onClick={resetErrorBoundary}
             >
               Go to homepage
-            </button>
-          </div>
+            </Button>
+          </Text>
         </div>
       )}
     />
