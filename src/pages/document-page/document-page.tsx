@@ -55,7 +55,6 @@ export default function DocumentPage() {
             {returnBlocksForColumn()}
             <div className={style.buttons}>
               <Button
-                className={style.add}
                 title="Добавить блок"
                 type="button"
                 view="action"

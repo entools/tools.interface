@@ -1,13 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Link } from '@gravity-ui/uikit';
+import { Link, Text } from '@gravity-ui/uikit';
 
 import style from './sign-footer.module.css';
 
 export default function SignFooter() {
   return (
-    <div className={style.footer}>
-      <h2 className={style.title}>Войти с помощью</h2>
+    <div>
+      <Text
+        variant="subheader-2"
+        className={style.xl}
+      >
+        Войти с помощью
+      </Text>
       <ul className={style.links}>
         <li className={style.link}>
           <Link
