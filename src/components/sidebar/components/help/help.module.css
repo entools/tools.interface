@@ -21,13 +21,9 @@
 }
 
 .icon {
-  height: 32px;
-  width: 32px;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--font-color);
-  font-size: 20px;
-  line-height: 20px;
+  margin-left: 8px;
 }

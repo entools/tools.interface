@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { Select } from '@gravity-ui/uikit';
+import { Select, Icon } from '@gravity-ui/uikit';
 import { House, Plus } from '@gravity-ui/icons';
 
 import style from './logo.module.css';
@@ -49,7 +49,7 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
               defaultValue={[project?.value]}
             />
             <NavLink to="/projects/add" className={style.icon}>
-              <Plus />
+              <Icon data={Plus} size={16} />
             </NavLink>
           </>
         )}

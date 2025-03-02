@@ -20,14 +20,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
-  padding: 0;
-  height: 30px;
-  width: 30px;
-  min-width: 30px;
   color: var(--font-color);
   border: var(--button-border);
-  border-radius: 8px;
   background-color: var(--button-background);
   margin-left: 8px;
 }
