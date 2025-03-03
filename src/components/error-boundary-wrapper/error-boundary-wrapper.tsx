@@ -3,7 +3,6 @@
 import type { PropsWithChildren } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { Button, Text } from '@gravity-ui/uikit';
-// import classNames from 'classnames';
 
 import Content from '../content/index';
 
@@ -18,7 +17,6 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
         <div className={style.boundary}>
           <Text variant="header-1">APP-ERROR</Text>
           <Text className={style.mt} variant="body-1">{error.message}</Text>
-
           <Text variant="body-1" className={style.block}>
             Try to
             <Button

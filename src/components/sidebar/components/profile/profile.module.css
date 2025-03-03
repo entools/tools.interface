@@ -8,6 +8,7 @@
   border-radius: 12px;
   padding: 8px;
   width: auto;
+  color: var(--font-color);
 }
 
 .block {
@@ -38,9 +39,9 @@
   margin: 0;
   margin-left: 8px;
   padding: 0;
-  color: var(--font-color);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 16px;
+  color: var(--font-color);
 }
 
 .notification {
