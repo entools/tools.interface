@@ -17,6 +17,7 @@
   line-height: 16px;
   padding: 8px;
   color: var(--font-color);
+  text-decoration: none;
 }
 
 .icon {
@@ -26,13 +27,5 @@
   color: var(--font-color);
   border: var(--button-border);
   margin-left: 8px;
-}
-
-.title {
-  display: flex;
-  margin: 0;
-  margin-left: 8px;
-  padding: 0;
-  line-height: 12px;
-  color: var(--font-color);
+  margin-right: 4px;
 }

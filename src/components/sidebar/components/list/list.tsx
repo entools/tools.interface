@@ -1,9 +1,11 @@
 /* eslint-disable react/require-default-props */
 import { NavLink, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import classNames from 'classnames';
 
+import { Icon, Button } from '@gravity-ui/uikit';
 import { Plus, ChevronUp, ChevronDown } from '@gravity-ui/icons';
+
+import classNames from 'classnames';
 
 import style from './list.module.css';
 
@@ -29,24 +31,22 @@ export default function List({
   return (
     <div className={style.list}>
       <div className={style.buttons}>
-        <button
-          className={classNames(style.header, style.button)}
-          type="button"
+        <Button
           onClick={onShow}
+          className={style.button}
+          size="l"
         >
           {sidebarWidth > 150 && (
             <div className={style.title}>
               {title}
             </div>
           )}
-          <div className={style.show}>
-            {show ? <ChevronUp /> : <ChevronDown />}
-          </div>
-        </button>
+          <Icon data={show ? ChevronUp : ChevronDown} size={20} />
+        </Button>
         {sidebarWidth > 150 && action
           && (
             <NavLink to="/users" className={style.icon} state={{ pathname: location }}>
-              <Plus />
+              <Icon className={style.icon} data={Plus} size={20} />
             </NavLink>
           )}
       </div>
