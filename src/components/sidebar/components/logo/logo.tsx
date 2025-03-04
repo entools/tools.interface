@@ -35,21 +35,21 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
     <div className={classNames(style.header, { [style.small]: sidebarWidth < 100 })}>
       <div className={style.logo}>
         <NavLink to="/" className={style.home}>
-          <House />
+          <Icon data={House} size={20} />
         </NavLink>
 
         {sidebarWidth >= 178 && (
           <>
             <Select
               name="project"
-              size="m"
+              size="l"
               width="max"
               options={options}
               onUpdate={onChange}
               defaultValue={[project?.value]}
             />
             <NavLink to="/projects/add" className={style.icon}>
-              <Icon data={Plus} size={16} />
+              <Icon data={Plus} size={20} />
             </NavLink>
           </>
         )}

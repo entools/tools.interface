@@ -20,7 +20,7 @@ export default function Profile({ sidebarWidth }: { sidebarWidth: number; }) {
       </NavLink>
       <div className={style.notification}>
         <Popover offset={{ mainAxis: 10, crossAxis: 10 }} content={<div>123</div>}>
-          <Icon data={BellDot} size={16} />
+          <Icon data={BellDot} size={20} />
         </Popover>
       </div>
     </div>
