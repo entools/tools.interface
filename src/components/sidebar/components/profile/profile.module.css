@@ -1,19 +1,19 @@
-
 .profile {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background: var(--g-color-base-generic);
   border-radius: 12px;
   padding: 8px;
   width: auto;
-  color: var(--font-color);
 }
 
 .block {
   display: flex;
   flex-direction: row;
+  color: var(--font-color);
+  text-decoration: none;
+  align-items: center;
 }
 
 .pic {
@@ -29,19 +29,13 @@
   color: var(--font-color);
   cursor: pointer;
 }
+
 .pic:visited {
   color: var(--font-color);
 }
+
 .name {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0;
   margin-left: 8px;
-  padding: 0;
-  font-size: 16px;
-  line-height: 16px;
-  color: var(--font-color);
 }
 
 .notification {
@@ -79,6 +73,7 @@
   align-items: center;
   cursor: pointer;
 }
+
 .popovercontent {
   padding: 8px;
   min-width: 200px;

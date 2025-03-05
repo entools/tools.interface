@@ -46,7 +46,7 @@ export default function List({
         {sidebarWidth > 150 && action
           && (
             <NavLink to="/users" className={style.icon} state={{ pathname: location }}>
-              <Icon className={style.icon} data={Plus} size={20} />
+              <Icon data={Plus} size={20} />
             </NavLink>
           )}
       </div>
@@ -55,7 +55,10 @@ export default function List({
         <div className={style.items}>
           {items.map((_, i) => (
             <div key={uuidv4()} className={style.box}>
-              <NavLink to={`/projects/123/documents/${i}`} className={classNames(style.item, { [style.center]: sidebarWidth <= 150 })}>
+              <NavLink
+                to={`/projects/123/documents/${i}`}
+                className={classNames(style.item, { [style.center]: sidebarWidth <= 150 })}
+              >
                 {sidebarWidth < 100 ? `${i}` : `doc ${i}`}
               </NavLink>
             </div>

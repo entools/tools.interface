@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import classNames from 'classnames';
 
 import { Select, Icon } from '@gravity-ui/uikit';
 import { House, Plus } from '@gravity-ui/icons';
+
+import classNames from 'classnames';
 
 import style from './logo.module.css';
 
@@ -37,7 +38,6 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number; }) {
         <NavLink to="/" className={style.home}>
           <Icon data={House} size={20} />
         </NavLink>
-
         {sidebarWidth >= 178 && (
           <>
             <Select

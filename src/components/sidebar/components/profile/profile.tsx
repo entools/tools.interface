@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 
-import { Popover, Avatar, Icon } from '@gravity-ui/uikit';
+import {
+  Popover, Avatar, Icon, Text,
+} from '@gravity-ui/uikit';
 import { BellDot } from '@gravity-ui/icons';
 
 import classNames from 'classnames';
@@ -13,9 +15,9 @@ export default function Profile({ sidebarWidth }: { sidebarWidth: number; }) {
       <NavLink to="/profile" className={style.block}>
         <Avatar imgUrl="https://loremflickr.com/640/480/cats?lock=8610182282084352" size="m" />
         {sidebarWidth >= 148 && (
-          <div className={style.name}>
+          <Text variant="subheader-2" className={style.name}>
             Profile
-          </div>
+          </Text>
         )}
       </NavLink>
       <div className={style.notification}>
