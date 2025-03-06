@@ -52,7 +52,6 @@ export default function ProfileSettings() {
         <div className={style.block}>
           notification
           <Button
-            type="button"
             view="normal"
             pin="round-round"
             size="l"
@@ -66,7 +65,6 @@ export default function ProfileSettings() {
       <div className={style.base}>
         base
         <Button
-          type="button"
           view="normal"
           pin="round-round"
           size="l"
