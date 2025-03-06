@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+
 import { Icon, Text } from '@gravity-ui/uikit';
 import { Bookmark } from '@gravity-ui/icons';
 
