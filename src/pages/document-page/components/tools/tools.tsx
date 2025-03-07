@@ -10,28 +10,24 @@ export default function Tools({ toggleHistory, history }
   return (
     <div className={style.tools}>
       <Button
-        type="button"
         className={style.button}
         title="Подписаться"
       >
         <Icon data={Eye} size={16} />
       </Button>
       <Button
-        type="button"
         className={style.button}
         title="Скачать"
       >
         <Icon data={ArrowDownToLine} size={16} />
       </Button>
       <Button
-        type="button"
         className={style.button}
         title="Share"
       >
         <Icon data={ArrowShapeTurnUpRight} size={16} />
       </Button>
       <Button
-        type="button"
         className={style.button}
         onClick={toggleHistory}
         title={history ? 'On' : 'Off'}

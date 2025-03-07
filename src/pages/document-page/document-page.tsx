@@ -56,7 +56,6 @@ export default function DocumentPage() {
             <div className={style.buttons}>
               <Button
                 title="Добавить блок"
-                type="button"
                 view="action"
                 size="s"
                 onClick={addBlock}

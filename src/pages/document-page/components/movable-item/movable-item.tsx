@@ -133,7 +133,6 @@ export default function MovableItem({
       <div className={style.tools}>
         <Button
           className={style.edit}
-          type="button"
           onClick={() => editItem(id)}
           title="Редактировать строку"
         >
@@ -141,7 +140,6 @@ export default function MovableItem({
         </Button>
         <Button
           className={style.remove}
-          type="button"
           onClick={() => removeItem(id)}
           title="Удалить строку"
         >

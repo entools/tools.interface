@@ -50,7 +50,6 @@ export default function Column({
         />
         <Button
           className={style.remove}
-          type="button"
           onClick={() => removeBlock(title)}
           title="Удалить блок"
         >
@@ -81,7 +80,6 @@ export default function Column({
         </ul>
         <Button
           className={style.add}
-          type="button"
           onClick={() => addItem(title)}
           title="Добавить строку"
         >
