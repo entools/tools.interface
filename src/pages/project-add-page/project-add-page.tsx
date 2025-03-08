@@ -23,7 +23,6 @@ function ProjectPage() {
             className={style.xl}
           />
           <Button
-            type="button"
             size="l"
             view="normal"
             pin="round-round"
