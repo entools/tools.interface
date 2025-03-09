@@ -32,7 +32,6 @@ const inputs = [
       message: 'Password is invalid',
     },
     required: true,
-    // type: 'password',
     autoComplete: 'new-password',
   },
 ];
