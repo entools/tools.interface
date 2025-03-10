@@ -52,7 +52,6 @@
 }
 
 .base {
-  /* background-color: var(--block-background); */
   border-radius: 8px;
   grid-area: base;
   padding: 8px;
