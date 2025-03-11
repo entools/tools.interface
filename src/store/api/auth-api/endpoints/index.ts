@@ -5,6 +5,7 @@ type SignInType = {
   email: string;
   password: string;
 };
+
 type ResponseToken = {
   accessToken: string;
   refreshToken: string;

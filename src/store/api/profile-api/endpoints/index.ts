@@ -13,8 +13,16 @@ const profileApiEndpoints = profileApi
         }),
         invalidatesTags: ['Profile'],
       }),
+      updateUserSettings: builder.mutation<User, { profileSettings: string }>({
+        query: (data) => ({
+          url: '/userprofile',
+          method: 'PATCH',
+          body: data,
+        }),
+        invalidatesTags: ['Profile'],
+      }),
     }),
   });
 
-export const { useGetUserMeMutation } = profileApiEndpoints;
+export const { useGetUserMeMutation, useUpdateUserSettingsMutation } = profileApiEndpoints;
 export { profileApiEndpoints };
