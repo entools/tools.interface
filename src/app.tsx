@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { useAppLocation } from './hooks/use-app-location';
@@ -24,28 +24,30 @@ export default function App() {
 
   return (
     <ErrorBoundaryWrapper>
-      <Routes location={background || location}>
-        <Route path="/" element={(<MainPage />)}>
-          <Route path="/profile" element={(<ProfilePage />)} />
-          <Route path="/about" element={(<AboutPage />)} />
-          <Route path="/projects/:projectId/documents/:documentId" element={(<DocumentPage />)} />
-          <Route path="/projects/add" element={(<ProjectAdd />)} />
-        </Route>
-        <Route path="/oauth" element={(<OauthPage />)} />
-        <Route path="/signin" element={(<SigninPage />)} />
-        <Route path="/signup" element={(<SignupPage />)} />
-        <Route path="/reset-password" element={(<ResetPasswordPage />)} />
-        <Route path="/confirm-email" element={(<ConfirmEmailPage />)} />
-        <Route path="*" element={(<NotFoundPage />)} />
-      </Routes>
+      <Suspense>
+        <Routes location={background || location}>
+          <Route path="/" element={(<MainPage />)}>
+            <Route path="/profile" element={(<ProfilePage />)} />
+            <Route path="/about" element={(<AboutPage />)} />
+            <Route path="/projects/:projectId/documents/:documentId" element={(<DocumentPage />)} />
+            <Route path="/projects/add" element={(<ProjectAdd />)} />
+          </Route>
+          <Route path="/oauth" element={(<OauthPage />)} />
+          <Route path="/signin" element={(<SigninPage />)} />
+          <Route path="/signup" element={(<SignupPage />)} />
+          <Route path="/reset-password" element={(<ResetPasswordPage />)} />
+          <Route path="/confirm-email" element={(<ConfirmEmailPage />)} />
+          <Route path="*" element={(<NotFoundPage />)} />
+        </Routes>
 
-      {background
+        {background
         && (
           <Routes>
             <Route path="/search" element={(<SearchPage />)} />
             <Route path="/users" element={(<UsersPage />)} />
           </Routes>
         )}
+      </Suspense>
     </ErrorBoundaryWrapper>
   );
 }
