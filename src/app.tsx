@@ -1,21 +1,22 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { useAppLocation } from './hooks/use-app-location';
 import ErrorBoundaryWrapper from './components/error-boundary-wrapper/index';
 
-import MainPage from './pages/main-page/main-page';
-import AboutPage from './pages/about-page/about-page';
-import DocumentPage from './pages/document-page/document-page';
-import ProfilePage from './pages/profile-page/profile-page';
-import OauthPage from './pages/oauth-page/oauth-page';
-import SigninPage from './pages/signin-page/signin-page';
-import SignupPage from './pages/signup-page/signup-page';
-import SearchPage from './pages/search-page/search-page';
-import ConfirmEmailPage from './pages/confirm-email-page/confirm-email-page';
-import ResetPasswordPage from './pages/reset-password-page/reset-password-page';
-import ProjectAdd from './pages/project-add-page/project-add-page';
-import UsersPage from './pages/users-page/users-page';
-import NotFoundPage from './pages/not-found-page/not-found-page';
+const MainPage = lazy(() => import('./pages/main-page/main-page'));
+const AboutPage = lazy(() => import('./pages/about-page/about-page'));
+const DocumentPage = lazy(() => import('./pages/document-page/document-page'));
+const ProfilePage = lazy(() => import('./pages/profile-page/profile-page'));
+const OauthPage = lazy(() => import('./pages/oauth-page/oauth-page'));
+const SigninPage = lazy(() => import('./pages/signin-page/signin-page'));
+const SignupPage = lazy(() => import('./pages/signup-page/signup-page'));
+const SearchPage = lazy(() => import('./pages/search-page/search-page'));
+const ConfirmEmailPage = lazy(() => import('./pages/confirm-email-page/confirm-email-page'));
+const ResetPasswordPage = lazy(() => import('./pages/reset-password-page/reset-password-page'));
+const ProjectAdd = lazy(() => import('./pages/project-add-page/project-add-page'));
+const UsersPage = lazy(() => import('./pages/users-page/users-page'));
+const NotFoundPage = lazy(() => import('./pages/not-found-page/not-found-page'));
 
 export default function App() {
   const location = useAppLocation();
