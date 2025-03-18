@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 
 import { Select, Icon } from '@gravity-ui/uikit';
 import { House, Plus } from '@gravity-ui/icons';

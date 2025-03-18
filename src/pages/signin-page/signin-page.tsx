@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import SigninForm from './signin-form';
 import Header from './header';

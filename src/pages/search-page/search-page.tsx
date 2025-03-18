@@ -1,6 +1,6 @@
 /* eslint-disable react/no-children-prop */
 import { useCallback } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router';
 import { Text } from '@gravity-ui/uikit';
 
 import Modal from '../../components/modal/modal';

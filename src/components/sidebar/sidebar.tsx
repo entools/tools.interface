@@ -2,17 +2,18 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-unsafe-optional-chaining */
 import {
-  useCallback, useEffect, useRef, useState,
+  useCallback, useEffect, useRef, useState, Suspense, lazy,
 } from 'react';
 import classNames from 'classnames';
 
-import Logo from './components/logo/logo';
 import Search from './components/search/search';
-import Profile from './components/profile/profile';
-import List from './components/list/list';
-import Help from './components/help/help';
 
 import style from './sidebar.module.css';
+
+const List = lazy(() => import('./components/list/list'));
+const Logo = lazy(() => import('./components/logo/logo'));
+const Help = lazy(() => import('./components/help/help'));
+const Profile = lazy(() => import('./components/profile/profile'));
 
 export default function Sidebar() {
   const initSidebarWidth = localStorage.getItem('sidebar');
@@ -75,28 +76,38 @@ export default function Sidebar() {
       style={{ width: sidebarWidth }}
     >
       <div className={classNames(style.container, style['no-select'])}>
-        <Logo sidebarWidth={sidebarWidth} />
+        <Suspense>
+          <Logo sidebarWidth={sidebarWidth} />
+        </Suspense>
         <Search sidebarWidth={sidebarWidth} />
         <div className={style.list__container}>
-          <List
-            title="Documents"
-            sidebarWidth={sidebarWidth}
-            show={showDocuments}
-            onShow={onShowDocuments}
-            items={['document']}
-          />
-          <List
-            title="Teams"
-            sidebarWidth={sidebarWidth}
-            show={showTeams}
-            onShow={onShowTeams}
-            items={new Array(10).fill(1).map((i) => i.toString())}
-            action={() => console.log('action')}
-          />
+          <Suspense>
+            <List
+              title="Documents"
+              sidebarWidth={sidebarWidth}
+              show={showDocuments}
+              onShow={onShowDocuments}
+              items={['document']}
+            />
+          </Suspense>
+          <Suspense>
+            <List
+              title="Teams"
+              sidebarWidth={sidebarWidth}
+              show={showTeams}
+              onShow={onShowTeams}
+              items={new Array(10).fill(1).map((i) => i.toString())}
+              action={() => console.log('action')}
+            />
+          </Suspense>
         </div>
         <div className={classNames(style.footer)}>
-          <Help sidebarWidth={sidebarWidth} />
-          <Profile sidebarWidth={sidebarWidth} />
+          <Suspense>
+            <Help sidebarWidth={sidebarWidth} />
+          </Suspense>
+          <Suspense>
+            <Profile sidebarWidth={sidebarWidth} />
+          </Suspense>
         </div>
       </div>
       <div

@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 
 import { Icon, Text } from '@gravity-ui/uikit';
 import { Magnifier } from '@gravity-ui/icons';
