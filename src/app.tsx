@@ -1,5 +1,4 @@
-import { Suspense, lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
 
 import { useAppLocation } from './hooks/use-app-location';
 import ErrorBoundaryWrapper from './components/error-boundary-wrapper/index';
@@ -11,13 +10,12 @@ import ProfilePage from './pages/profile-page/profile-page';
 import SearchPage from './pages/search-page/search-page';
 import ProjectAdd from './pages/project-add-page/project-add-page';
 import UsersPage from './pages/users-page/users-page';
-
-const OauthPage = lazy(() => import('./pages/oauth-page/oauth-page'));
-const SigninPage = lazy(() => import('./pages/signin-page/signin-page'));
-const SignupPage = lazy(() => import('./pages/signup-page/signup-page'));
-const ResetPasswordPage = lazy(() => import('./pages/reset-password-page/reset-password-page'));
-const ConfirmEmailPage = lazy(() => import('./pages/confirm-email-page/confirm-email-page'));
-const NotFoundPage = lazy(() => import('./pages/not-found-page/not-found-page'));
+import OauthPage from './pages/oauth-page/oauth-page';
+import SigninPage from './pages/signin-page/signin-page';
+import SignupPage from './pages/signup-page/signup-page';
+import ResetPasswordPage from './pages/reset-password-page/reset-password-page';
+import ConfirmEmailPage from './pages/confirm-email-page/confirm-email-page';
+import NotFoundPage from './pages/not-found-page/not-found-page';
 
 export default function App() {
   const location = useAppLocation();
@@ -32,17 +30,13 @@ export default function App() {
           <Route path="/projects/:projectId/documents/:documentId" element={(<DocumentPage />)} />
           <Route path="/projects/add" element={(<ProjectAdd />)} />
         </Route>
+        <Route path="/oauth" element={(<OauthPage />)} />
+        <Route path="/signin" element={(<SigninPage />)} />
+        <Route path="/signup" element={(<SignupPage />)} />
+        <Route path="/reset-password" element={(<ResetPasswordPage />)} />
+        <Route path="/confirm-email" element={(<ConfirmEmailPage />)} />
+        <Route path="*" element={(<NotFoundPage />)} />
       </Routes>
-      <Suspense>
-        <Routes location={background || location}>
-          <Route path="/oauth" element={(<OauthPage />)} />
-          <Route path="/signin" element={(<SigninPage />)} />
-          <Route path="/signup" element={(<SignupPage />)} />
-          <Route path="/reset-password" element={(<ResetPasswordPage />)} />
-          <Route path="/confirm-email" element={(<ConfirmEmailPage />)} />
-          <Route path="*" element={(<NotFoundPage />)} />
-        </Routes>
-      </Suspense>
 
       {background
         && (

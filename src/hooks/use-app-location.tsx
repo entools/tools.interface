@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 /* eslint-disable max-len */
 export interface LocationWithState extends Location { state: { pathname?: string; from?: string; } }

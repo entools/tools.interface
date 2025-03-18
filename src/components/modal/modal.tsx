@@ -2,13 +2,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+// import { motion, AnimatePresence } from 'framer-motion';
 
 import { Icon } from '@gravity-ui/uikit';
 import { Xmark } from '@gravity-ui/icons';
 import ModalOverlay from '../modal-overlay/modal-overlay';
 
-import { ESC_CLOSE_ON, OVERLAY_CLOSE_ON, MODAL_CONFIG } from '../../utils/constants/constants';
+import { ESC_CLOSE_ON, OVERLAY_CLOSE_ON } from '../../utils/constants/constants';
 
 import style from './modal.module.css';
 
@@ -43,23 +43,21 @@ export default function Modal({
   });
 
   return ReactDOM.createPortal(
-    <AnimatePresence>
-      <ModalOverlay closeModal={closeModal} overlay={overlay}>
-        <motion.div
-          className={style.container}
-          onClick={(e) => e.stopPropagation()}
-          initial={MODAL_CONFIG.INITIAL}
-          animate={MODAL_CONFIG.ANIMATE}
-          exit={MODAL_CONFIG.EXIT}
-        >
-          {title && <h2 className={style.title}>{title}</h2>}
-          <button type="button" className={style.close} data-test="close-button" onClick={onClose}>
-            <Icon data={Xmark} size={16} />
-          </button>
-          {children}
-        </motion.div>
-      </ModalOverlay>
-    </AnimatePresence>,
+    <ModalOverlay closeModal={closeModal} overlay={overlay}>
+      <div
+        className={style.container}
+        onClick={(e) => e.stopPropagation()}
+        // initial={MODAL_CONFIG.INITIAL}
+        // animate={MODAL_CONFIG.ANIMATE}
+        // exit={MODAL_CONFIG.EXIT}
+      >
+        {title && <h2 className={style.title}>{title}</h2>}
+        <button type="button" className={style.close} data-test="close-button" onClick={onClose}>
+          <Icon data={Xmark} size={16} />
+        </button>
+        {children}
+      </div>
+    </ModalOverlay>,
     reactModals!,
   );
 }

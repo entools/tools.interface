@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
 import { useEffect, type ComponentType } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router';
 import { useErrorBoundary } from 'react-error-boundary';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { Loader } from '@gravity-ui/uikit';

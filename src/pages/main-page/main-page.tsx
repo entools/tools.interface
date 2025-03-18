@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router';
 
 import Sidebar from '../../components/sidebar/sidebar';
 

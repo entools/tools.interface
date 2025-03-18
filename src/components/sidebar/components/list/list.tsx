@@ -1,5 +1,5 @@
 /* eslint-disable react/require-default-props */
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Icon, Button } from '@gravity-ui/uikit';
