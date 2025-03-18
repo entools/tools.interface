@@ -3,8 +3,8 @@
 @import "./vendor/fonts.css";
 @import "./styles/root.css";
 @import "./styles/app.css"; */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap'); */
 
 .g-root_theme_light {
     --g-font-family-sans: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;

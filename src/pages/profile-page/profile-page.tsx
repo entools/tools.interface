@@ -1,10 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
+import { Suspense, lazy } from 'react';
 import { Text } from '@gravity-ui/uikit';
 
-import ProfileForm from './profile-form';
-import ProfileSettings from './profile-settings';
-
 import style from './profile-page.module.css';
+
+const ProfileForm = lazy(() => import('./profile-form'));
+const ProfileSettings = lazy(() => import('./profile-settings'));
 
 export type FormPayload = Omit<User, 'id'>;
 
@@ -16,13 +17,15 @@ function ProfilePage() {
   };
 
   return (
-    <div className="layout">
-      <Text variant="header-2">Profile</Text>
-      <div className={style.form}>
-        <ProfileForm onSubmit={onSubmit} />
-        <ProfileSettings />
+    <Suspense>
+      <div className="layout">
+        <Text variant="header-2">Profile</Text>
+        <div className={style.form}>
+          <ProfileForm onSubmit={onSubmit} />
+          <ProfileSettings />
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
 
