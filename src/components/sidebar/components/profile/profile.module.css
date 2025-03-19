@@ -65,7 +65,7 @@
   flex-direction: column-reverse;
   min-height: 68px;
   justify-content: space-between;
-  align-items: flex-start;
+  /* align-items: flex-start; */
 }
 
 .btncontainer {

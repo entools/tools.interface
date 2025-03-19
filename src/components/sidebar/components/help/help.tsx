@@ -8,7 +8,7 @@ import style from './help.module.css';
 export default function Help({ sidebarWidth }: { sidebarWidth: number; }) {
   return (
     <NavLink to="/about" className={style.help}>
-      <Icon className={style.icon} data={Bookmark} size={20} />
+      <Icon data={Bookmark} size={20} />
       {sidebarWidth >= 148 && <Text variant="subheader-2">Support</Text>}
     </NavLink>
   );

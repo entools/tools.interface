@@ -19,6 +19,7 @@ function SigninPage() {
 
   useEffect(() => {
     if (userData) {
+      console.log(userData);
       navigate('/');
     }
   });
