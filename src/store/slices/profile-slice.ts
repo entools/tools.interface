@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { profileApiEndpoints } from '../api/profile-api/endpoints/index';
+import { authApiEndpoints } from '../api/auth-api/endpoints/index';
 import type { RootState } from '..';
 
 export type InfoState = {
@@ -20,6 +21,10 @@ const slice = createSlice({
       .addMatcher(
         profileApiEndpoints.endpoints.getUserMe.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
+      ).addMatcher(
+        authApiEndpoints.endpoints.signOut.matchFulfilled,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        (state, action) => ({ ...state, data: null }),
       );
     // .addMatcher(
     //   usersApiEndpoints.endpoints.getUserMe.matchRejected,

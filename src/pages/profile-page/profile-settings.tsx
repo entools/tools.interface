@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { Controller, useForm } from 'react-hook-form';
 import {
   Button, TextInput, Select,
@@ -34,6 +35,7 @@ const options = [
 ];
 
 export default function ProfileSettings() {
+  const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
   const [notification, setNotification] = useState(true);
   const [signOut] = useSignOutMutation();
@@ -52,6 +54,7 @@ export default function ProfileSettings() {
 
   const onLogout = async () => {
     await signOut();
+    navigate('/signin');
   };
 
   const onSet = (v: string[]) => {

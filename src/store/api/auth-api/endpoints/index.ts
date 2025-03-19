@@ -53,3 +53,5 @@ export const {
   useSignOutMutation,
   useRefreshTokenMutation,
 } = authApiEndpoints;
+
+export { authApiEndpoints };
