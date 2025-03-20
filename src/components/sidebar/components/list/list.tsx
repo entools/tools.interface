@@ -32,16 +32,17 @@ export default function List({
     <div className={style.list}>
       <div className={style.buttons}>
         <Button
+          view="outlined"
           onClick={onShow}
           className={style.button}
           size="l"
         >
+          <Icon data={show ? ChevronUp : ChevronDown} size={20} />
           {sidebarWidth > 150 && (
             <div className={style.title}>
               {title}
             </div>
           )}
-          <Icon data={show ? ChevronUp : ChevronDown} size={20} />
         </Button>
         {sidebarWidth > 150 && action
           && (

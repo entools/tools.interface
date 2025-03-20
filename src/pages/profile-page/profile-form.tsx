@@ -68,7 +68,6 @@ export default function ProfileForm({ onSubmit }: { onSubmit: (data: FormPayload
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className={style.avatar}>
-
         <Avatar imgUrl="https://loremflickr.com/640/480/cats?lock=8610182282084352" size="xl" />
         <TextInput
           name="status"
