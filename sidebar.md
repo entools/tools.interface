@@ -3,7 +3,7 @@
 ## Sidebar-header
 ```mermaid
   flowchart
-  
+
   HOME[Button home] --> MAIN_PAGE
 
   SELECT_PROJECT[Select project] --> SELECTED_PROJECT[Selected project]
@@ -20,7 +20,8 @@
   DOCUMENTS[Document list] --> SELECTED_DOCUMENT[Selected document]
   DOCUMENTS --> ADD_DOCUMENT[Create new document]
 
-  TEAMS[Team list] --> ADD_USER
+  TEAMS[Team list] --> FIND_USER
+  FIND_USER --> ADD_USER
   TEAMS --> REMOVE_USER
 ```
 
