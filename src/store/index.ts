@@ -4,14 +4,16 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 // import { createReduxHistoryContext } from 'redux-first-history';
 // import { createBrowserHistory, createMemoryHistory } from 'history';
 
-import { authApi, profileApi } from './api/index';
+import { authApi, profileApi, projectApi } from './api/index';
 
 import userReducer from './slices/profile-slice';
+import projectReducer from './slices/project-slice';
 
 // import { isServer } from '../utils';
 
 export * from './api/auth-api/endpoints/index';
 export * from './api/profile-api/endpoints/index';
+export * from './api/project-api/endpoints/index';
 
 export * from './slices/index';
 
@@ -31,16 +33,10 @@ export const store = configureStore({
     // router: routerReducer,
     // Add the generated reducer as a specific top-level slice
     user: userReducer,
-    // users: usersReducer,
-    // card: cardReducer,
-    // cards: cardsReducer,
-    // ucards: userCardsReducer,
+    project: projectReducer,
     [authApi.reducerPath]: authApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,
-    // [userApi.reducerPath]: userApi.reducer,
-    // [cardsApi.reducerPath]: cardsApi.reducer,
-    // [filesApi.reducerPath]: filesApi.reducer,
-    // [tagsApi.reducerPath]: tagsApi.reducer,
+    [projectApi.reducerPath]: projectApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
@@ -48,6 +44,7 @@ export const store = configureStore({
     .concat(
       authApi.middleware,
       profileApi.middleware,
+      projectApi.middleware,
     // routerMiddleware,
     ),
 });
