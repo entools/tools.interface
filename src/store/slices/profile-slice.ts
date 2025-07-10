@@ -4,7 +4,7 @@ import { profileApiEndpoints } from '../api/profile-api/endpoints/index';
 import { authApiEndpoints } from '../api/auth-api/endpoints/index';
 import type { RootState } from '..';
 
-export type InfoState = {
+type InfoState = {
   data: User | null,
 };
 

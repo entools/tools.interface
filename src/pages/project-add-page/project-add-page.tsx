@@ -1,39 +1,25 @@
-import { Button, TextInput, Text } from '@gravity-ui/uikit';
+/* eslint-disable react/jsx-props-no-spreading */
+import { Text } from '@gravity-ui/uikit';
+import { useNavigate } from 'react-router';
 
-import style from './project-add-page.module.css';
+import { useCreateProjectMutation } from '~/store';
+import ProjectAddForm from './project-add-form';
 
-function ProjectPage() {
+export type FormPayload = Omit<ProjectType, 'id'>;
+
+export default function ProjectPage() {
+  const navigate = useNavigate();
+  const [createProject] = useCreateProjectMutation();
+
+  const onSubmit = async (data: FormPayload) => {
+    const result = (await createProject(data)) as unknown as { data: ProjectType };
+    navigate(`/projects/${result.data.id}/documents/1`);
+  };
+
   return (
     <div className="layout">
       <Text variant="header-2">Добавить проект</Text>
-      <div className={style.form}>
-        <div className={style.main}>
-          <TextInput
-            size="l"
-            placeholder="Name"
-          />
-          <TextInput
-            size="l"
-            placeholder="Tag"
-            className={style.xl}
-          />
-          <TextInput
-            size="l"
-            placeholder="Details"
-            className={style.xl}
-          />
-          <Button
-            size="l"
-            view="normal"
-            pin="round-round"
-            className={style.xl}
-          >
-            Сохранить
-          </Button>
-        </div>
-      </div>
+      <ProjectAddForm onSubmit={onSubmit} />
     </div>
   );
 }
-
-export default ProjectPage;
