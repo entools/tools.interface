@@ -1,6 +1,7 @@
 export const BASE_API_URL = '';
 export const BASE_AUTH_API_URL = 'https://entools.ru/user-auth-api/auth/';
 export const BASE_PROFILE_API_URL = 'https://entools.ru/user-profile-api/';
+export const BASE_PROJECT_API_URL = 'https://entools.ru/user-projects-api/';
 export const OAUTH_API_URL = '';
 
 export const ESC_CLOSE_ON = true;

@@ -40,3 +40,9 @@ type MovableItemType = {
   setItems: Dispatch<SetStateAction<ItemType[]>>;
   id: number;
 };
+
+type ProjectType = {
+  id: string;
+  name: string;
+  description: string;
+};
