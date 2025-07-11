@@ -13,13 +13,13 @@ import type { RootState } from '..';
 // Определяем тип состояния для проектов
 // data - массив проектов типа ProjectType
 type InfoState = {
-  data: ProjectType | null,
+  data: ProjectType[],
 };
 
 // Устанавливаем начальное состояние
 // При старте приложения массив проектов будет пустым
-export const initialStateProject: InfoState = {
-  data: null,
+export const initialStateProjects: InfoState = {
+  data: [],
 };
 
 // Создаем slice для управления проектами
@@ -28,23 +28,15 @@ export const initialStateProject: InfoState = {
 // reducers - обычные редукторы (здесь пустые)
 // extraReducers - дополнительные редукторы для обработки действий
 const slice = createSlice({
-  name: 'project',
-  initialState: initialStateProject,
+  name: 'projects',
+  initialState: initialStateProjects,
   reducers: {},
   extraReducers: (builder) => {
     // Добавляем обработчик для успешного выполнения запроса getProjects
     // При успешном получении проектов обновляем состояние
     builder
       .addMatcher(
-        projectApiEndpoints.endpoints.getCurrentProject.matchFulfilled,
-        (state, action) => ({ ...state, data: action.payload }),
-      )
-      .addMatcher(
-        projectApiEndpoints.endpoints.setActiveProject.matchFulfilled,
-        (state, action) => ({ ...state, data: action.payload }),
-      )
-      .addMatcher(
-        projectApiEndpoints.endpoints.createProject.matchFulfilled,
+        projectApiEndpoints.endpoints.getProjects.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
       );
   },
@@ -56,4 +48,4 @@ export default slice.reducer;
 
 // Создаем селектор для получения данных о проектах
 // Принимает state и возвращает массив проектов
-export const projectSelector = (state: RootState) => state.project.data;
+export const projectsSelector = (state: RootState) => state.projects.data;
