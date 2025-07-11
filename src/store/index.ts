@@ -7,6 +7,7 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { authApi, profileApi, projectApi } from './api/index';
 
 import userReducer from './slices/profile-slice';
+import projectsReducer from './slices/projects-slice';
 import projectReducer from './slices/project-slice';
 
 // import { isServer } from '../utils';
@@ -33,6 +34,7 @@ export const store = configureStore({
     // router: routerReducer,
     // Add the generated reducer as a specific top-level slice
     user: userReducer,
+    projects: projectsReducer,
     project: projectReducer,
     [authApi.reducerPath]: authApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,

@@ -1,5 +1,7 @@
 import profileApi from '../index';
 
+type UpdateProfileType = { id: number; email: string; firstName: string; lastName: string }
+
 const profileApiEndpoints = profileApi
   .enhanceEndpoints({
     addTagTypes: ['Profile'],
@@ -8,8 +10,16 @@ const profileApiEndpoints = profileApi
     endpoints: (builder) => ({
       getUserMe: builder.mutation<User, void>({
         query: () => ({
-          url: '/userprofile',
+          url: '/users/me',
           method: 'GET',
+        }),
+        invalidatesTags: ['Profile'],
+      }),
+      updateUserProfile: builder.mutation<User, UpdateProfileType>({
+        query: (data) => ({
+          url: `/users/${data.id}`,
+          method: 'PATCH',
+          body: data,
         }),
         invalidatesTags: ['Profile'],
       }),
@@ -24,5 +34,7 @@ const profileApiEndpoints = profileApi
     }),
   });
 
-export const { useGetUserMeMutation, useUpdateUserSettingsMutation } = profileApiEndpoints;
+export const {
+  useGetUserMeMutation, useUpdateUserSettingsMutation, useUpdateUserProfileMutation,
+} = profileApiEndpoints;
 export { profileApiEndpoints };

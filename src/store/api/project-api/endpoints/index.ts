@@ -12,7 +12,7 @@ type FormPayload = Omit<ProjectType, 'id'>;
 // injectEndpoints добавляет новые эндпоинты для работы с API
 const projectApiEndpoints = projectApi
   .enhanceEndpoints({
-    addTagTypes: ['Project'],
+    addTagTypes: ['Projects'],
   })
   .injectEndpoints({
     // Определяем конкретные эндпоинты для работы с проектами
@@ -21,11 +21,19 @@ const projectApiEndpoints = projectApi
       // Возвращает массив объектов ProjectType
       getProjects: builder.mutation<ProjectType[], void>({
         query: () => ({
-          url: '/projects',
+          url: '/projects/my',
           method: 'GET',
         }),
         // При успешном выполнении запроса обновляем все теги 'Project'
-        invalidatesTags: ['Project'],
+        invalidatesTags: ['Projects'],
+      }),
+      getCurrentProject: builder.mutation<ProjectType, void>({
+        query: () => ({
+          url: '/projects/current',
+          method: 'GET',
+        }),
+        // При успешном выполнении запроса обновляем все теги 'Project'
+        // invalidatesTags: ['Project'],
       }),
       // Метод для создания нового проекта
       // Принимает данные формы (без поля id) и возвращает созданный проект
@@ -35,6 +43,15 @@ const projectApiEndpoints = projectApi
           method: 'POST',
           body: data,
         }),
+        invalidatesTags: ['Projects'],
+      }),
+
+      setActiveProject: builder.mutation<ProjectType, number>({
+        query: (id: number) => ({
+          url: `/projects/${id}`,
+          method: 'PUT',
+          // body: data,
+        }),
       }),
     }),
   });
@@ -42,7 +59,13 @@ const projectApiEndpoints = projectApi
 // Экспортируем хуки для использования в компонентах
 // useGetProjectsMutation - для получения списка проектов
 // useCreateProjectMutation - для создания нового проекта
-export const { useGetProjectsMutation, useCreateProjectMutation } = projectApiEndpoints;
+export const {
+  useGetProjectsMutation,
+  useCreateProjectMutation,
+  useGetCurrentProjectMutation,
+
+  useSetActiveProjectMutation,
+} = projectApiEndpoints;
 
 // Экспортируем весь расширенный API сервис
 // Это может понадобиться для доступа к другим методам или настройкам
