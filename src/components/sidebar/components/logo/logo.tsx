@@ -1,50 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router';
-
 import { Select, Icon } from '@gravity-ui/uikit';
-import { House, Plus } from '@gravity-ui/icons';
-
+import { FolderOpen, Plus } from '@gravity-ui/icons';
 import classNames from 'classnames';
 
-import { useAppSelector } from '~/hooks';
-import { useGetProjectsMutation } from '~/store';
+import { useGetProjectsMutation, useGetCurrentProjectMutation, useSetActiveProjectMutation } from '~/store';
+import { projectsSelector } from '~/store/slices/projects-slice';
 import { projectSelector } from '~/store/slices/project-slice';
+import { useAppSelector } from '~/hooks';
 
 import style from './logo.module.css';
-
-type SelectType = { value: string; content: string };
+// type SelectType = { value: string; content: string };
 
 export default function Logo({ sidebarWidth }: { sidebarWidth: number }) {
   const navigate = useNavigate();
-  const [getProjects] = useGetProjectsMutation();
-  const projects = useAppSelector(projectSelector);
+  const [getProjects, { isLoading }] = useGetProjectsMutation();
+  const [getCurrentProject] = useGetCurrentProjectMutation();
+  const [setActiveProject] = useSetActiveProjectMutation();
+  const projects = useAppSelector(projectsSelector);
+  const project = useAppSelector(projectSelector);
+
   const options = React.useMemo(
-    () => projects.map(({ id, name }) => ({ value: id, content: name })),
+    () => projects.map(({ id, name }) => ({ id, value: id, content: name })),
     [projects],
   );
-  const [selectedProject, setSelectedProject] = useState<SelectType>();
 
-  const handleProjectChange = ([id]: string[]) => {
-    if (id) {
-      navigate(`/projects/${id}/documents/1`);
+  const handleProjectUpdate = (open: boolean) => {
+    if (open) {
+      getProjects();
     }
   };
 
-  useEffect(() => {
-    getProjects();
-  }, []);
+  const handleProjectChange = async (arr: string[]) => {
+    const result = await setActiveProject(+arr[0]);
+    navigate(`/projects/${result.data?.id}`);
+  };
 
   useEffect(() => {
-    if (options.length > 0) {
-      setSelectedProject(options[0]);
-    }
-  }, [options]);
+    getCurrentProject();
+  }, []);
 
   return (
     <div className={classNames(style.header, { [style.small]: sidebarWidth < 100 })}>
       <div className={style.logo}>
-        <NavLink to="/" className={style.home}>
-          <Icon data={House} size={20} />
+        <NavLink to={`projects/${project?.id ?? ''}`} className={style.home}>
+          <Icon data={FolderOpen} size={20} />
         </NavLink>
         {sidebarWidth >= 178 && (
           <>
@@ -52,10 +52,11 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number }) {
               name="project"
               size="l"
               width="max"
+              onOpenChange={handleProjectUpdate}
               options={options}
               onUpdate={handleProjectChange}
-              value={[selectedProject?.content ?? '']}
-              loading
+              value={[project?.name ?? '']}
+              loading={isLoading}
             />
             <NavLink to="/projects/add" className={style.icon}>
               <Icon data={Plus} size={20} />
