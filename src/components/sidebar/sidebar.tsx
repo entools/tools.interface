@@ -6,21 +6,29 @@ import {
 } from 'react';
 import classNames from 'classnames';
 
+import { useNavigate } from 'react-router';
 import Search from './components/search/search';
+import List from './components/list/list';
 
 import style from './sidebar.module.css';
+import { useAppSelector } from '~/hooks';
+import { documentSelector, projectSelector, useGetUserDocumentsMutation } from '~/store';
 
-const List = lazy(() => import('./components/list/list'));
 const Logo = lazy(() => import('./components/logo/logo'));
 const Help = lazy(() => import('./components/help/help'));
 const Profile = lazy(() => import('./components/profile/profile'));
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+  const project = useAppSelector(projectSelector);
+  const documents = useAppSelector(documentSelector);
+  const [getUserDocuments] = useGetUserDocumentsMutation();
+
   const initSidebarWidth = localStorage.getItem('sidebar');
   const initDocuments = localStorage.getItem('documents') === 'true';
-  const initTeams = localStorage.getItem('teams') === 'true';
+  // const initTeams = localStorage.getItem('teams') === 'true';
   const sidebarRef = useRef<HTMLInputElement>(null);
-  const [showTeams, setShowTeams] = useState(initTeams);
+  // const [showTeams, setShowTeams] = useState(initTeams);
   const [showDocuments, setShowDocuments] = useState<boolean>(initDocuments);
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(Number(initSidebarWidth) || 310);
@@ -40,10 +48,17 @@ export default function Sidebar() {
     setShowDocuments(curr);
     localStorage.setItem('documents', curr.toString());
   };
-  const onShowTeams = () => {
-    const curr = !showTeams;
-    setShowTeams(curr);
-    localStorage.setItem('teams', curr.toString());
+  // const onShowTeams = () => {
+  //   const curr = !showTeams;
+  //   setShowTeams(curr);
+  //   localStorage.setItem('teams', curr.toString());
+  // };
+
+  const onClickItem = (e: string, i: number) => {
+    if (project && documents) {
+      const { id } = documents[i];
+      navigate(`/projects/${project!.id}/documents/${id}`);
+    }
   };
 
   const resize = useCallback(
@@ -69,6 +84,14 @@ export default function Sidebar() {
     };
   }, [resize, stopResizing]);
 
+  useEffect(() => {
+    if (project) {
+      getUserDocuments(+project.id);
+    }
+  }, [project]);
+
+  console.log(documents);
+
   return (
     <div
       className={classNames(style.sidebar, { [style.small]: sidebarWidth < 100 })}
@@ -81,25 +104,14 @@ export default function Sidebar() {
         </Suspense>
         <Search sidebarWidth={sidebarWidth} />
         <div className={style.list__container}>
-          <Suspense>
-            <List
-              title="Documents"
-              sidebarWidth={sidebarWidth}
-              show={showDocuments}
-              onShow={onShowDocuments}
-              items={['document']}
-            />
-          </Suspense>
-          <Suspense>
-            <List
-              title="Teams"
-              sidebarWidth={sidebarWidth}
-              show={showTeams}
-              onShow={onShowTeams}
-              items={new Array(10).fill(1).map((i) => i.toString())}
-              action={() => console.log('action')}
-            />
-          </Suspense>
+          <List
+            sidebarWidth={sidebarWidth}
+            show={showDocuments}
+            onShow={onShowDocuments}
+            items={documents?.map(({ name }) => (sidebarWidth > 150 ? name : name[0])) ?? []}
+            title="Documents"
+            action={onClickItem}
+          />
         </div>
         <div className={classNames(style.footer)}>
           <Suspense>

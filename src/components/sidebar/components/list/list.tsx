@@ -1,11 +1,8 @@
 /* eslint-disable react/require-default-props */
 import { NavLink, useLocation } from 'react-router';
-import { v4 as uuidv4 } from 'uuid';
 
-import { Icon, Button } from '@gravity-ui/uikit';
+import { Icon, Button, List } from '@gravity-ui/uikit';
 import { Plus, ChevronUp, ChevronDown } from '@gravity-ui/icons';
-
-import classNames from 'classnames';
 
 import style from './list.module.css';
 
@@ -15,10 +12,10 @@ type ListType = {
   onShow: () => void;
   items: string[];
   title: string;
-  action?: () => void;
+  action?: (e: string, i: number) => void;
 };
 
-export default function List({
+export default function SidebarList({
   sidebarWidth,
   show,
   onShow,
@@ -54,16 +51,13 @@ export default function List({
 
       {show && (
         <div className={style.items}>
-          {items.map((_, i) => (
-            <div key={uuidv4()} className={style.box}>
-              <NavLink
-                to={`/projects/123/documents/${i}`}
-                className={classNames(style.item, { [style.center]: sidebarWidth <= 150 })}
-              >
-                {sidebarWidth < 100 ? `${i}` : `doc ${i}`}
-              </NavLink>
-            </div>
-          ))}
+          <List
+            items={items}
+            itemsHeight={220}
+            filterable={sidebarWidth > 150}
+            onItemClick={action}
+            itemClassName={style.lst}
+          />
         </div>
       )}
     </div>
