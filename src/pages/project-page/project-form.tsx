@@ -1,0 +1,106 @@
+/* eslint-disable react/jsx-props-no-spreading */
+import { useEffect } from 'react';
+import { Button, TextInput } from '@gravity-ui/uikit';
+import { Controller, useForm } from 'react-hook-form';
+
+import style from './project-page.module.css';
+
+export type FormPayload = Omit<ProjectType, 'id'>;
+
+const inputs = [
+  {
+    name: 'name',
+    label: 'Name',
+    pattern: {
+      value: /^[A-Za-zА-Яа-я0-9., -]{3,50}$/,
+      message: 'Name is invalid',
+    },
+    required: true,
+    autoComplete: 'name',
+  },
+  {
+    name: 'description',
+    label: 'Details',
+    pattern: {
+      value: /^[A-Za-zА-Яа-я0-9., -]{3,50}$/,
+      message: 'Details is invalid',
+    },
+    required: true,
+    autoComplete: 'description',
+  },
+  {
+    name: 'address',
+    label: 'Address',
+    pattern: {
+      value: /^[A-Za-zА-Яа-я0-9., -]{3,50}$/,
+      message: 'Address is invalid',
+    },
+    required: true,
+    autoComplete: 'address',
+  },
+];
+
+export default function ProjectForm(
+  { onSubmit, isLoading, project }
+  : {
+    onSubmit: (data: FormPayload) => void;
+    isLoading: boolean;
+    project: ProjectType | null;
+  },
+) {
+  const { control, handleSubmit, reset } = useForm<FormPayload>({
+    defaultValues: {
+      name: project?.name ?? '',
+      description: project?.description ?? '',
+      address: project?.address ?? '',
+    },
+  });
+
+  useEffect(() => {
+    if (project) {
+      const { name, description, address } = project;
+      reset({ name, description, address });
+    }
+  }, [project]);
+
+  return (
+    <form
+      className={style.form}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className={style.main}>
+        {inputs.map((input) => (
+          <Controller
+            key={input.name}
+            name={input.name as keyof FormPayload}
+            rules={{
+              pattern: input.pattern,
+              required: input.required,
+            }}
+            control={control}
+            render={({ field, fieldState }) => (
+              <TextInput
+                {...field}
+                {...input}
+                size="l"
+                className={style.xl}
+                type="text"
+                error={fieldState.error?.message}
+              />
+            )}
+          />
+        ))}
+        <Button
+          type="submit"
+          size="l"
+          view="normal"
+          pin="round-round"
+          className={style.xl}
+          loading={isLoading}
+        >
+          Сохранить
+        </Button>
+      </div>
+    </form>
+  );
+}
