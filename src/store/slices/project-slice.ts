@@ -44,6 +44,10 @@ const slice = createSlice({
         (state, action) => ({ ...state, data: action.payload }),
       )
       .addMatcher(
+        projectApiEndpoints.endpoints.updateProject.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
         projectApiEndpoints.endpoints.createProject.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
       );

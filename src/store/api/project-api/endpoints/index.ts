@@ -12,24 +12,32 @@ type FormPayload = Omit<ProjectType, 'id'>;
 // injectEndpoints добавляет новые эндпоинты для работы с API
 const projectApiEndpoints = projectApi
   .enhanceEndpoints({
-    addTagTypes: ['Projects'],
+    addTagTypes: ['Project'],
   })
   .injectEndpoints({
     // Определяем конкретные эндпоинты для работы с проектами
     endpoints: (builder) => ({
       // Метод для получения списка проектов
       // Возвращает массив объектов ProjectType
-      getProjects: builder.mutation<ProjectType[], void>({
-        query: () => ({
-          url: '/projects/my',
-          method: 'GET',
-        }),
-        // При успешном выполнении запроса обновляем все теги 'Project'
-        invalidatesTags: ['Projects'],
-      }),
+      // getProjects: builder.mutation<ProjectType[], void>({
+      //   query: () => ({
+      //     url: '/projects/my',
+      //     method: 'GET',
+      //   }),
+      //   // При успешном выполнении запроса обновляем все теги 'Project'
+      //   invalidatesTags: ['Project'],
+      // }),
       getCurrentProject: builder.mutation<ProjectType, void>({
         query: () => ({
           url: '/projects/current',
+          method: 'GET',
+        }),
+        // При успешном выполнении запроса обновляем все теги 'Project'
+        // invalidatesTags: ['Project'],
+      }),
+      getProject: builder.mutation<ProjectType, number>({
+        query: (id: number) => ({
+          url: `/project/${id}`,
           method: 'GET',
         }),
         // При успешном выполнении запроса обновляем все теги 'Project'
@@ -43,7 +51,16 @@ const projectApiEndpoints = projectApi
           method: 'POST',
           body: data,
         }),
-        invalidatesTags: ['Projects'],
+        invalidatesTags: ['Project'],
+      }),
+
+      updateProject: builder.mutation<ProjectType, FormPayload & { id: number}>({
+        query: (data: FormPayload & { id: number}) => ({
+          url: `/projects/${data.id}`,
+          method: 'PATCH',
+          body: data,
+        }),
+        invalidatesTags: ['Project'],
       }),
 
       setActiveProject: builder.mutation<ProjectType, number>({
@@ -60,11 +77,13 @@ const projectApiEndpoints = projectApi
 // useGetProjectsMutation - для получения списка проектов
 // useCreateProjectMutation - для создания нового проекта
 export const {
-  useGetProjectsMutation,
+  // useGetProjectsMutation,
   useCreateProjectMutation,
   useGetCurrentProjectMutation,
 
   useSetActiveProjectMutation,
+  useGetProjectMutation,
+  useUpdateProjectMutation,
 } = projectApiEndpoints;
 
 // Экспортируем весь расширенный API сервис

@@ -9,6 +9,9 @@ export { default as profileApi } from './profile-api/index';
 // projectApi - для работы с проектами
 export { default as projectApi } from './project-api/index';
 
+export { default as projectsApi } from './projects-api/index';
+export { default as documentApi } from './document-api/index';
+
 // Экспортируем все эндпоинты (endpoints) из соответствующих модулей
 // Это позволяет использовать конкретные запросы напрямую в компонентах
 // Экспортируются все экспортируемые значения (*) из каждого файла
@@ -23,4 +26,8 @@ export * from './profile-api/endpoints/index';
 
 // Экспортируем все эндпоинты для проектов
 // Включает запросы на создание, редактирование, получение проектов и т.д.
+export * from './projects-api/endpoints/index';
+
 export * from './project-api/endpoints/index';
+
+export * from './document-api/endpoints/index';

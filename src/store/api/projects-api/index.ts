@@ -17,17 +17,17 @@ export const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 });
 
 // Определяем API сервис
 // Здесь мы настраиваем основные параметры для работы с API
-const projectApi = createApi({
+const projectsApi = createApi({
   // Уникальный путь для редуктора в store
   // Все состояния, связанные с API, будут храниться под этим ключом
-  reducerPath: 'projectApi',
+  reducerPath: 'projectsApi',
 
   // Базовая конфигурация запросов с поддержкой повторных попыток
   baseQuery: baseQueryWithRetry,
 
   // Определяем типы тегов для инвальтации (invalidateTags)
   // Это позволяет автоматически обновлять данные при определенных действиях
-  tagTypes: ['Project'],
+  tagTypes: ['Projects'],
 
   // Здесь должны быть определены все эндпоинты API
   // На данном этапе оставляем пустым, так как это базовый шаблон
@@ -35,4 +35,4 @@ const projectApi = createApi({
 });
 
 // Экспортируем созданный API сервис для использования в приложении
-export default projectApi;
+export default projectsApi;

@@ -4,17 +4,22 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 // import { createReduxHistoryContext } from 'redux-first-history';
 // import { createBrowserHistory, createMemoryHistory } from 'history';
 
-import { authApi, profileApi, projectApi } from './api/index';
+import {
+  authApi, profileApi, projectApi, projectsApi, documentApi,
+} from './api/index';
 
 import userReducer from './slices/profile-slice';
 import projectsReducer from './slices/projects-slice';
 import projectReducer from './slices/project-slice';
+import documentReducer from './slices/document-slice';
 
 // import { isServer } from '../utils';
 
 export * from './api/auth-api/endpoints/index';
 export * from './api/profile-api/endpoints/index';
+export * from './api/projects-api/endpoints/index';
 export * from './api/project-api/endpoints/index';
+export * from './api/document-api/endpoints/index';
 
 export * from './slices/index';
 
@@ -36,9 +41,12 @@ export const store = configureStore({
     user: userReducer,
     projects: projectsReducer,
     project: projectReducer,
+    document: documentReducer,
     [authApi.reducerPath]: authApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,
     [projectApi.reducerPath]: projectApi.reducer,
+    [projectsApi.reducerPath]: projectsApi.reducer,
+    [documentApi.reducerPath]: documentApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
@@ -47,6 +55,8 @@ export const store = configureStore({
       authApi.middleware,
       profileApi.middleware,
       projectApi.middleware,
+      projectsApi.middleware,
+      documentApi.middleware,
     // routerMiddleware,
     ),
 });
