@@ -11,7 +11,7 @@ const inputs = [
     name: 'name',
     label: 'Name',
     pattern: {
-      value: /^[a-z0-9_-]{3,15}$/,
+      value: /^[A-Za-zА-Яа-я0-9., -]{3,50}$/,
       message: 'Name is invalid',
     },
     required: true,
@@ -21,11 +21,21 @@ const inputs = [
     name: 'description',
     label: 'Details',
     pattern: {
-      value: /^[a-z0-9_-]{3,15}$/,
+      value: /^[A-Za-zА-Яа-я0-9., -]{3,50}$/,
       message: 'Details is invalid',
     },
     required: true,
     autoComplete: 'description',
+  },
+  {
+    name: 'address',
+    label: 'Address',
+    pattern: {
+      value: /^[A-Za-zА-Яа-я0-9., -]{3,50}$/,
+      message: 'Details is invalid',
+    },
+    required: true,
+    autoComplete: 'address',
   },
   // {
   //   name: 'tag',
