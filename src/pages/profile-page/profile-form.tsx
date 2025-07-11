@@ -9,16 +9,6 @@ import style from './profile-page.module.css';
 export type FormPayload = Omit<User, 'id'>;
 
 const inputs = [
-  // {
-  //   name: 'username',
-  //   label: 'Username',
-  //   pattern: {
-  //     value: /^[a-z0-9_-]{3,15}$/,
-  //     message: 'Username',
-  //   },
-  //   required: true,
-  //   autoComplete: 'username',
-  // },
   {
     name: 'email',
     label: 'Email',

@@ -2,6 +2,10 @@
 import { Suspense, lazy } from 'react';
 import { Text } from '@gravity-ui/uikit';
 
+import { useUpdateUserProfileMutation } from '~/store';
+
+import useUser from '../../hooks/use-user';
+
 import style from './profile-page.module.css';
 
 const ProfileForm = lazy(() => import('./profile-form'));
@@ -10,10 +14,14 @@ const ProfileSettings = lazy(() => import('./profile-settings'));
 export type FormPayload = Omit<User, 'id'>;
 
 function ProfilePage() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [updateUserProfile] = useUpdateUserProfileMutation();
+  const { id } = useUser()!;
+
   const onSubmit = async (data: FormPayload) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    const { email, firstName, lastName } = data;
+    await updateUserProfile({
+      email, firstName, lastName, id,
+    });
   };
 
   return (
