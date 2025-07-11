@@ -14,7 +14,7 @@ const ProfileSettings = lazy(() => import('./profile-settings'));
 export type FormPayload = Omit<User, 'id'>;
 
 function ProfilePage() {
-  const [updateUserProfile] = useUpdateUserProfileMutation();
+  const [updateUserProfile, { isLoading }] = useUpdateUserProfileMutation();
   const { id } = useUser()!;
 
   const onSubmit = async (data: FormPayload) => {
@@ -29,7 +29,7 @@ function ProfilePage() {
       <div className="layout">
         <Text variant="header-2">Profile</Text>
         <div className={style.form}>
-          <ProfileForm onSubmit={onSubmit} />
+          <ProfileForm onSubmit={onSubmit} isLoading={isLoading} />
           <ProfileSettings />
         </div>
       </div>

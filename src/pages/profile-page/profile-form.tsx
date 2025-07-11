@@ -41,7 +41,9 @@ const inputs = [
   },
 ];
 
-export default function ProfileForm({ onSubmit }: { onSubmit: (data: FormPayload) => void }) {
+export default function ProfileForm({
+  onSubmit, isLoading,
+}: { onSubmit: (data: FormPayload) => void; isLoading: boolean }) {
   const { email, firstName, lastName } = useUser()!;
   const { control, handleSubmit } = useForm<FormPayload>({
     defaultValues: {
@@ -92,6 +94,7 @@ export default function ProfileForm({ onSubmit }: { onSubmit: (data: FormPayload
         pin="round-round"
         size="l"
         className={style.xl}
+        loading={isLoading}
       >
         Сохранить
       </Button>
