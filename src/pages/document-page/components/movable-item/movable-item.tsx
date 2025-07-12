@@ -4,7 +4,7 @@
 import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { Button, Icon } from '@gravity-ui/uikit';
-import { Minus, Plus } from '@gravity-ui/icons';
+import { Minus, Pencil } from '@gravity-ui/icons';
 import { v4 as uuidv4 } from 'uuid';
 
 import RainWaterForm from '../form/rain-water';
@@ -86,6 +86,7 @@ export default function MovableItem({
     },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
+      console.log(dropResult);
 
       if (dropResult) {
         const { name } = dropResult as { name: string };
@@ -136,7 +137,7 @@ export default function MovableItem({
           onClick={() => editItem(id)}
           title="Редактировать строку"
         >
-          <Icon data={Plus} size={16} />
+          <Icon data={Pencil} size={16} />
         </Button>
         <Button
           className={style.remove}
