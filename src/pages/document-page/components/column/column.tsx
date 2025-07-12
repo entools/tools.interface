@@ -31,7 +31,7 @@ export default function Column({
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: 'items',
-    drop: () => ({ name: block.name }),
+    drop: () => ({ name: `block_${block.id}` }),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
@@ -109,7 +109,7 @@ export default function Column({
         </ul>
         <Button
           className={style.add}
-          onClick={() => addItem(block.name)}
+          onClick={() => addItem(`block_${block.id}`)}
           title="Добавить строку"
         >
           <Icon data={Plus} size={16} />
