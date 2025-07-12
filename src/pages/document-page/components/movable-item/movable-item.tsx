@@ -86,7 +86,6 @@ export default function MovableItem({
     },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
-      console.log(dropResult);
 
       if (dropResult) {
         const { name } = dropResult as { name: string };
