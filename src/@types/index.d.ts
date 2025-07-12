@@ -17,7 +17,7 @@ type ItemType = {
 };
 
 type Block = {
-  id: string;
+  id: number;
   name: string;
   document: { id: string };
   index: number;
@@ -30,15 +30,13 @@ type BlockType = {
   items: ItemType[];
   setBlocks: Dispatch<SetStateAction<string[]>>;
   setItems: Dispatch<SetStateAction<ItemType[]>>;
-  removeBlock: (id: string) => void;
+  removeBlock: (id: number) => void;
 };
 
 type ColumnType = {
   children: ReactNode;
-  // title: string;
-  addItem: (block: string) => void;
-  removeBlock: (title: string) => void;
-  // blockId: string
+  addItem: (blockName: string) => void;
+  removeBlock: (blockId: number) => void;
   block: Block;
 };
 
