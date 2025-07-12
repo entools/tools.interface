@@ -39,7 +39,7 @@ const inputs = [
     name: 'pavements',
     label: 'Брусчатые мостовые и черные щебеночные покрытия дорог',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Pavements is invalid',
     },
     required: true,
@@ -49,7 +49,7 @@ const inputs = [
     name: 'tracks',
     label: 'Гравийные садово-парковые дорожки',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Tracks is invalid',
     },
     required: true,
@@ -59,7 +59,7 @@ const inputs = [
     name: 'ground',
     label: 'Грунтовые поверхности(спланированные)',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Ground is invalid',
     },
     required: true,
@@ -69,7 +69,7 @@ const inputs = [
     name: 'cobblestone',
     label: 'Булыжные мостовые',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Cobblestone is invalid',
     },
     required: true,
@@ -79,7 +79,7 @@ const inputs = [
     name: 'stone',
     label: 'Щебеночные покрытия, не обработанные вяжущими',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Stone is invalid',
     },
     required: true,
@@ -89,7 +89,7 @@ const inputs = [
     name: 'lawns',
     label: 'Газоны',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Lawns is invalid',
     },
     required: true,
@@ -99,7 +99,7 @@ const inputs = [
     name: 'intensity',
     label: 'Интенсивность дождя, л/с',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Intensity is invalid',
     },
     required: true,
@@ -109,7 +109,7 @@ const inputs = [
     name: 'timeInit',
     label: 'Время поверхностной концентрации стока, мин',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'T is invalid',
     },
     required: true,
@@ -119,7 +119,7 @@ const inputs = [
     name: 'lengthPipe',
     label: 'Длина трубы',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Length pipe is invalid',
     },
     required: true,
@@ -129,7 +129,7 @@ const inputs = [
     name: 'lengthTray',
     label: 'Длина лотка',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Length tray is invalid',
     },
     required: true,
@@ -139,7 +139,7 @@ const inputs = [
     name: 'velocityPipe',
     label: 'Скорость',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Velocity pipe is invalid',
     },
     required: true,
@@ -149,7 +149,7 @@ const inputs = [
     name: 'velocityTray',
     label: 'Скорость',
     pattern: {
-      value: /^[a-z0-9_-]{1,15}$/,
+      value: /^[0-9.,]{1,15}$/,
       message: 'Velocity tray is invalid',
     },
     required: true,
@@ -188,6 +188,7 @@ export default function RainWaterForm({ data, setData, onClose }: {
               {...field}
               {...input}
               size="l"
+              className={style.xl}
               error={fieldState.error?.message}
             />
           )}
@@ -198,6 +199,7 @@ export default function RainWaterForm({ data, setData, onClose }: {
         view="normal"
         pin="round-round"
         size="l"
+        className={style.xl}
       >
         Сохранить
       </Button>
