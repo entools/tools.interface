@@ -10,13 +10,13 @@ import { projectSelector } from '~/store/slices/project-slice';
 import { useAppSelector } from '~/hooks';
 
 import style from './logo.module.css';
-// type SelectType = { value: string; content: string };
 
 export default function Logo({ sidebarWidth }: { sidebarWidth: number }) {
   const navigate = useNavigate();
   const [getProjects, { isLoading }] = useGetProjectsMutation();
   const [getCurrentProject] = useGetCurrentProjectMutation();
   const [setActiveProject] = useSetActiveProjectMutation();
+
   const projects = useAppSelector(projectsSelector);
   const project = useAppSelector(projectSelector);
 
