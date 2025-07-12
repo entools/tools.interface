@@ -36,7 +36,7 @@ type FormPayload = {
   name: string;
 };
 
-const tasks = [{ id: 1, name: 'Item 1', column: 'block_24' }];
+// const tasks = [{ id: 1, name: 'Item 1', column: 'block_24' }];
 
 export default function DocumentPage() {
   const dispatch = useAppDispatch();
@@ -52,7 +52,7 @@ export default function DocumentPage() {
 
   const { projectId, documentId } = useParams();
   const [history, setHistory] = useState(false);
-  const [items, setItems] = useState(tasks);
+  const [items, setItems] = useState([]);
 
   const setData = async (array: BlockType[]) => {
     await refreshBlocks({ id: +documentId!, data: array });
