@@ -1,18 +1,37 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import { TextInput, Button, Icon } from '@gravity-ui/uikit';
 import { Minus, Plus } from '@gravity-ui/icons';
+import { Controller, useForm } from 'react-hook-form';
+
+import { useUpdateBlocksMutation } from '~/store';
 
 import style from './column.module.css';
 
+type FormPayload = {
+  name: string;
+};
+
 export default function Column({
-  children, title, addItem, removeBlock,
+  children, block, addItem, removeBlock,
 }: ColumnType) {
+  const [updateBlock] = useUpdateBlocksMutation();
+  const { control } = useForm<FormPayload>({
+    defaultValues: { name: block.name ?? '' },
+  });
+
+  const onEditBlockName = async () => {
+    // eslint-disable-next-line no-underscore-dangle
+    const { name } = control._formValues;
+    await updateBlock({ ...block, name });
+  };
+
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: 'items',
-    drop: () => ({ name: title }),
+    drop: () => ({ name: block.name }),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
@@ -43,14 +62,24 @@ export default function Column({
       style={{ backgroundColor: getBackgroundColor() }}
     >
       <div className={style.header}>
-        <TextInput
-          value={title}
-          className={style.title}
-          onChange={(e) => console.log(e)}
+        <Controller
+          name="name"
+          rules={{
+            pattern: {
+              value: /^[A-Za-zА-Яа-я0-9., -]{3,50}$/,
+              message: 'Name is invalid',
+            },
+            required: true,
+          }}
+          control={control}
+          render={({ field }) => (
+            // render={({ field, fieldState }) => (
+            <TextInput {...field} onBlur={onEditBlockName} className={style.title} />
+          )}
         />
         <Button
           className={style.remove}
-          onClick={() => removeBlock(title)}
+          onClick={() => removeBlock(block.id)}
           title="Удалить блок"
         >
           <Icon data={Minus} size={16} />
@@ -80,7 +109,7 @@ export default function Column({
         </ul>
         <Button
           className={style.add}
-          onClick={() => addItem(title)}
+          onClick={() => addItem(block.name)}
           title="Добавить строку"
         >
           <Icon data={Plus} size={16} />
