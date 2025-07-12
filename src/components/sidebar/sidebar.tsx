@@ -12,7 +12,7 @@ import List from './components/list/list';
 
 import style from './sidebar.module.css';
 import { useAppSelector } from '~/hooks';
-import { documentSelector, projectSelector, useGetUserDocumentsMutation } from '~/store';
+import { documentsSelector, projectSelector, useGetUserDocumentsMutation } from '~/store';
 
 const Logo = lazy(() => import('./components/logo/logo'));
 const Help = lazy(() => import('./components/help/help'));
@@ -21,7 +21,7 @@ const Profile = lazy(() => import('./components/profile/profile'));
 export default function Sidebar() {
   const navigate = useNavigate();
   const project = useAppSelector(projectSelector);
-  const documents = useAppSelector(documentSelector);
+  const documents = useAppSelector(documentsSelector);
   const [getUserDocuments] = useGetUserDocumentsMutation();
 
   const initSidebarWidth = localStorage.getItem('sidebar');
@@ -90,8 +90,6 @@ export default function Sidebar() {
     }
   }, [project]);
 
-  console.log(documents);
-
   return (
     <div
       className={classNames(style.sidebar, { [style.small]: sidebarWidth < 100 })}
@@ -109,7 +107,7 @@ export default function Sidebar() {
             show={showDocuments}
             onShow={onShowDocuments}
             items={documents?.map(({ name }) => (sidebarWidth > 150 ? name : name[0])) ?? []}
-            title="Documents"
+            title="Документы"
             action={onClickItem}
           />
         </div>
