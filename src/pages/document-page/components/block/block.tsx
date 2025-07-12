@@ -5,24 +5,22 @@ import Column from '../column/column';
 import MovableItem from '../movable-item/movable-item';
 
 export default function Block({
-  index, block, setBlocks, blocks, items, setItems,
+  index, block, setBlocks, blocks, items, setItems, removeBlock,
 }: BlockType) {
   const ref = useRef(null);
   const addItem = (column: string) => {
     setItems([...items, { id: items.length + 1, name: `Item ${items.length + 1}`, column }]);
   };
-  const removeBlock = (title: string) => setBlocks(blocks.filter((x: string) => x !== title));
+
   const moveBlockHandler = (dragIndex: number, hoverIndex: number) => {
     const dragItem = blocks[dragIndex];
 
     if (dragItem) {
-      setBlocks((prevState: string[]) => {
-        const coppiedStateArray = [...prevState];
-        const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
-        coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
+      const coppiedStateArray = [...blocks];
+      const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
+      coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
 
-        return coppiedStateArray;
-      });
+      setBlocks(coppiedStateArray.map((item, i) => ({ ...item, index: i })));
     }
   };
 
@@ -90,11 +88,11 @@ export default function Block({
       style={{ opacity, border, borderRadius: '8px' }}
     >
       <Column
-        title={block}
         addItem={addItem}
         removeBlock={removeBlock}
+        block={block}
       >
-        {returnItemsForColumn(block)}
+        {returnItemsForColumn(block.name)}
       </Column>
     </div>
   );
