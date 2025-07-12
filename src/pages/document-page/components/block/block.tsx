@@ -92,7 +92,7 @@ export default function Block({
         removeBlock={removeBlock}
         block={block}
       >
-        {returnItemsForColumn(block.name)}
+        {returnItemsForColumn(`block_${block.id}`)}
       </Column>
     </div>
   );
