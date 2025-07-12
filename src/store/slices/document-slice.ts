@@ -5,11 +5,11 @@ import { DocumentType } from '..';
 import type { RootState } from '..';
 
 type InfoState = {
-  data: DocumentType[],
+  data: DocumentType | null,
 };
 
 export const initialStateDocument: InfoState = {
-  data: [],
+  data: null,
 };
 
 const slice = createSlice({
@@ -19,11 +19,7 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addMatcher(
-        documentApiEndpoints.endpoints.createDocument.matchFulfilled,
-        (state, action) => ({ ...state, data: [...state.data, action.payload] }),
-      )
-      .addMatcher(
-        documentApiEndpoints.endpoints.getUserDocuments.matchFulfilled,
+        documentApiEndpoints.endpoints.getDocument.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
       );
   },

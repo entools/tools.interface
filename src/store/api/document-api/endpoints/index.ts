@@ -21,10 +21,25 @@ const documentApiEndpoints = documentApi
         }),
         invalidatesTags: ['Document'],
       }),
+      getDocument: builder.mutation<DocumentType, number>({
+        query: (id: number) => ({
+          url: `/documents/${id}`,
+          method: 'GET',
+        }),
+        invalidatesTags: ['Document'],
+      }),
       createDocument: builder.mutation<DocumentType, FormPayload>({
         query: (data: FormPayload) => ({
           url: '/documents',
           method: 'POST',
+          body: data,
+        }),
+        invalidatesTags: ['Document'],
+      }),
+      updateDocument: builder.mutation<DocumentType, DocumentType>({
+        query: (data: DocumentType) => ({
+          url: `/documents/${data.id}`,
+          method: 'PATCH',
           body: data,
         }),
         invalidatesTags: ['Document'],
@@ -35,5 +50,7 @@ const documentApiEndpoints = documentApi
 export const {
   useGetUserDocumentsMutation,
   useCreateDocumentMutation,
+  useGetDocumentMutation,
+  useUpdateDocumentMutation,
 } = documentApiEndpoints;
 export { documentApiEndpoints };

@@ -11,6 +11,7 @@ export { default as projectApi } from './project-api/index';
 
 export { default as projectsApi } from './projects-api/index';
 export { default as documentApi } from './document-api/index';
+export { default as blockApi } from './block-api/index';
 
 // Экспортируем все эндпоинты (endpoints) из соответствующих модулей
 // Это позволяет использовать конкретные запросы напрямую в компонентах
@@ -31,3 +32,4 @@ export * from './projects-api/endpoints/index';
 export * from './project-api/endpoints/index';
 
 export * from './document-api/endpoints/index';
+export * from './block-api/endpoints/index';
