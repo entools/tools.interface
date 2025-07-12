@@ -31,7 +31,7 @@ export default function ProjectPage() {
         size="l"
         onClick={() => navigate('/document-add')}
       >
-        Добавить проект
+        Добавить документ
       </Button>
       {/* <NavLink to="/document-add" state={{ pathname: location }}>
         <Icon data={Plus} size={20} />
