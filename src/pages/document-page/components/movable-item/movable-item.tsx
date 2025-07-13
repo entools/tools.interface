@@ -11,21 +11,25 @@ import RainWaterForm from '../form/rain-water';
 import Modal from '../../../../components/modal/modal';
 
 import style from './movable-item.module.css';
+import { useAppDispatch, useAppSelector } from '~/hooks';
+import {
+  blockSelector, changeColumn, moveItem,
+  useDeleteRainRunoffItemMutation,
+} from '~/store';
 
 export default function MovableItem({
   name,
   index,
   currentColumnName,
-  items,
-  setItems,
   id,
 }: MovableItemType) {
+  const dispatch = useAppDispatch();
+  const [deleteRainRunoffItem] = useDeleteRainRunoffItemMutation();
+  const { items } = useAppSelector(blockSelector);
   const [popupForm, setPopupForm] = useState<number | null>(null);
+
   const changeItemColumn = (currentItem: ItemType, columnName: string) => {
-    setItems((prevState: ItemType[]) => prevState.map((e: ItemType) => ({
-      ...e,
-      column: e.name === currentItem.name ? columnName : e.column,
-    })));
+    dispatch(changeColumn({ id: currentItem.id, column: columnName }));
   };
 
   const moveCardHandler = (dragIndex: number, hoverIndex: number, item: ItemType) => {
@@ -33,18 +37,16 @@ export default function MovableItem({
     dragIndex = items.findIndex((x: ItemType) => x.id === item.id);
 
     if (dragItem) {
-      setItems((prevState: ItemType[]) => {
-        const coppiedStateArray = [...prevState];
-        const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
-        coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
-
-        return coppiedStateArray;
-      });
+      dispatch(moveItem({ dragIndex, hoverIndex }));
     }
   };
+
   const editItem = (id: number) => setPopupForm(id);
   const handleClose = () => setPopupForm(null);
-  const removeItem = (id: number) => setItems(items.filter((x: ItemType) => x.id !== id));
+
+  const removeItem = async (id: number) => {
+    await deleteRainRunoffItem(id);
+  };
 
   const ref = useRef(null);
   const [, drop] = useDrop({
