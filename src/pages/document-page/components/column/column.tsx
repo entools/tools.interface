@@ -7,21 +7,36 @@ import { TextInput, Button, Icon } from '@gravity-ui/uikit';
 import { Minus, Plus } from '@gravity-ui/icons';
 import { Controller, useForm } from 'react-hook-form';
 
-import { useUpdateBlocksMutation } from '~/store';
+import {
+  blockSelector,
+  useCreateRainRunoffItemMutation, useRemoveBlockMutation, useUpdateBlocksMutation,
+} from '~/store';
 
 import style from './column.module.css';
+import { useAppSelector } from '~/hooks';
 
 type FormPayload = {
   name: string;
 };
 
 export default function Column({
-  children, block, addItem, removeBlock,
+  children, block,
 }: ColumnType) {
+  const [createRainRunoffItem] = useCreateRainRunoffItemMutation();
+  const [removeBlock] = useRemoveBlockMutation();
   const [updateBlock] = useUpdateBlocksMutation();
+  const { items } = useAppSelector(blockSelector);
   const { control } = useForm<FormPayload>({
     defaultValues: { name: block.name ?? '' },
   });
+
+  const addItem = async (blockId: string) => {
+    await createRainRunoffItem({
+      name: `Item_${items.length + 1}`,
+      block: { id: +blockId.split('_')[1] },
+      index: items.length + 1,
+    });
+  };
 
   const onEditBlockName = async () => {
     // eslint-disable-next-line no-underscore-dangle
