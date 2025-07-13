@@ -15,7 +15,7 @@ import Block from './components/block/block';
 import History from './components/history/history';
 import Tools from './components/tools/tools';
 
-import { useAppSelector, useAppDispatch } from '~/hooks';
+import { useAppSelector } from '~/hooks';
 import {
   useCreateBlockMutation,
   useGetDocumentBlocksMutation,
@@ -23,10 +23,6 @@ import {
   useGetDocumentMutation,
   documentSelector,
   useUpdateDocumentMutation,
-  useRemoveBlockMutation,
-  BlockType,
-  setBlocks,
-  useRefreshBlocksMutation,
 } from '~/store';
 
 import style from './document-page.module.css';
@@ -36,28 +32,17 @@ type FormPayload = {
   name: string;
 };
 
-// const tasks = [{ id: 1, name: 'Item 1', column: 'block_24' }];
-
 export default function DocumentPage() {
-  const dispatch = useAppDispatch();
   const [createBlock] = useCreateBlockMutation();
   const [getBlocks] = useGetDocumentBlocksMutation();
   const [getDocument] = useGetDocumentMutation();
   const [updateDocument] = useUpdateDocumentMutation();
-  const [removeBlock] = useRemoveBlockMutation();
-  const [refreshBlocks] = useRefreshBlocksMutation();
 
-  const blocks = useAppSelector(blockSelector);
+  const { blocks, items } = useAppSelector(blockSelector);
   const document = useAppSelector(documentSelector);
 
   const { projectId, documentId } = useParams();
   const [history, setHistory] = useState(false);
-  const [items, setItems] = useState([]);
-
-  const setData = async (array: BlockType[]) => {
-    await refreshBlocks({ id: +documentId!, data: array });
-    dispatch(setBlocks(array));
-  };
 
   const onEditDocumentName = async () => {
     if (document) {
@@ -78,9 +63,6 @@ export default function DocumentPage() {
       createBlock({ name: `block_${blocks.length + 1}`, index: blocks.length + 1, document: { id: documentId } });
     }
   };
-  const deleteBlock = async (id: number) => {
-    await removeBlock(id);
-  };
 
   const toggleHistory = () => setHistory(!history);
 
@@ -89,11 +71,8 @@ export default function DocumentPage() {
       key={uuidv4()}
       block={block}
       index={index}
-      setBlocks={setData}
       blocks={blocks}
       items={items}
-      setItems={setItems}
-      removeBlock={deleteBlock}
     />
   ));
 
@@ -126,7 +105,12 @@ export default function DocumentPage() {
             <TextInput {...field} onBlur={onEditDocumentName} />
           )}
         />
-        <Tools toggleHistory={toggleHistory} history={history} />
+        <Tools
+          toggleHistory={toggleHistory}
+          history={history}
+          documentId={documentId!}
+          projectId={projectId!}
+        />
       </div>
       <div className={classNames(style.form, { [style.two]: history })}>
         <div className="container">
