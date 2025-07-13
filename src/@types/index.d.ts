@@ -28,15 +28,15 @@ type BlockType = {
   block: Block;
   blocks: Block[];
   items: ItemType[];
-  setBlocks: Dispatch<SetStateAction<string[]>>;
-  setItems: Dispatch<SetStateAction<ItemType[]>>;
-  removeBlock: (id: number) => void;
+  // setBlocks: Dispatch<SetStateAction<string[]>>;
+  // setItems: Dispatch<SetStateAction<ItemType[]>>;
+  // removeBlock: (id: number) => void;
 };
 
 type ColumnType = {
   children: ReactNode;
-  addItem: (blockName: string) => void;
-  removeBlock: (blockId: number) => void;
+  // addItem: (blockName: string) => void;
+  // removeBlock: (blockId: number) => void;
   block: Block;
 };
 
@@ -45,7 +45,7 @@ type MovableItemType = {
   index: number;
   currentColumnName: string;
   items: ItemType[];
-  setItems: Dispatch<SetStateAction<ItemType[]>>;
+  // setItems: Dispatch<SetStateAction<ItemType[]>>;
   id: number;
 };
 
