@@ -16,7 +16,7 @@ const documentApiEndpoints = documentApi
     endpoints: (builder) => ({
       getUserDocuments: builder.mutation<DocumentType[], number>({
         query: (id: number) => ({
-          url: `/documents/project${id}`,
+          url: `/documents/project/${id}`,
           method: 'GET',
         }),
         invalidatesTags: ['Document'],

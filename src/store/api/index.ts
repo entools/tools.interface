@@ -12,6 +12,7 @@ export { default as projectApi } from './project-api/index';
 export { default as projectsApi } from './projects-api/index';
 export { default as documentApi } from './document-api/index';
 export { default as blockApi } from './block-api/index';
+export { default as rainRunoffItemApi } from './rain-runoff-item-api/index';
 
 // Экспортируем все эндпоинты (endpoints) из соответствующих модулей
 // Это позволяет использовать конкретные запросы напрямую в компонентах
@@ -33,3 +34,4 @@ export * from './project-api/endpoints/index';
 
 export * from './document-api/endpoints/index';
 export * from './block-api/endpoints/index';
+export * from './rain-runoff-item-api/endpoints/index';

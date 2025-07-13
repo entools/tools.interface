@@ -1,3 +1,4 @@
+import { RainRunoffItemType } from '../../rain-runoff-item-api/endpoints';
 import blockApi from '../index';
 
 export type BlockType = {
@@ -5,6 +6,7 @@ export type BlockType = {
   name: string;
   document: { id: string };
   index: number;
+  items: ItemType[]
 };
 type FormPayload = Omit<BlockType, 'id'>;
 
@@ -14,8 +16,8 @@ const blockApiEndpoints = blockApi
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      createBlock: builder.mutation<BlockType, FormPayload>({
-        query: (data: FormPayload) => ({
+      createBlock: builder.mutation<BlockType, Omit<FormPayload, 'items'>>({
+        query: (data: Omit<FormPayload, 'items'>) => ({
           url: '/blocks',
           method: 'POST',
           body: data,
@@ -24,7 +26,7 @@ const blockApiEndpoints = blockApi
       }),
       getDocumentBlocks: builder.mutation<BlockType[], number>({
         query: (id: number) => ({
-          url: `/blocks/document${id}`,
+          url: `/blocks/document/${id}`,
           method: 'GET',
         }),
         invalidatesTags: ['Block'],
@@ -38,16 +40,25 @@ const blockApiEndpoints = blockApi
       }),
       refreshBlocks: builder.mutation<BlockType[], { id: number, data: BlockType[] }>({
         query: ({ id, data }: { id: number, data: BlockType[] }) => ({
-          url: `/blocks/document${id}`,
+          url: `/blocks/document/${id}`,
           method: 'PATCH',
           body: data,
         }),
         invalidatesTags: ['Block'],
       }),
-      updateBlocks: builder.mutation<BlockType, BlockType>({
-        query: (data: BlockType) => ({
+      updateBlocks: builder.mutation<BlockType, Block>({
+        query: (data: Block) => ({
           url: `/blocks/${data.id}`,
           method: 'PATCH',
+          body: data,
+        }),
+        invalidatesTags: ['Block'],
+      }),
+
+      createRainRunoffItem: builder.mutation<RainRunoffItemType, Omit<RainRunoffItemType, 'id'>>({
+        query: (data: Omit<RainRunoffItemType, 'id'>) => ({
+          url: '/rain-runoff-items',
+          method: 'POST',
           body: data,
         }),
         invalidatesTags: ['Block'],
@@ -61,5 +72,6 @@ export const {
   useRemoveBlockMutation,
   useRefreshBlocksMutation,
   useUpdateBlocksMutation,
+  useCreateRainRunoffItemMutation,
 } = blockApiEndpoints;
 export { blockApiEndpoints };
