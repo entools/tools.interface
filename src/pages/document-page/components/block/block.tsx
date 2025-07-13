@@ -3,15 +3,14 @@ import { useDrag, useDrop } from 'react-dnd';
 
 import Column from '../column/column';
 import MovableItem from '../movable-item/movable-item';
+import { setBlocks } from '~/store';
+import { useAppDispatch } from '~/hooks';
 
 export default function Block({
-  index, block, setBlocks, blocks, items, setItems, removeBlock,
+  index, block, blocks, items,
 }: BlockType) {
   const ref = useRef(null);
-  const addItem = (column: string) => {
-    setItems([...items, { id: items.length + 1, name: `Item ${items.length + 1}`, column }]);
-  };
-
+  const dispatch = useAppDispatch();
   const moveBlockHandler = (dragIndex: number, hoverIndex: number) => {
     const dragItem = blocks[dragIndex];
 
@@ -20,7 +19,7 @@ export default function Block({
       const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
       coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
 
-      setBlocks(coppiedStateArray.map((item, i) => ({ ...item, index: i })));
+      dispatch(setBlocks(coppiedStateArray.map((item, i) => ({ ...item, index: i }))));
     }
   };
 
@@ -71,7 +70,6 @@ export default function Block({
         key={item.id}
         name={item.name}
         currentColumnName={item.column}
-        setItems={setItems}
         index={idx}
         items={items}
         id={item.id}
@@ -87,11 +85,7 @@ export default function Block({
       ref={ref}
       style={{ opacity, border, borderRadius: '8px' }}
     >
-      <Column
-        addItem={addItem}
-        removeBlock={removeBlock}
-        block={block}
-      >
+      <Column block={block}>
         {returnItemsForColumn(`block_${block.id}`)}
       </Column>
     </div>
