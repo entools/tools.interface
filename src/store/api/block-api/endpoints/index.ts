@@ -1,4 +1,3 @@
-import { RainRunoffItemType } from '../../rain-runoff-item-api/endpoints';
 import blockApi from '../index';
 
 export type BlockType = {
@@ -54,15 +53,6 @@ const blockApiEndpoints = blockApi
         }),
         invalidatesTags: ['Block'],
       }),
-
-      createRainRunoffItem: builder.mutation<RainRunoffItemType, Omit<RainRunoffItemType, 'id'>>({
-        query: (data: Omit<RainRunoffItemType, 'id'>) => ({
-          url: '/rain-runoff-items',
-          method: 'POST',
-          body: data,
-        }),
-        invalidatesTags: ['Block'],
-      }),
     }),
   });
 
@@ -72,6 +62,5 @@ export const {
   useRemoveBlockMutation,
   useRefreshBlocksMutation,
   useUpdateBlocksMutation,
-  useCreateRainRunoffItemMutation,
 } = blockApiEndpoints;
 export { blockApiEndpoints };
