@@ -1,25 +1,28 @@
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
+import { useParams } from 'react-router';
 import Column from '../column/column';
 import MovableItem from '../movable-item/movable-item';
-import { setBlocks } from '~/store';
-import { useAppDispatch } from '~/hooks';
+import { blockSelector, useRefreshBlocksMutation } from '~/store';
+import { useAppSelector } from '~/hooks';
 
-export default function Block({
-  index, block, blocks, items,
-}: BlockType) {
+export default function Block({ index, block }: BlockType) {
+  const { documentId } = useParams();
   const ref = useRef(null);
-  const dispatch = useAppDispatch();
-  const moveBlockHandler = (dragIndex: number, hoverIndex: number) => {
+  const { blocks, items } = useAppSelector(blockSelector);
+  const [refreshBlocks] = useRefreshBlocksMutation();
+  const moveBlockHandler = async (dragIndex: number, hoverIndex: number) => {
     const dragItem = blocks[dragIndex];
 
     if (dragItem) {
       const coppiedStateArray = [...blocks];
       const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
       coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
-
-      dispatch(setBlocks(coppiedStateArray.map((item, i) => ({ ...item, index: i }))));
+      await refreshBlocks({
+        id: +documentId!,
+        data: coppiedStateArray.map((item, i) => ({ ...item, index: i })),
+      });
     }
   };
 
