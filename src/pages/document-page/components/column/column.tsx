@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-console */
 /* eslint-disable max-len */
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
@@ -15,13 +14,9 @@ import {
 import style from './column.module.css';
 import { useAppSelector } from '~/hooks';
 
-type FormPayload = {
-  name: string;
-};
+type FormPayload = { name: string };
 
-export default function Column({
-  children, block,
-}: ColumnType) {
+export default function Column({ children, block }: ColumnType) {
   const [createRainRunoffItem] = useCreateRainRunoffItemMutation();
   const [removeBlock] = useRemoveBlockMutation();
   const [updateBlock] = useUpdateBlocksMutation();
