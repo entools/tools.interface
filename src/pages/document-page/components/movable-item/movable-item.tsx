@@ -11,33 +11,36 @@ import RainWaterForm from '../form/rain-water';
 import Modal from '../../../../components/modal/modal';
 
 import style from './movable-item.module.css';
-import { useAppDispatch, useAppSelector } from '~/hooks';
+import { useAppSelector } from '~/hooks';
 import {
-  blockSelector, changeColumn, moveItem,
+  blockSelector,
+  useChangeItemColumnMutation,
   useDeleteRainRunoffItemMutation,
+  useRefreshRainRunoffItemMutation,
 } from '~/store';
 
 export default function MovableItem({
-  name,
-  index,
-  currentColumnName,
-  id,
+  name, index, currentColumnName, id,
 }: MovableItemType) {
-  const dispatch = useAppDispatch();
   const [deleteRainRunoffItem] = useDeleteRainRunoffItemMutation();
+  const [changeItemBlock] = useChangeItemColumnMutation();
+  const [refreshRainRunoffItem] = useRefreshRainRunoffItemMutation();
   const { items } = useAppSelector(blockSelector);
   const [popupForm, setPopupForm] = useState<number | null>(null);
 
-  const changeItemColumn = (currentItem: ItemType, columnName: string) => {
-    dispatch(changeColumn({ id: currentItem.id, column: columnName }));
+  const changeItemColumn = async (currentItem: ItemType, columnName: string) => {
+    await changeItemBlock({ id: currentItem.id, column: columnName });
   };
 
-  const moveCardHandler = (dragIndex: number, hoverIndex: number, item: ItemType) => {
+  const moveCardHandler = async (dragIndex: number, hoverIndex: number, item: ItemType) => {
     const dragItem = items.find((x: ItemType) => x.id === item.id);
     dragIndex = items.findIndex((x: ItemType) => x.id === item.id);
 
     if (dragItem) {
-      dispatch(moveItem({ dragIndex, hoverIndex }));
+      const newItems = [...items];
+      const [movedItem] = newItems.splice(dragIndex, 1);
+      newItems.splice(hoverIndex, 0, movedItem);
+      await refreshRainRunoffItem(newItems.map((x, index) => ({ ...x, index })));
     }
   };
 
