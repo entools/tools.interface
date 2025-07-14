@@ -13,7 +13,7 @@ type ItemType = {
   id: number;
   name: string;
   column: string;
-  index?: number;
+  index: number;
 };
 
 type Block = {
@@ -26,8 +26,6 @@ type Block = {
 type BlockType = {
   index: number;
   block: Block;
-  blocks: Block[];
-  items: ItemType[];
 };
 
 type ColumnType = {
