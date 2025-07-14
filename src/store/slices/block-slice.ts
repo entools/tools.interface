@@ -6,6 +6,8 @@ import { rainRunoffItemApiEndpoints } from '../api/rain-runoff-item-api/endpoint
 import { BlockType } from '..';
 import type { RootState } from '..';
 
+import compareByName from '~/utils/compare-by-name';
+
 type InfoState = {
   data: {
     blocks: BlockType[],
@@ -19,17 +21,6 @@ export const initialStateBlock: InfoState = {
     items: [],
   },
 };
-
-function compareByName(a: ItemType | BlockType, b: ItemType | BlockType) {
-  if (a.index < b.index) {
-    return -1;
-  }
-  if (a.index > b.index) {
-    return 1;
-  }
-
-  return 0;
-}
 
 const slice = createSlice({
   name: 'block',
@@ -132,6 +123,16 @@ const slice = createSlice({
                 index: action.payload.index,
               },
             ],
+          },
+        }),
+      )
+      .addMatcher(
+        blockApiEndpoints.endpoints.refreshBlocks.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: {
+            blocks: action.meta.arg.originalArgs.data,
+            items: state.data.items,
           },
         }),
       )

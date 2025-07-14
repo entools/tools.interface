@@ -44,6 +44,25 @@ const blockApiEndpoints = blockApi
           body: data,
         }),
         invalidatesTags: ['Block'],
+        // async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
+        //   const patchResult = dispatch(
+        //     blockApiEndpoints.util.updateQueryData('getDocumentBlocks', id, (draft) => {
+        //       Object.assign(draft, patch);
+        //     }),
+        //   );
+        //   try {
+        //     console.log(123);
+        //     await queryFulfilled;
+        //   } catch {
+        //     patchResult.undo();
+
+        //   /**
+        //    * Alternatively, on failure you can invalidate the corresponding cache tags
+        //    * to trigger a re-fetch:
+        //    * dispatch(api.util.invalidateTags(['Post']))
+        //    */
+        //   }
+        // },
       }),
       updateBlocks: builder.mutation<BlockType, Block>({
         query: (data: Block) => ({

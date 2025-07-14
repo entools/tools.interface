@@ -36,13 +36,25 @@ const documentApiEndpoints = documentApi
         }),
         invalidatesTags: ['Document'],
       }),
-      updateDocument: builder.mutation<DocumentType, DocumentType>({
+      updateDocument: builder.mutation<DocumentType, Pick<DocumentType, 'id'> & Partial<DocumentType>>({
         query: (data: DocumentType) => ({
           url: `/documents/${data.id}`,
           method: 'PATCH',
           body: data,
         }),
         invalidatesTags: ['Document'],
+        // async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
+        //   const patchResult = dispatch(
+        //     documentApiEndpoints.util.updateQueryData('getDocument', id, (draft) => {
+        //       Object.assign(draft, patch);
+        //     }),
+        //   );
+        //   try {
+        //     await queryFulfilled;
+        //   } catch {
+        //     patchResult.undo();
+        //   }
+        // },
       }),
     }),
   });

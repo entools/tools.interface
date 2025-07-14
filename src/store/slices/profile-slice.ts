@@ -26,10 +26,6 @@ const slice = createSlice({
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (state, action) => ({ ...state, data: null }),
       );
-    // .addMatcher(
-    //   usersApiEndpoints.endpoints.getUserMe.matchRejected,
-    //   (state, action) => console.log('rejected', action),
-    // )
   },
 });
 
