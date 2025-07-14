@@ -28,9 +28,7 @@ import {
 import style from './document-page.module.css';
 import '.app.css';
 
-type FormPayload = {
-  name: string;
-};
+type FormPayload = { name: string };
 
 export default function DocumentPage() {
   const [createBlock] = useCreateBlockMutation();
@@ -38,11 +36,12 @@ export default function DocumentPage() {
   const [getDocument] = useGetDocumentMutation();
   const [updateDocument] = useUpdateDocumentMutation();
 
-  const { blocks, items } = useAppSelector(blockSelector);
+  const { blocks } = useAppSelector(blockSelector);
   const document = useAppSelector(documentSelector);
 
   const { projectId, documentId } = useParams();
   const [history, setHistory] = useState(false);
+  const toggleHistory = () => setHistory(!history);
 
   const onEditDocumentName = async () => {
     if (document) {
@@ -53,26 +52,18 @@ export default function DocumentPage() {
   };
 
   const { control, reset } = useForm<FormPayload>({
-    defaultValues: {
-      name: document?.name ?? '',
-    },
+    defaultValues: { name: document?.name ?? '' },
   });
 
   const addBlock = () => {
-    if (documentId) {
-      createBlock({ name: `block_${blocks.length + 1}`, index: blocks.length + 1, document: { id: documentId } });
-    }
+    createBlock({ name: `block_${blocks.length + 1}`, index: blocks.length + 1, document: { id: documentId! } });
   };
-
-  const toggleHistory = () => setHistory(!history);
 
   const returnBlocksForColumn = () => blocks.map((block, index) => (
     <Block
       key={uuidv4()}
       block={block}
       index={index}
-      blocks={blocks}
-      items={items}
     />
   ));
 
@@ -101,7 +92,6 @@ export default function DocumentPage() {
           }}
           control={control}
           render={({ field }) => (
-          // render={({ field, fieldState }) => (
             <TextInput {...field} onBlur={onEditDocumentName} />
           )}
         />
