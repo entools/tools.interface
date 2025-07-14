@@ -14,17 +14,6 @@ export const initialStateBlock: InfoState = {
   data: {},
 };
 
-// function compareByName(a: BlockType, b: BlockType) {
-//   if (a.index < b.index) {
-//     return -1;
-//   }
-//   if (a.index > b.index) {
-//     return 1;
-//   }
-
-//   return 0;
-// }
-
 const slice = createSlice({
   name: 'rainRunoffItem',
   initialState: initialStateBlock,
