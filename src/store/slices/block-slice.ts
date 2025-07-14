@@ -6,9 +6,6 @@ import { rainRunoffItemApiEndpoints } from '../api/rain-runoff-item-api/endpoint
 import { BlockType } from '..';
 import type { RootState } from '..';
 
-// type InfoState = {
-//   data: BlockType[],
-// };
 type InfoState = {
   data: {
     blocks: BlockType[],
@@ -16,9 +13,6 @@ type InfoState = {
   },
 };
 
-// export const initialStateBlock: InfoState = {
-//   data: [],
-// };
 export const initialStateBlock: InfoState = {
   data: {
     blocks: [],
@@ -26,7 +20,7 @@ export const initialStateBlock: InfoState = {
   },
 };
 
-function compareByName(a: BlockType, b: BlockType) {
+function compareByName(a: ItemType | BlockType, b: ItemType | BlockType) {
   if (a.index < b.index) {
     return -1;
   }
@@ -51,38 +45,6 @@ const slice = createSlice({
         items: state.data.items,
       },
     }),
-    setItemsInBlocks: (
-      state,
-      { payload: data }: PayloadAction<{blockId: string;}>,
-    ) => ({
-      ...state,
-      data: {
-        blocks: state.data.blocks,
-        items: [
-          ...state.data.items,
-          {
-            id: state.data.items.length + 1,
-            name: `Item ${state.data.items.length + 1}`,
-            column: data.blockId,
-          },
-        ],
-      },
-    }),
-    // [...items, { id: items.length + 1, name: `Item ${items.length + 1}`, column }]
-
-    changeColumn: (
-      state,
-      { payload: data },
-    ) => ({
-      ...state,
-      data: {
-        blocks: state.data.blocks,
-        items: state.data.items.map((item) => (item.id === data.id
-          ? { ...item, column: data.column }
-          : item)),
-      },
-    }),
-
     moveItem: (
       state,
       { payload: data }: PayloadAction<{dragIndex: number; hoverIndex: number}>,
@@ -109,15 +71,6 @@ const slice = createSlice({
         items: state.data.items.filter((x: ItemType) => x.id !== data.id),
       },
     }),
-    // deleteItem
-
-    // moveItem: (state, action: PayloadAction<{dragIndex: number; hoverIndex: number}>) => {
-    //   const newItems = [...state];
-    //   const [movedItem] = newItems.splice(action.payload.dragIndex, 1);
-    //   newItems.splice(action.payload.hoverIndex, 0, movedItem);
-    //   return newItems;
-    // },
-
   },
   extraReducers: (builder) => {
     builder
@@ -132,12 +85,25 @@ const slice = createSlice({
         }),
       )
       .addMatcher(
+        rainRunoffItemApiEndpoints.endpoints.changeItemColumn.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: {
+            blocks: state.data.blocks,
+            items: state.data.items.map((item) => (item.id === action.meta.arg.originalArgs.id
+              ? { ...item, column: action.meta.arg.originalArgs.column }
+              : item)),
+          },
+        }),
+      )
+      .addMatcher(
         blockApiEndpoints.endpoints.getDocumentBlocks.matchFulfilled,
         (state, action) => ({
           ...state,
           data: {
             blocks: action.payload.sort(compareByName),
-            items: action.payload.reduce((a, x) => [...a, ...x.items.map((it) => ({ ...it, column: `block_${x.id}` }))], [] as ItemType[]), // state.data.items,
+            items: action.payload
+              .reduce((a, x) => [...a, ...x.items.map((it) => ({ ...it, column: `block_${x.id}` }))], [] as ItemType[]).sort(compareByName), // state.data.items,
           },
         }),
       )
@@ -152,7 +118,7 @@ const slice = createSlice({
         }),
       )
       .addMatcher(
-        blockApiEndpoints.endpoints.createRainRunoffItem.matchFulfilled,
+        rainRunoffItemApiEndpoints.endpoints.createRainRunoffItem.matchFulfilled,
         (state, action) => ({
           ...state,
           data: {
@@ -169,17 +135,16 @@ const slice = createSlice({
           },
         }),
       )
-      // .addMatcher(
-      //   rainRunoffItemApiEndpoints.endpoints.deleteRainRunoffItem.matchFulfilled,
-      //   (state, action) => ({
-      //     ...state,
-      //     data: {
-      //       blocks: state.data.blocks,
-      //       items: state.data.items,
-      //     },
-      //   }),
-      // )
-
+      .addMatcher(
+        rainRunoffItemApiEndpoints.endpoints.refreshRainRunoffItem.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: {
+            blocks: state.data.blocks,
+            items: action.meta.arg.originalArgs,
+          },
+        }),
+      )
       .addMatcher(
         rainRunoffItemApiEndpoints.endpoints.deleteRainRunoffItem.matchFulfilled,
         (state, action) => ({
@@ -190,21 +155,10 @@ const slice = createSlice({
           },
         }),
       );
-    // .addMatcher(
-    //   blockApiEndpoints.endpoints.updateBlocks.matchFulfilled,
-    //   (state, action) => ({
-    //     ...state,
-    //     data: state.data.map((x) => (x.id === action.payload.id
-    //       ? { ...x, name: action.payload.name }
-    //       : x)),
-    //   }),
-    // );
   },
 });
 
-export const {
-  setBlocks, setItemsInBlocks, changeColumn, moveItem, deleteItem,
-} = slice.actions;
+export const { setBlocks, moveItem, deleteItem } = slice.actions;
 export default slice.reducer;
 
 export const blockSelector = (state: RootState) => state.block.data;
