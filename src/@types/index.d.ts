@@ -12,8 +12,9 @@ type User = {
 type ItemType = {
   id: number;
   name: string;
-  column: string;
+  column?: string;
   index: number;
+  block: { id: number; };
 };
 
 type Block = {
@@ -34,11 +35,14 @@ type ColumnType = {
 };
 
 type MovableItemType = {
-  name: string;
+  item: ItemType;
   index: number;
-  currentColumnName: string;
-  items: ItemType[];
-  id: number;
+};
+
+type TemplateType = {
+  item: ItemType;
+  popupForm: number | null;
+  handleClose: () => void;
 };
 
 type ProjectType = {
