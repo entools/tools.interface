@@ -28,6 +28,13 @@ const documentApiEndpoints = documentApi
         }),
         invalidatesTags: ['Document'],
       }),
+      deleteDocument: builder.mutation<DocumentType, number>({
+        query: (id: number) => ({
+          url: `/documents/${id}`,
+          method: 'DELETE',
+        }),
+        invalidatesTags: ['Document'],
+      }),
       createDocument: builder.mutation<DocumentType, FormPayload>({
         query: (data: FormPayload) => ({
           url: '/documents',
@@ -64,5 +71,6 @@ export const {
   useCreateDocumentMutation,
   useGetDocumentMutation,
   useUpdateDocumentMutation,
+  useDeleteDocumentMutation,
 } = documentApiEndpoints;
 export { documentApiEndpoints };
