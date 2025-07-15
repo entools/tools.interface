@@ -4,6 +4,7 @@ USER-PROFILE[Profile] --> |user_id| USER-PROJECT[Project]
 USER-PROJECT --> |project_id| DOCUMENT[Document]
 DOCUMENT <--> |document_id| BLOCK[Block]
 BLOCK[Block] <--> |block_id| ITEM[Item]
+ITEM <--> RAIN
 LIBRARY[Library] --> |document_type_id| ITEM[Item]
 DOCUMENT-TYPE[Document type] --> |document_type_id| DOCUMENT
 
