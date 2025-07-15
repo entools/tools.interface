@@ -32,6 +32,13 @@ const slice = createSlice({
           ...state,
           data: state.data.map((item) => (action.payload.id === item.id ? action.payload : item)),
         }),
+      )
+      .addMatcher(
+        documentApiEndpoints.endpoints.deleteDocument.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: state.data.filter((x) => +x.id !== action.meta.arg.originalArgs),
+        }),
       );
   },
 });

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { blockApiEndpoints } from '../api/block-api/endpoints/index';
-import { rainRunoffItemApiEndpoints } from '../api/rain-runoff-item-api/endpoints/index';
+import { itemApiEndpoints } from '../api/item-api/endpoints/index';
 
 import { BlockType } from '..';
 import type { RootState } from '..';
@@ -76,7 +76,7 @@ const slice = createSlice({
         }),
       )
       .addMatcher(
-        rainRunoffItemApiEndpoints.endpoints.changeItemColumn.matchFulfilled,
+        itemApiEndpoints.endpoints.changeItemColumn.matchFulfilled,
         (state, action) => ({
           ...state,
           data: {
@@ -109,7 +109,7 @@ const slice = createSlice({
         }),
       )
       .addMatcher(
-        rainRunoffItemApiEndpoints.endpoints.createRainRunoffItem.matchFulfilled,
+        itemApiEndpoints.endpoints.createItem.matchFulfilled,
         (state, action) => ({
           ...state,
           data: {
@@ -121,6 +121,7 @@ const slice = createSlice({
                 name: action.payload.name,
                 column: `block_${action.payload.block.id}`,
                 index: action.payload.index,
+                block: { id: action.payload.block.id },
               },
             ],
           },
@@ -137,7 +138,7 @@ const slice = createSlice({
         }),
       )
       .addMatcher(
-        rainRunoffItemApiEndpoints.endpoints.refreshRainRunoffItem.matchFulfilled,
+        itemApiEndpoints.endpoints.refreshItem.matchFulfilled,
         (state, action) => ({
           ...state,
           data: {
@@ -147,7 +148,7 @@ const slice = createSlice({
         }),
       )
       .addMatcher(
-        rainRunoffItemApiEndpoints.endpoints.deleteRainRunoffItem.matchFulfilled,
+        itemApiEndpoints.endpoints.deleteItem.matchFulfilled,
         (state, action) => ({
           ...state,
           data: {

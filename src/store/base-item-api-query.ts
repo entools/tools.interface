@@ -2,11 +2,11 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/query';
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { toast, type ToastOptions } from 'react-toastify';
 
-import { BASE_RAIN_RUNOFF_ITEM_API_URL } from '../utils/constants/constants';
+import { BASE_ITEM_API_URL } from '../utils/constants/constants';
 
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
-  baseUrl: BASE_RAIN_RUNOFF_ITEM_API_URL,
+  baseUrl: BASE_ITEM_API_URL,
   prepareHeaders: (headers) => headers,
   credentials: 'include',
 });
