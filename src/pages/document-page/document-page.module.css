@@ -1,55 +1,63 @@
+/* Общие стили для всех элементов */
+:root {
+    --block-background: #fff;
+    --gap: 8px;
+    --border-radius: 8px;
+    --padding: 8px;
+}
+
+/* Инструменты */
 .tools {
-  display: flex;
-  justify-content: space-between;
-  text-align: left;
-  padding: 0;
-  padding-left: 8px;
-  margin: 0 8px;
-  margin-top: 12px;
-  border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    margin-top: 12px;
+    margin: 0 var(--gap);
+    padding-left: var(--gap);
+    border-radius: var(--border-radius);
 }
 
+/* Заголовки */
 .title {
-  border-radius: 4px;
-  min-width: 300px;
-  border: 0;
-  padding: 0 8px;
-  font-weight: 500;
-  margin-left: 4px;
+    border-radius: 4px;
+    min-width: 300px;
+    border: 0;
+    padding: 0 var(--gap);
+    font-weight: 500;
+    margin-left: 4px;
 }
 
+/* Форма */
 .form {
-  margin: 0 8px;
-  height: 100%;
-  border-radius: 8px;
-  display: grid;
-  gap: 8px;
-  grid-template-columns: 4fr;
+    margin: 0 var(--gap);
+    height: 100%;
+    border-radius: var(--border-radius);
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: 4fr;
 }
 
+/* Двухколоночная форма */
 .two {
-  grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 1fr;
 }
 
+/* Основной контейнер */
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  border-radius: 12px;
-  padding: 8px;
-  background-color: var(--block-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: var(--gap);
+    background-color: var(--block-background);
 }
 
+/* Базовый блок */
 .block {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  border: 1px solid red;
-  width: 100%;
-}
-
-.buttons {
-  display: flex;
-  padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid red;
+    width: 100%;
 }
