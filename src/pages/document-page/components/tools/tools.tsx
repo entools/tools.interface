@@ -5,20 +5,25 @@ import {
 } from '@gravity-ui/icons';
 
 import style from './tools.module.css';
+import { useDeleteDocumentMutation } from '~/store';
 
 export default function Tools({
   toggleHistory, history, documentId, projectId,
 }
   : { toggleHistory: () => void; history: boolean; documentId: string; projectId: string }) {
+  const [deleteDocument] = useDeleteDocumentMutation();
   const navigate = useNavigate();
-  console.log(documentId);
+  const onClickDeleteDocument = async () => {
+    await deleteDocument(+documentId!);
+    navigate(`/projects/${projectId}`);
+  };
 
   return (
     <div className={style.tools}>
       <Button
         className={style.button}
         title="Удалить"
-        onClick={() => navigate(`/projects/${projectId}`)}
+        onClick={onClickDeleteDocument}
       >
         <Icon data={TrashBin} size={16} />
       </Button>
