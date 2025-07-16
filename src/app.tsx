@@ -10,6 +10,7 @@ import DocumentAddPage from './pages/document-add-page/document-add-page';
 import ProfilePage from './pages/profile-page/profile-page';
 import SearchPage from './pages/search-page/search-page';
 import ProjectPage from './pages/project-page/project-page';
+import ProjectsPage from './pages/projects-page/projects-page';
 import ProjectAdd from './pages/project-add-page/project-add-page';
 import UsersPage from './pages/users-page/users-page';
 import OauthPage from './pages/oauth-page/oauth-page';
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="projects/:projectId" element={(<ProjectPage />)} />
           <Route path="/projects/:projectId/documents/:documentId" element={(<DocumentPage />)} />
           <Route path="/projects/add" element={(<ProjectAdd />)} />
+          <Route path="/projects" element={(<ProjectsPage />)} />
           <Route path="/document-add" element={(<DocumentAddPage />)} />
         </Route>
         <Route path="/oauth" element={(<OauthPage />)} />
