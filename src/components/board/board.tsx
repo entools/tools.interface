@@ -1,49 +1,66 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router';
+/* eslint-disable react/jsx-props-no-spreading */
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { v4 as uuidv4 } from 'uuid';
 
-import reactLogo from '../../assets/react.svg';
+import { Button, Icon } from '@gravity-ui/uikit';
+import { Plus } from '@gravity-ui/icons';
+
+import Block from './components/block/block';
+
+import { useAppSelector } from '~/hooks';
+import {
+  useCreateBlockMutation,
+  useGetDocumentBlocksMutation,
+  blockSelector,
+  useGetDocumentMutation,
+} from '~/store';
 
 import style from './board.module.css';
+import '.app.css';
 
 export default function Board() {
-  const [count, setCount] = useState(0);
+  const [createBlock] = useCreateBlockMutation();
+  const [getBlocks] = useGetDocumentBlocksMutation();
+  const [getDocument] = useGetDocumentMutation();
+  const { blocks } = useAppSelector(blockSelector);
+  const { projectId, documentId } = useParams();
+
+  const addBlock = () => {
+    createBlock({ name: `block_${blocks.length + 1}`, index: blocks.length + 1, document: { id: documentId! } });
+  };
+
+  const returnBlocksForColumn = () => blocks.map((block, index) => (
+    <Block
+      key={uuidv4()}
+      block={block}
+      index={index}
+    />
+  ));
+
+  useEffect(() => {
+    if (documentId) {
+      getBlocks(+documentId);
+      getDocument(+documentId);
+    }
+  }, [documentId, projectId]);
 
   return (
-    <div className={style.board}>
-      <div className={style.header}>
-        header
-        <div className={style.menu}>
-          <NavLink to="/about" className={style.link}>
-            ?
-          </NavLink>
-        </div>
+    <DndProvider backend={HTML5Backend}>
+      {returnBlocksForColumn()}
+      <div className={style.buttons}>
+        <Button
+          title="Добавить блок"
+          view="action"
+          size="s"
+          onClick={addBlock}
+        >
+          <Icon data={Plus} size={16} />
+          Добавить блок
+        </Button>
       </div>
-      <div className={style.desk}>
-
-        <div>
-          <a href="https://react.dev" target="_blank" rel="noreferrer">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </a>
-        </div>
-        <h1>Vite + React</h1>
-        <div className="card">
-          <button type="button" onClick={() => setCount((cnt) => cnt + 1)}>
-            count is
-            {' '}
-            {count}
-          </button>
-          <p>
-            Edit
-            {' '}
-            <code>src/App.tsx</code>
-            {' '}
-            and save to test HMR
-          </p>
-        </div>
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
-      </div>
-    </div>
+    </DndProvider>
   );
 }
