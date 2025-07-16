@@ -6,7 +6,7 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 
 import {
   authApi, profileApi, projectApi, projectsApi, documentApi, blockApi,
-  itemApi, documentTypeApi,
+  itemApi, documentTypeApi, rainRunoffApi,
 } from './api/index';
 
 import userReducer from './slices/profile-slice';
@@ -17,6 +17,7 @@ import documentReducer from './slices/document-slice';
 import blockReducer from './slices/block-slice';
 import itemSliceReducer from './slices/item-slice';
 import documentTypeReducer from './slices/document-type-slice';
+import rainRunoffReducer from './slices/rain-runoff-slice';
 
 // import { isServer } from '../utils';
 
@@ -28,6 +29,7 @@ export * from './api/document-api/endpoints/index';
 export * from './api/block-api/endpoints/index';
 export * from './api/item-api/endpoints/index';
 export * from './api/document-type-api/endpoints/index';
+export * from './api/rain-runoff-api/endpoints/index';
 
 export * from './slices/index';
 
@@ -54,6 +56,7 @@ export const store = configureStore({
     documentType: documentTypeReducer,
     block: blockReducer,
     item: itemSliceReducer,
+    rainRunoff: rainRunoffReducer,
     [authApi.reducerPath]: authApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,
     [projectApi.reducerPath]: projectApi.reducer,
@@ -62,6 +65,7 @@ export const store = configureStore({
     [blockApi.reducerPath]: blockApi.reducer,
     [itemApi.reducerPath]: itemApi.reducer,
     [documentTypeApi.reducerPath]: documentTypeApi.reducer,
+    [rainRunoffApi.reducerPath]: rainRunoffApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
@@ -75,6 +79,7 @@ export const store = configureStore({
       documentTypeApi.middleware,
       blockApi.middleware,
       itemApi.middleware,
+      rainRunoffApi.middleware,
     // routerMiddleware,
     ),
 });
