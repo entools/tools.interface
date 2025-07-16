@@ -13,7 +13,7 @@ export default function ProjectPage() {
 
   const onSubmit = async (data: FormPayload) => {
     const result = (await createProject(data)) as unknown as { data: ProjectType };
-    navigate(`/projects/${result.data.id}/documents/1`);
+    navigate(`/projects/${result.data.id}`);
   };
 
   return (
