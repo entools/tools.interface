@@ -1,7 +1,8 @@
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-
+import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router';
+
 import Column from '../column/column';
 import MovableItem from '../movable-item/movable-item';
 import { blockSelector, useRefreshBlocksMutation } from '~/store';
@@ -70,12 +71,9 @@ export default function Block({ index, block }: BlockType) {
     .filter((item: ItemType) => item.column === columnName)
     .map((item: ItemType, idx: number) => (
       <MovableItem
-        key={item.id}
-        name={item.name}
-        currentColumnName={item.column}
+        key={uuidv4()}
         index={idx}
-        items={items}
-        id={item.id}
+        item={item}
       />
     ));
 

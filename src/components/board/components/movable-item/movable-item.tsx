@@ -1,52 +1,45 @@
-/* eslint-disable react/no-children-prop */
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { Button, Icon } from '@gravity-ui/uikit';
 import { Minus, Pencil } from '@gravity-ui/icons';
-import { v4 as uuidv4 } from 'uuid';
 
-import RainWaterForm from '../form/rain-water';
-import Modal from '../../../../components/modal/modal';
+import RainRunoff from '../../../rain-runoff/rain-runoff';
 
 import style from './movable-item.module.css';
 import { useAppSelector } from '~/hooks';
 import {
   blockSelector,
   useChangeItemColumnMutation,
-  useDeleteRainRunoffItemMutation,
-  useRefreshRainRunoffItemMutation,
+  useDeleteItemMutation,
+  useRefreshItemMutation,
 } from '~/store';
 
-export default function MovableItem({
-  name, index, currentColumnName, id,
-}: MovableItemType) {
-  const [deleteRainRunoffItem] = useDeleteRainRunoffItemMutation();
+export default function MovableItem({ item, index }: MovableItemType) {
+  const [deleteRainRunoffItem] = useDeleteItemMutation();
   const [changeItemBlock] = useChangeItemColumnMutation();
-  const [refreshRainRunoffItem] = useRefreshRainRunoffItemMutation();
+  const [refreshItem] = useRefreshItemMutation();
   const { items } = useAppSelector(blockSelector);
   const [popupForm, setPopupForm] = useState<number | null>(null);
-
   const changeItemColumn = async (currentItem: ItemType, columnName: string) => {
     await changeItemBlock({ id: currentItem.id, column: columnName });
   };
 
-  const moveCardHandler = async (dragIndex: number, hoverIndex: number, item: ItemType) => {
-    const dragItem = items.find((x: ItemType) => x.id === item.id);
-    dragIndex = items.findIndex((x: ItemType) => x.id === item.id);
+  const moveCardHandler = async (dragIndex: number, hoverIndex: number, { id }: ItemType) => {
+    const dragItem = items.find((x: ItemType) => x.id === id);
+    dragIndex = items.findIndex((x: ItemType) => x.id === id);
 
     if (dragItem) {
       const newItems = [...items];
       const [movedItem] = newItems.splice(dragIndex, 1);
       newItems.splice(hoverIndex, 0, movedItem);
-      await refreshRainRunoffItem(newItems.map((x, index) => ({ ...x, index })));
+      await refreshItem(newItems.map((x, i) => ({ ...x, index: i })));
     }
   };
 
-  const editItem = (id: number) => setPopupForm(id);
   const handleClose = () => setPopupForm(null);
-
+  const editItem = (id: number) => setPopupForm(id);
   const removeItem = async (id: number) => {
     await deleteRainRunoffItem(id);
   };
@@ -87,7 +80,7 @@ export default function MovableItem({
   const [{ isDragging }, drag] = useDrag({
     type: 'items',
     item: {
-      index, name, currentColumnName, id,
+      index, name: item.name, currentColumnName: item.column, id: item.id,
     },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
@@ -108,56 +101,29 @@ export default function MovableItem({
   const opacity = isDragging ? 0.4 : 1;
   drag(drop(ref));
 
-  const initValues = {
-    roof: '0.31',
-    pavements: '0.09',
-    tracks: '0.125',
-    ground: '0.064',
-    cobblestone: '0.145',
-    stone: '0',
-    lawns: '0.38',
-    flow: '0.224',
-    place: '1',
-    intensity: '80',
-    condition: '0',
-    // koef: 0.65,
-    timeInit: '5',
-    lengthPipe: '350',
-    lengthTray: '50',
-    velocityPipe: '0.8',
-    velocityTray: '0.7',
-  };
-  const [values, setValues] = useState<Record<string, string>>(initValues);
-
   return (
     <div ref={ref} className="movable-item" style={{ opacity }}>
-      <ul className={style.fields}>
-        <li className={style.position}>{id}</li>
-        {Object.values(values).map((x) => (<li key={uuidv4()} className={style.field}>{x}</li>))}
-      </ul>
+      <RainRunoff
+        item={item}
+        popupForm={popupForm}
+        handleClose={handleClose}
+      />
       <div className={style.tools}>
         <Button
           className={style.edit}
-          onClick={() => editItem(id)}
+          onClick={() => editItem(item.id)}
           title="Редактировать строку"
         >
           <Icon data={Pencil} size={16} />
         </Button>
         <Button
           className={style.remove}
-          onClick={() => removeItem(id)}
+          onClick={() => removeItem(item.id)}
           title="Удалить строку"
         >
           <Icon data={Minus} size={16} />
         </Button>
       </div>
-      {popupForm && (
-        <Modal
-          title="Rain Water"
-          onClose={handleClose}
-          children={(<RainWaterForm data={values} setData={setValues} onClose={handleClose} />)}
-        />
-      )}
     </div>
   );
 }
