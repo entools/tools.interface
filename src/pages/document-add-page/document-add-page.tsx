@@ -12,9 +12,13 @@ export default function DocumentAddPage() {
   const project = useAppSelector(projectSelector);
   const [createDocument, { isLoading }] = useCreateDocumentMutation();
 
-  const onSubmit = async (data: { name: string; documentType: string }) => {
+  const onSubmit = async (data: { name: string; documentType: string[] }) => {
     if (project) {
-      const result = await createDocument({ ...data, project: { id: project.id } });
+      const result = await createDocument({
+        name: data.name,
+        documentType: data.documentType[0],
+        project: { id: project.id },
+      });
 
       if (result?.data) {
         navigate(`/projects/${project.id}/documents/${result.data.id}`);
