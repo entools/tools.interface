@@ -1,0 +1,15 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.button {
+  margin-top: 20px;
+  font-weight: 900;
+}
+
+.xl {
+  margin-top: 10px;
+}
