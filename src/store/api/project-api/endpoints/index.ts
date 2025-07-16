@@ -62,12 +62,17 @@ const projectApiEndpoints = projectApi
         }),
         invalidatesTags: ['Project'],
       }),
-
       setActiveProject: builder.mutation<ProjectType, number>({
         query: (id: number) => ({
           url: `/projects/${id}`,
           method: 'PUT',
           // body: data,
+        }),
+      }),
+      deleteProject: builder.mutation<void, number>({
+        query: (id: number) => ({
+          url: `/projects/${id}`,
+          method: 'DELETE',
         }),
       }),
     }),
@@ -80,7 +85,7 @@ export const {
   // useGetProjectsMutation,
   useCreateProjectMutation,
   useGetCurrentProjectMutation,
-
+  useDeleteProjectMutation,
   useSetActiveProjectMutation,
   useGetProjectMutation,
   useUpdateProjectMutation,

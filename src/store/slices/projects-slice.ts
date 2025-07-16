@@ -5,6 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // Импортируем эндпоинты API для работы с проектами
 // Это позволит нам обрабатывать действия, связанные с API
 import { projectsApiEndpoints } from '../api/projects-api/endpoints/index';
+import { projectApiEndpoints } from '../api/project-api/endpoints/index';
 
 // Импортируем тип RootState для создания селектора
 // Это позволит нам правильно типизировать наш селектор
@@ -38,6 +39,13 @@ const slice = createSlice({
       .addMatcher(
         projectsApiEndpoints.endpoints.getProjects.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        projectApiEndpoints.endpoints.deleteProject.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: state.data.filter((x) => +x.id !== action.meta.arg.originalArgs),
+        }),
       );
   },
 });

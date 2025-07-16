@@ -50,6 +50,11 @@ const slice = createSlice({
       .addMatcher(
         projectApiEndpoints.endpoints.createProject.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        projectApiEndpoints.endpoints.deleteProject.matchFulfilled,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        (state, action) => ({ ...state, data: null }),
       );
   },
 });

@@ -6,7 +6,7 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 
 import {
   authApi, profileApi, projectApi, projectsApi, documentApi, blockApi,
-  itemApi,
+  itemApi, documentTypeApi,
 } from './api/index';
 
 import userReducer from './slices/profile-slice';
@@ -16,6 +16,7 @@ import documentsReducer from './slices/documents-slice';
 import documentReducer from './slices/document-slice';
 import blockReducer from './slices/block-slice';
 import itemSliceReducer from './slices/item-slice';
+import documentTypeReducer from './slices/document-type-slice';
 
 // import { isServer } from '../utils';
 
@@ -26,6 +27,7 @@ export * from './api/project-api/endpoints/index';
 export * from './api/document-api/endpoints/index';
 export * from './api/block-api/endpoints/index';
 export * from './api/item-api/endpoints/index';
+export * from './api/document-type-api/endpoints/index';
 
 export * from './slices/index';
 
@@ -49,6 +51,7 @@ export const store = configureStore({
     project: projectReducer,
     document: documentReducer,
     documents: documentsReducer,
+    documentType: documentTypeReducer,
     block: blockReducer,
     item: itemSliceReducer,
     [authApi.reducerPath]: authApi.reducer,
@@ -58,6 +61,7 @@ export const store = configureStore({
     [documentApi.reducerPath]: documentApi.reducer,
     [blockApi.reducerPath]: blockApi.reducer,
     [itemApi.reducerPath]: itemApi.reducer,
+    [documentTypeApi.reducerPath]: documentTypeApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
@@ -68,6 +72,7 @@ export const store = configureStore({
       projectApi.middleware,
       projectsApi.middleware,
       documentApi.middleware,
+      documentTypeApi.middleware,
       blockApi.middleware,
       itemApi.middleware,
     // routerMiddleware,
