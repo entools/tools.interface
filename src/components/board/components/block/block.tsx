@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 
 import Column from '../column/column';
 import MovableItem from '../movable-item/movable-item';
+
 import { blockSelector, useRefreshBlocksMutation } from '~/store';
 import { useAppSelector } from '~/hooks';
 
@@ -78,7 +79,7 @@ export default function Block({ index, block }: BlockType) {
     ));
 
   const opacity = isDragging ? 0.4 : 1;
-  const border = isDragging ? 'solid 1px var(--g-color-base-generic)' : 'none';
+  const border = isDragging ? 'solid 1px var(--table-cell)' : 'none';
 
   drag(drop(ref));
   return (
