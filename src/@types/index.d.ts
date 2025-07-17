@@ -9,12 +9,33 @@ type User = {
   profileSettings: string;
 };
 
+type RainRunoffType = {
+  id: number;
+  roof: string;
+  pavements: string;
+  tracks: string;
+  ground: string;
+  cobblestone: string;
+  stone: string;
+  lawns: string;
+  place: string;
+  intensity: string;
+  condition: string;
+  // koef: number;
+  timeInit: string;
+  lengthPipe: string;
+  lengthTray: string;
+  velocityPipe: string;
+  velocityTray: string;
+  flow: string;
+};
 type ItemType = {
   id: number;
   name: string;
   column?: string;
   index: number;
   block: { id: number; };
+  rainRunoff: RainRunoffType;
 };
 
 type Block = {
@@ -50,4 +71,5 @@ type ProjectType = {
   name: string;
   description: string;
   address: string;
+  // blocks: BlockType[];
 };
