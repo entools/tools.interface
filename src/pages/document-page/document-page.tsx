@@ -11,7 +11,6 @@ import Tools from './components/tools/tools';
 
 import { useAppSelector } from '~/hooks';
 import {
-  useGetDocumentBlocksMutation,
   useGetDocumentMutation,
   documentSelector,
   useUpdateDocumentMutation,
@@ -22,7 +21,6 @@ import style from './document-page.module.css';
 type FormPayload = { name: string };
 
 export default function DocumentPage() {
-  const [getBlocks] = useGetDocumentBlocksMutation();
   const [getDocument] = useGetDocumentMutation();
   const [updateDocument] = useUpdateDocumentMutation();
 
@@ -35,7 +33,7 @@ export default function DocumentPage() {
     if (document) {
       // eslint-disable-next-line no-use-before-define, no-underscore-dangle
       const { name } = control._formValues;
-      await updateDocument({ ...document, name });
+      await updateDocument({ id: document.id, name });
     }
   };
 
@@ -45,7 +43,6 @@ export default function DocumentPage() {
 
   useEffect(() => {
     if (documentId) {
-      getBlocks(+documentId);
       getDocument(+documentId);
     }
   }, [documentId, projectId]);
