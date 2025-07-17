@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink, useNavigate } from 'react-router';
 import { Select, Icon } from '@gravity-ui/uikit';
 import { FolderOpen, Plus } from '@gravity-ui/icons';
 import classNames from 'classnames';
 
-import { useGetProjectsMutation, useGetCurrentProjectMutation, useSetActiveProjectMutation } from '~/store';
+import { useGetProjectsMutation, useSetActiveProjectMutation } from '~/store';
 import { projectsSelector } from '~/store/slices/projects-slice';
 import { projectSelector } from '~/store/slices/project-slice';
 import { useAppSelector } from '~/hooks';
@@ -14,7 +14,6 @@ import style from './logo.module.css';
 export default function Logo({ sidebarWidth }: { sidebarWidth: number }) {
   const navigate = useNavigate();
   const [getProjects, { isLoading }] = useGetProjectsMutation();
-  const [getCurrentProject] = useGetCurrentProjectMutation();
   const [setActiveProject] = useSetActiveProjectMutation();
 
   const projects = useAppSelector(projectsSelector);
@@ -35,10 +34,6 @@ export default function Logo({ sidebarWidth }: { sidebarWidth: number }) {
     const result = await setActiveProject(+arr[0]);
     navigate(`/projects/${result.data?.id}`);
   };
-
-  useEffect(() => {
-    getCurrentProject();
-  }, []);
 
   return (
     <div className={classNames(style.header, { [style.small]: sidebarWidth < 100 })}>
