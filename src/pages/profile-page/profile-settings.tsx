@@ -71,7 +71,6 @@ export default function ProfileSettings() {
   return (
     <div className={style.settings}>
       <div className={style.theme}>
-        theme
         <div className={style.select}>
           <Select
             name="theme"
@@ -86,7 +85,6 @@ export default function ProfileSettings() {
 
       <div className={style.notification}>
         <div className={style.block}>
-          notification
           <Button
             view="normal"
             pin="round-round"
@@ -133,7 +131,6 @@ export default function ProfileSettings() {
       </div>
 
       <div className={style.base}>
-        base
         <Button
           view="normal"
           pin="round-round"
