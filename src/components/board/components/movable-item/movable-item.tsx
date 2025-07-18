@@ -22,6 +22,7 @@ export default function MovableItem({ item, index }: MovableItemType) {
   const [refreshItem] = useRefreshItemMutation();
   const { items } = useAppSelector(blockSelector);
   const [popupForm, setPopupForm] = useState<number | null>(null);
+
   const changeItemColumn = async (currentItem: ItemType, columnName: string) => {
     await changeItemBlock({ id: currentItem.id, column: columnName });
   };
