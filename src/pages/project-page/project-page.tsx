@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Button, Text } from '@gravity-ui/uikit';
 import { useNavigate, useParams } from 'react-router';
+import { Button, Text } from '@gravity-ui/uikit';
 
 import { useAppSelector } from '~/hooks';
 import { projectSelector, useUpdateProjectMutation, useDeleteProjectMutation } from '~/store';
 
 import ProjectForm from './project-form';
+
+import style from './project-page.module.css';
 
 export type FormPayload = Omit<ProjectType, 'id'>;
 
@@ -31,25 +33,34 @@ export default function ProjectPage() {
 
   return (
     <div className="layout">
-      <Text variant="header-2">{`Проект - ${project?.name}`}</Text>
-      <Button
-        view="outlined-danger"
-        size="l"
-        onClick={onDeleteProject}
-      >
-        Удалить проект
-      </Button>
-      <ProjectForm onSubmit={onSubmit} isLoading={isLoading} project={project} />
-      <Button
-        view="outlined-success"
-        size="l"
-        onClick={() => navigate('/document-add')}
-      >
-        Добавить документ
-      </Button>
-      {/* <NavLink to="/document-add" state={{ pathname: location }}>
-        <Icon data={Plus} size={20} />
-      </NavLink> */}
+      <div>
+        <div>
+          <Text variant="header-2">{`Проект - ${project?.name}`}</Text>
+        </div>
+        <div className={style.buttons}>
+          <Button
+            className={style.button}
+            view="normal"
+            size="l"
+            onClick={() => navigate('/document-add')}
+          >
+            Добавить документ
+          </Button>
+          <Button
+            className={style.button}
+            view="normal"
+            size="l"
+            onClick={onDeleteProject}
+          >
+            Удалить проект
+          </Button>
+        </div>
+      </div>
+      <ProjectForm
+        onSubmit={onSubmit}
+        isLoading={isLoading}
+        project={project}
+      />
     </div>
   );
 }
