@@ -4,7 +4,7 @@ import { useEffect, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 // import { motion, AnimatePresence } from 'framer-motion';
 
-import { Icon } from '@gravity-ui/uikit';
+import { Icon, Text } from '@gravity-ui/uikit';
 import { Xmark } from '@gravity-ui/icons';
 import ModalOverlay from '../modal-overlay/modal-overlay';
 
@@ -51,7 +51,7 @@ export default function Modal({
         // animate={MODAL_CONFIG.ANIMATE}
         // exit={MODAL_CONFIG.EXIT}
       >
-        {title && <h2 className={style.title}>{title}</h2>}
+        {title && <Text variant="header-2">{title}</Text>}
         <button type="button" className={style.close} data-test="close-button" onClick={onClose}>
           <Icon data={Xmark} size={16} />
         </button>
