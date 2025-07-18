@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { blockApiEndpoints } from '../api/block-api/endpoints/index';
 import { itemApiEndpoints } from '../api/item-api/endpoints/index';
+import { rainRunoffApiEndpoints } from '../api/rain-runoff-api/endpoints/index';
 
 import { BlockType } from '..';
 import type { RootState } from '..';
@@ -12,6 +13,7 @@ type InfoState = {
   data: {
     blocks: BlockType[],
     items: ItemType[],
+    // results: { blockId: number; }[],
   },
 };
 
@@ -82,11 +84,18 @@ const slice = createSlice({
           data: {
             blocks: state.data.blocks,
             items: state.data.items.map((item) => (item.id === action.meta.arg.originalArgs.id
-              ? { ...item, column: action.meta.arg.originalArgs.column }
+              ? {
+                ...item,
+                column: action.meta.arg.originalArgs.column,
+                block: {
+                  id: +action.meta.arg.originalArgs.column.split('_')[1],
+                },
+              }
               : item)),
           },
         }),
       )
+
       .addMatcher(
         blockApiEndpoints.endpoints.getDocumentBlocks.matchFulfilled,
         (state, action) => ({
@@ -94,7 +103,10 @@ const slice = createSlice({
           data: {
             blocks: action.payload.sort(compareByName),
             items: action.payload
-              .reduce((a, x) => [...a, ...x.items.map((it) => ({ ...it, column: `block_${x.id}` }))], [] as ItemType[]).sort(compareByName), // state.data.items,
+              .reduce((a, x) => [
+                ...a,
+                ...x.items.map((it) => ({ ...it, column: `block_${x.id}`, block: x })),
+              ], [] as ItemType[]).sort(compareByName), // state.data.items,
           },
         }),
       )
@@ -122,6 +134,25 @@ const slice = createSlice({
                 column: `block_${action.payload.block.id}`,
                 index: action.payload.index,
                 block: { id: action.payload.block.id },
+                rainRunoff: {
+                  id: 0,
+                  roof: '0',
+                  pavements: '0',
+                  tracks: '0',
+                  ground: '0',
+                  cobblestone: '0',
+                  stone: '0',
+                  lawns: '0',
+                  place: '0',
+                  intensity: '0',
+                  condition: '0',
+                  timeInit: '0',
+                  lengthPipe: '0',
+                  lengthTray: '0',
+                  velocityPipe: '0',
+                  velocityTray: '0',
+                  flow: '0',
+                },
               },
             ],
           },
@@ -154,6 +185,19 @@ const slice = createSlice({
           data: {
             blocks: state.data.blocks,
             items: state.data.items.filter((x: ItemType) => x.id !== action.meta.arg.originalArgs),
+          },
+        }),
+      )
+      .addMatcher(
+        rainRunoffApiEndpoints.endpoints.updateRainRunoff.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: {
+            blocks: state.data.blocks,
+            // eslint-disable-next-line max-len
+            items: state.data.items.map((x) => (x.rainRunoff.id === action.meta.arg.originalArgs.id
+              ? { ...x, rainRunoff: action.meta.arg.originalArgs }
+              : x)),
           },
         }),
       );
