@@ -1,7 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable max-len */
 import { useDrop } from 'react-dnd';
-import { v4 as uuidv4 } from 'uuid';
 import { TextInput, Button, Icon } from '@gravity-ui/uikit';
 import { Minus, Plus } from '@gravity-ui/icons';
 import { Controller, useForm } from 'react-hook-form';
@@ -10,9 +8,12 @@ import {
   blockSelector,
   useCreateItemMutation, useRemoveBlockMutation, useUpdateBlocksMutation,
 } from '~/store';
+import { useAppSelector } from '~/hooks';
+
+import RainRunoffHeader from './rain-runoff-header';
+import RainRunoffFooter from './rain-runoff-footer';
 
 import style from './column.module.css';
-import { useAppSelector } from '~/hooks';
 
 type FormPayload = { name: string };
 
@@ -30,6 +31,25 @@ export default function Column({ children, block }: ColumnType) {
       name: `Item_${items.length + 1}`,
       block: { id: +blockId.split('_')[1] },
       index: items.length + 1,
+      rainRunoff: {
+        id: 0,
+        roof: '0',
+        pavements: '0',
+        tracks: '0',
+        ground: '0',
+        cobblestone: '0',
+        stone: '0',
+        lawns: '0',
+        place: '0',
+        intensity: '0',
+        condition: '0',
+        timeInit: '0',
+        lengthPipe: '0',
+        lengthTray: '0',
+        velocityPipe: '0',
+        velocityTray: '0',
+        flow: '0',
+      },
     });
   };
 
@@ -48,7 +68,6 @@ export default function Column({ children, block }: ColumnType) {
     }),
     canDrop: (item) => {
       const { currentColumnName } = item as { currentColumnName: string; };
-
       return (currentColumnName.split('_')[0] === 'block');
     },
   });
@@ -56,7 +75,7 @@ export default function Column({ children, block }: ColumnType) {
   const getBackgroundColor = () => {
     if (isOver) {
       if (canDrop) {
-        return 'var(--g-color-base-generic)';
+        return 'var(--table-cell)';
       } if (!canDrop) {
         return 'rgb(255,188,188)';
       }
@@ -83,7 +102,6 @@ export default function Column({ children, block }: ColumnType) {
           }}
           control={control}
           render={({ field }) => (
-            // render={({ field, fieldState }) => (
             <TextInput {...field} onBlur={onEditBlockName} className={style.title} />
           )}
         />
@@ -96,27 +114,7 @@ export default function Column({ children, block }: ColumnType) {
         </Button>
       </div>
       <div className="movable-item">
-        <ul className={style.fields}>
-          <li className={style.position}>#</li>
-          {[
-            's1', // roof
-            's2', // pavements
-            's3', // tracks
-            's4', // ground
-            's5', // cobblestone
-            's6', // stone
-            's7', // lawns
-            '*',
-            'place',
-            'q, л/с', // intensity
-            'condition', // condition
-            't, мин', // timeInit
-            'l, трубы', // lengthPipe
-            'l, лотка', // lengthTray
-            'v1, трубы', // velocityPipe
-            'v2, лотка', // velocityTray
-          ].map((x) => (<li key={uuidv4()} className={style.field}>{x}</li>))}
-        </ul>
+        <RainRunoffHeader />
         <Button
           className={style.add}
           onClick={() => addItem(`block_${block.id}`)}
@@ -127,10 +125,7 @@ export default function Column({ children, block }: ColumnType) {
       </div>
       {children}
       <div className="movable-item">
-        <ul className={style['footer-fields']}>
-          <li className={style.position} />
-          {Array.from({ length: 16 }, (_, i) => i).map(() => (<li key={uuidv4()} className={style.field}>-</li>))}
-        </ul>
+        <RainRunoffFooter block={block.id} />
       </div>
     </div>
   );
