@@ -9,13 +9,6 @@
   background-color: var(--g-color-base-modal);
   border-radius: 12px;
   padding: 12px;
-  color: black;
-}
-
-.title {
-  font-size: 20px;
-  margin: 0;
-  color: black;
 }
 
 .close {
