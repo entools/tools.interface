@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { Suspense, lazy } from 'react';
-import { Text } from '@gravity-ui/uikit';
+// import { Text } from '@gravity-ui/uikit';
 
 import { useUpdateUserProfileMutation } from '~/store';
 
@@ -27,7 +27,7 @@ function ProfilePage() {
   return (
     <Suspense>
       <div className="layout">
-        <Text variant="header-2">Profile</Text>
+        {/* <Text variant="header-2">Profile</Text> */}
         <div className={style.form}>
           <ProfileForm onSubmit={onSubmit} isLoading={isLoading} />
           <ProfileSettings />
