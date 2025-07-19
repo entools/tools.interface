@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { itemApiEndpoints } from '../api/item-api/endpoints/index';
-
 import type { RootState } from '..';
 
 type InfoState = {
