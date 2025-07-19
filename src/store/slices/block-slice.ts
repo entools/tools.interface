@@ -4,16 +4,15 @@ import { blockApiEndpoints } from '../api/block-api/endpoints/index';
 import { itemApiEndpoints } from '../api/item-api/endpoints/index';
 import { rainRunoffApiEndpoints } from '../api/rain-runoff-api/endpoints/index';
 
-import { BlockType } from '..';
 import type { RootState } from '..';
 
 import compareByName from '~/utils/compare-by-name';
 
+type BlockType = Block & { items: ItemType[] };
 type InfoState = {
   data: {
     blocks: BlockType[],
     items: ItemType[],
-    // results: { blockId: number; }[],
   },
 };
 
